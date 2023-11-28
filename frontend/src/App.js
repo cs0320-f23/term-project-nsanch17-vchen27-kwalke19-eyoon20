@@ -1,13 +1,31 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        {/* Replace the logo with emojis */}
+        <div className="App-logo">
+          🌿 Ivy Exchange 🌿
+        </div>
+        <div className="App-search">
+          {/* Add a search bar */}
+          <input
+            type="text"
+            placeholder="Search for products"
+            className="App-search-input"
+          />
+          <button className="App-search-button">Search</button>
+        </div>
+        <div className="App-featured-item">
+          🌟 Featured Item 🌟
+        </div>
+        <div className="App-featured-item-display">
+          🧲  ❤️ 🎍
+        </div>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Welcome to Ivy Exchange! 📌
         </p>
         <a
           className="App-link"
@@ -15,7 +33,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Let's do this :D
         </a>
       </header>
     </div>
