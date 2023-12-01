@@ -1,4 +1,6 @@
 import React from "react";
+import Logo from "../../assets/image-logo.png"
+
 
 export function NavBar() {
   return (
@@ -36,7 +38,8 @@ export function NavBar() {
         >
           <img
             style={{ width: 34, height: 34 }}
-            src="https://via.placeholder.com/34x34"
+            src={Logo}
+            alt="Ivy Exchange Logo"
           />
           <div
             style={{
