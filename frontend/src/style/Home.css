@@ -126,5 +126,5 @@
   text-align: left;
   font-size: var(--font-size-base);
   color: var(--color-black);
-  font: jost;
+  font-family: Jost;
 }

@@ -4,7 +4,7 @@ import Secure from "../assets/secure-icon.png";
 import Box from "../assets/box-icon.png";
 import Phone from "../assets/phone-icon.png";
 
-const LocalToBrownStudentsContainer = () => {
+const FeaturesContainer = () => {
   return (
     <div className="features">
       <div className="bg" />
@@ -44,4 +44,4 @@ const LocalToBrownStudentsContainer = () => {
   );
 };
 
-export default LocalToBrownStudentsContainer;
+export default FeaturesContainer;

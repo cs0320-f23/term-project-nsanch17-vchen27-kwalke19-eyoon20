@@ -1,8 +1,9 @@
+import React, { FunctionComponent } from "react";
 import "../style/WelcomeContainer.css";
 import Logo from "../assets/image-logo.png";
 import Arrow from "../assets/arrow.png";
 
-const WelcomeContainer = () => {
+const WelcomeContainer: FunctionComponent = () => {
   return (
     <div className="title">
       <div className="breadcrumbs">

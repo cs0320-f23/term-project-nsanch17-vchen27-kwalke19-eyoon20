@@ -13,6 +13,7 @@
 }
 .local-to-brown {
   font-weight: 500;
+  font-family: Jost;
 }
 .trust-your-buyers {
   position: absolute;
@@ -20,6 +21,7 @@
   left: 0;
   font-size: var(--font-size-base);
   line-height: 26px;
+  font-family: "Jost";
 }
 .text {
   position: absolute;
@@ -27,6 +29,7 @@
   left: 64px;
   width: 245px;
   height: 56px;
+  font-family: "Jost";
 }
 .feature,
 .icon,
