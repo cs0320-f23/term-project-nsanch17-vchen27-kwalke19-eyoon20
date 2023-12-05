@@ -3,6 +3,8 @@
   top: 1.75px;
   left: 0;
   line-height: 22.5px;
+  color: black;
+  font-family: Jost;
 }
 .vector-icon4 {
   position: relative;
@@ -29,6 +31,8 @@
   left: 79px;
   font-size: var(--font-size-base);
   line-height: 24px;
+  color: black;
+  font-family: Jost;
 }
 .breadcrumbs {
   position: absolute;
@@ -36,6 +40,7 @@
   left: 383px;
   width: 203px;
   height: 24.75px;
+  color: black;
 }
 .welcome {
   color: #000;
@@ -54,6 +59,8 @@
   left: 106px;
   font-size: var(--font-size-base);
   line-height: 24px;
+  color: black;
+  font-family: Jost;
 }
 .title {
   position: absolute;

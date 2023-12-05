@@ -95,6 +95,6 @@
   height: 138px;
   text-align: center;
   font-size: var(--font-size-xs);
-  color: var(--color-darkslategray);
+  color: black;
   font-family: var(--font-poppins);
 }

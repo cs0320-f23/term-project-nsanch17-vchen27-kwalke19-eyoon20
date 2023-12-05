@@ -7,12 +7,22 @@ import Chat from "../../assets/Chat.png";
 import Bell from "../../assets/Bell_Notification.png";
 import Profile from "../../assets/profile.jpeg";
 import SearchBar from "./SearchBar";
+import { useNavigate } from "react-router-dom";
 
 interface NavBarProps {}
 
 const NavBar: React.FC<NavBarProps> = () => {
   const [searchValue, setSearchValue] = useState("");
+  const [page, setPage] = useState("");
 
+  const handlePageChangeClick = (page: string) => {
+    setPage(page);
+  };
+
+  const navigate = useNavigate();
+  const navigateToProfile = () => {
+    navigate("/Profile");
+  };
   return (
     <div className="frame">
       <div className="left">
@@ -39,7 +49,12 @@ const NavBar: React.FC<NavBarProps> = () => {
 
         <div className="profileHolder">
           <div />
-          <img className="profile" src={Profile} alt="Profile" />
+          <img
+            className={`profile ${page === "profile" ? "selected" : ""}`}
+            onClick={() => handlePageChangeClick("profile")}
+            src={Profile}
+            alt="Profile"
+          />
         </div>
       </div>
     </div>

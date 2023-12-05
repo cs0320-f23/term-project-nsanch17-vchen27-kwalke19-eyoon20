@@ -55,7 +55,41 @@ const FilterContainer: React.FC = () => {
       </div>
       <div className="filters-menu06">
         <div className="heading-4">Tags</div>
-        <div className="list">{/* ... (remaining code unchanged) ... */}</div>
+        <div className="list">
+          <div className="item">
+            <div className="link-fashion">Fashion</div>
+          </div>
+          <div className="item1">
+            <div className="link-fashion">Hats</div>
+          </div>
+          <div className="item2">
+            <div className="link-fashion">Sandal</div>
+          </div>
+          <div className="item3">
+            <div className="link-fashion">Belt</div>
+          </div>
+          <div className="item4">
+            <div className="link-fashion">Bags</div>
+          </div>
+          <div className="item5">
+            <div className="link-fashion">Snacker</div>
+          </div>
+          <div className="item6">
+            <div className="link-fashion">Denim</div>
+          </div>
+          <div className="item7">
+            <div className="link-fashion">Minimog</div>
+          </div>
+          <div className="item8">
+            <div className="link-fashion">Vagabond</div>
+          </div>
+          <div className="item9">
+            <div className="link-fashion">Sunglasses</div>
+          </div>
+          <div className="item10">
+            <div className="link-fashion">Beachwear</div>
+          </div>
+        </div>
       </div>
       <div className="filters">Filters</div>
       <div className="filters-menu03">

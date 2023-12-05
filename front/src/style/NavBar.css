@@ -1,4 +1,4 @@
-.profile{
+.profile {
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -7,25 +7,24 @@
   position: absolute;
 }
 
-.search-box{
+.search-box {
   border-radius: 25px;
-  background-color: #F5F6F7;
+  background-color: #f5f6f7;
   border: none;
   flex: 1 1 0;
-  color:#797F8F;
+  color: #797f8f;
   font-size: 14px;
   font-weight: 400;
   line-height: 3;
   word-wrap: break-word;
-
 }
 
-input{
-  color: #797F8F;
+input {
+  color: #797f8f;
   text-indent: 10px;
 }
 
-.frame{
+.frame {
   padding-top: 20px;
   padding-bottom: 16px;
   background-color: white;
@@ -34,20 +33,20 @@ input{
   display: inline-flex;
 }
 
-.left{
+.left {
   display: flex;
   width: 748px;
   justify-content: flex-start;
   gap: 65px;
 }
 
-.titleLogo{
+.titleLogo {
   justify-content: flex-start;
   gap: 7px;
   display: flex;
 }
 
-.logo{
+.logo {
   width: 34px;
   height: 34px;
   left: 460px;
@@ -55,16 +54,16 @@ input{
   position: absolute;
 }
 
-.title{
+.title {
   color: #151924;
   font-size: 18px;
-  left:px;
+  left: px;
   font-weight: 500px;
   line-height: 40px;
   word-wrap: break-word;
 }
 
-.searchHolder{
+.searchHolder {
   height: 36px;
   padding-left: 16px;
   padding-right: 1px;
@@ -76,13 +75,13 @@ input{
   display: flex;
 }
 
-.imageSearchHolder{
+.imageSearchHolder {
   width: 20px;
   height: 20px;
   position: relative;
 }
 
-.searchImage{
+.searchImage {
   width: 15.83px;
   height: 15.83px;
   left: 830px;
@@ -90,28 +89,28 @@ input{
   position: absolute;
 }
 
-.spacer{
- height: 40px;
- justify-content: flex-end;
- align-items: center;
- gap: 24px;
- display: flex;
+.spacer {
+  height: 40px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+  display: flex;
 }
 
-.innerSpacer{
+.innerSpacer {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 24px;
   display: flex;
 }
 
-.rightHolders{
- width: 24px;
- height: 24px;
- position: relative; 
+.rightHolders {
+  width: 24px;
+  height: 24px;
+  position: relative;
 }
 
-.heart{
+.heart {
   width: 18px;
   height: 15.96px;
   left: 3px;
@@ -119,7 +118,7 @@ input{
   position: absolute;
 }
 
-.chat{
+.chat {
   width: 18px;
   height: 16.92px;
   left: 3px;
@@ -127,7 +126,7 @@ input{
   position: absolute;
 }
 
-.bell{
+.bell {
   width: 17px;
   height: 19px;
   left: 4px;
@@ -135,9 +134,8 @@ input{
   position: absolute;
 }
 
-.profileHolder{
+.profileHolder {
   width: 40px;
- height: 40px;
- position: relative; 
+  height: 40px;
+  position: relative;
 }
-
