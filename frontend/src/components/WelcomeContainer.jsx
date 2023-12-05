@@ -1,5 +1,6 @@
 import "../style/WelcomeContainer.css";
 import Logo from "../assets/image-logo.png";
+import Arrow from "../assets/arrow.png";
 
 const WelcomeContainer = () => {
   return (
@@ -7,7 +8,7 @@ const WelcomeContainer = () => {
       <div className="breadcrumbs">
         <div className="home4">Home</div>
         <div className="svg1">
-          <img className="vector-icon4" alt="" src={Logo} />
+          <img className="vector-icon4" alt="" src={Arrow} />
         </div>
         <div className="recommendations">Recommendations</div>
       </div>

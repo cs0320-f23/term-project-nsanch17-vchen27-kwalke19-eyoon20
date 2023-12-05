@@ -1,11 +1,13 @@
 import ProductCard from "./ProductCard";
 import "../style/RecommendedProducts.css";
+import Model from "../assets/model-placeholder.png";
+import Model2 from "../assets/model2-placeholder.png";
 
 const RecommendedProductsContainer = () => {
   return (
     <div className="products">
       <ProductCard
-        productImageName="/49-ecfb9d65a39240b1b9fbf62e5a84f812jpg@2x.png"
+        productImageName={Model}
         productDescription="Rounded Red Hat"
         productPrice="$8.00"
       />
@@ -13,7 +15,7 @@ const RecommendedProductsContainer = () => {
         <div className="divsf-pcard1">
           <div className="divoverflow-hidden">
             <div className="link-responsive-image1">
-              <img className="jpg-icon" alt="" src="/57jpg@2x.png" />
+              <img className="jpg-icon" alt="" src={Model2} />
             </div>
             <div className="spanprod-tag">
               <div className="sold-out">
@@ -31,21 +33,21 @@ const RecommendedProductsContainer = () => {
         </div>
       </div>
       <ProductCard
-        productImageName="/59jpg@2x.png"
+        productImageName={Model}
         productDescription="Long-sleeve Coat"
         productPrice="$106.00"
         propLeft="652px"
         propTop="0px"
       />
       <ProductCard
-        productImageName="/54-8558553ca9dd4474bc2b6707343dacbejpg@2x.png"
+        productImageName={Model2}
         productDescription="Boxy Denim Hat"
         productPrice="$25.00"
         propLeft="0px"
         propTop="561.61px"
       />
       <ProductCard
-        productImageName="/53-bc12317de94140979fd8cc529c2b0cf1jpg@2x.png"
+        productImageName={Model}
         productDescription="Linen Plain Top"
         productPrice="$25.00"
         propLeft="326px"
@@ -54,11 +56,7 @@ const RecommendedProductsContainer = () => {
       <div className="product-06">
         <div className="divsf-pcard1">
           <div className="link-responsive-image2">
-            <img
-              className="jpg-icon"
-              alt=""
-              src="/52-bec0360d64e54b79bb889b2dc30f34a2jpg@2x.png"
-            />
+            <img className="jpg-icon" alt="" src={Model2} />
           </div>
           <div className="divmt-32">
             <div className="heading-3-link2">
@@ -78,11 +76,7 @@ const RecommendedProductsContainer = () => {
       <div className="product-07">
         <div className="divsf-pcard1">
           <div className="link-responsive-image2">
-            <img
-              className="jpg-icon"
-              alt=""
-              src="/46-145a4ab07b97409ab0493768fd0e7a10jpg@2x.png"
-            />
+            <img className="jpg-icon" alt="" src={Model} />
           </div>
           <div className="divmt-32">
             <div className="heading-3-link3">
@@ -98,14 +92,14 @@ const RecommendedProductsContainer = () => {
         </div>
       </div>
       <ProductCard
-        productImageName="/45jpg@2x.png"
+        productImageName={Model2}
         productDescription="Rockstar Jacket"
         productPrice="$22.00"
         propLeft="326px"
         propTop="1123.22px"
       />
       <ProductCard
-        productImageName="/44-df90161a71724fac869ac6af02c86d12jpg@2x.png"
+        productImageName={Model}
         productDescription="Dotted Black Dress"
         productPrice="$20.00"
         propLeft="652px"

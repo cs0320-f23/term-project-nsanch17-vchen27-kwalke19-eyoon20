@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { NavBar } from "../components/NavBar/NavBar";
 import "../style/Home.css";
 import "../style/App.css";
@@ -12,9 +13,14 @@ import Header from "../components/Header";
 import WelcomeContainer from "../components/WelcomeContainer";
 
 const Home = () => {
+  const [selectedPage, setSelectedPage] = useState(1);
+
+  const handlePageClick = (page) => {
+    setSelectedPage(page);
+  };
+
   return (
     <div className="home">
-      <NavBar />
       <img className="ivy-exchange-logo-transparent" alt="" src={Logo} />
       <FilterContainer />
       <div className="recommended">
@@ -28,23 +34,32 @@ const Home = () => {
         </div>
       </div>
       <div className="pagination">
-        <div className="spanpage">
+        <div
+          className={`page-1 ${selectedPage === 1 ? "selected" : ""}`}
+          onClick={() => handlePageClick(1)}
+        >
           <div className="div">1</div>
         </div>
-        <div className="link">
+        <div
+          className={`page-2 ${selectedPage === 1 ? "selected" : ""}`}
+          onClick={() => handlePageClick(2)}
+        >
           <div className="div">2</div>
         </div>
-        <div className="link1">
+        <div
+          className={`page-3 ${selectedPage === 1 ? "selected" : ""}`}
+          onClick={() => handlePageClick(3)}
+        >
           <div className="div">3</div>
         </div>
-        <div className="link2">
+        <div className="next">
           <div className="div">»</div>
         </div>
       </div>
+      <NavBar />
       <RecommendedProducts />
       <FeaturesContainer />
       <Footer />
-      <Header />
       <WelcomeContainer />
     </div>
   );
