@@ -1,0 +1,102 @@
+.copyright-text {
+  position: absolute;
+  top: 78px;
+  left: calc(50% - 148.41px);
+  line-height: 26px;
+  color: black;
+}
+.support1 {
+  position: absolute;
+  top: 0;
+  left: 118px;
+}
+.faq,
+.pages,
+.vector-icon3 {
+  position: absolute;
+  top: 0;
+  left: 250px;
+  color: black;
+}
+.pages,
+.vector-icon3 {
+  left: 0;
+}
+.vector-icon3 {
+  top: 12px;
+  left: 55px;
+  width: 6.82px;
+  height: 4.14px;
+}
+.nav-menu,
+.pages-parent {
+  position: absolute;
+  top: 0;
+  left: 370px;
+  width: 61.82px;
+  height: 24px;
+}
+.nav-menu {
+  left: 877px;
+  width: 431.82px;
+}
+.ivy-exchange-logo-transparent1 {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  object-fit: cover;
+}
+.home2 {
+  position: relative;
+  line-height: 32px;
+  font-weight: 500;
+}
+.logo-and-home {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-6xs);
+  font-size: var(--font-size-lg);
+  color: var(--light-theme-heading-text);
+}
+.data,
+.logo-itema {
+  position: absolute;
+  width: 1308.82px;
+}
+.logo-itema {
+  top: 0;
+  left: 0;
+  height: 36px;
+  text-align: left;
+  font-size: var(--font-size-base);
+}
+.data {
+  top: 34px;
+  left: calc(50% - 669px);
+  height: 104px;
+}
+.separator {
+  position: absolute;
+  top: -0.5px;
+  left: -0.5px;
+  border-top: 1px solid var(--color-gainsboro);
+  box-sizing: border-box;
+  width: 1921px;
+  height: 1px;
+}
+.footer {
+  position: absolute;
+  top: 326vh;
+  left: calc(50% - 960px);
+  width: 1920px;
+  height: 138px;
+  text-align: center;
+  font-size: var(--font-size-xs);
+  color: var(--color-darkslategray);
+  font-family: var(--font-poppins);
+}
