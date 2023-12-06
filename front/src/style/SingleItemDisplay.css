@@ -1,0 +1,145 @@
+/* Base styles for the page */
+.item-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 20px;
+  gap: 20px; /* Space between sections */
+}
+
+/* Styles for the left and right sections */
+.left-side,
+.right-side {
+  box-sizing: border-box;
+}
+
+/* Flexbox styles for larger screens */
+@media (min-width: 768px) {
+  .item-container {
+    flex-direction: row;
+    align-items: flex-start; /* Align items to the start of the cross-axis */
+  }
+
+  .left-side {
+    flex: 1;
+    max-width: 600px; /* Max width for the left side */
+  }
+
+  .right-side {
+    flex: 1;
+    max-width: 600px; /* Max width for the right side */
+  }
+}
+
+/* Product image container */
+.product-image-container {
+  width: 100%; /* Full width on mobile */
+  display: flex;
+  justify-content: center; /* Center image within the container */
+  margin-bottom: 20px; /* Space below the image container */
+}
+
+.product-image {
+  max-width: 100%; /* Ensure image does not stretch */
+  height: auto;
+  display: block;
+  border-radius: 4px; /* Slightly rounded corners for the image */
+}
+
+/* Product details styles */
+.product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-title {
+  font-size: 1.5rem; /* Adjust to your preference */
+  font-weight: bold;
+  margin: 0;
+  color: #333; /* Dark gray for text */
+}
+
+.product-price {
+  font-size: 2.25rem; /* Larger text for the price */
+  color: #47A55C; /* Thematic color for price */
+  margin: 0;
+}
+
+.product-description {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #666; /* Lighter gray for description */
+}
+
+/* Action buttons */
+.action-buttons-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+.action-button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  white-space: nowrap; /* Prevent text from wrapping inside buttons */
+  margin: 10px 0; /* Adjust button margins */
+  color: white; /* Text color for buttons */
+  background-color: #47A55C; /* Green background for buttons */
+}
+
+.action-button:hover {
+  background-color: #3e9548; /* Slightly darker green on hover */
+}
+
+/* Reviews container */
+.reviews-container {
+  width: 100%;
+}
+
+.reviews-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333; /* Dark gray for text */
+}
+
+.review {
+  border-bottom: 1px solid #eee; /* Separator line */
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  color: #333; /* Dark gray for text */
+}
+
+.review-author,
+.review-date {
+  font-weight: bold;
+  color: #666; /* Lighter gray for author and date */
+}
+
+.review-content {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333; /* Dark gray for review content */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .action-button {
+    width: 100%; /* Full-width buttons on mobile */
+    margin: 10px 0; /* Adjust margins for mobile */
+  }
+
+  /* Scale down the title and price font sizes on smaller screens */
+  .product-title {
+    font-size: 1.25rem; /* Smaller text for the title on mobile */
+  }
+
+  .product-price {
+    font-size: 2rem; /* Smaller text for the price on mobile */
+  }
+}
