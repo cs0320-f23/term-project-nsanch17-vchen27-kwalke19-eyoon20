@@ -90,7 +90,7 @@
 .footer {
   position: absolute;
   top: 326vh;
-  left: calc(50% - 960px);
+  left: -22%;
   width: 1920px;
   height: 138px;
   text-align: center;

@@ -13,6 +13,7 @@ const WelcomeContainer: FunctionComponent = () => {
         </div>
         <div className="recommendations">Recommendations</div>
       </div>
+      <img className="ivy-exchange-logo-transparent2" alt="" src={Logo} />
       <div className="welcome">Welcome to Ivy Exchange!</div>
       <div className="description">
         Online marketplace for Brown students and staff to buy and resell

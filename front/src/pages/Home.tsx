@@ -22,7 +22,6 @@ const Home: FunctionComponent<HomeProps> = () => {
 
   return (
     <div className="home">
-      <img className="ivy-exchange-logo-transparent" alt="" src={Logo} />
       <FilterContainer />
       <div className="recommended">
         <div className="spansf-select-custom-trigger">

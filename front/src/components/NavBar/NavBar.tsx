@@ -7,7 +7,6 @@ import Chat from "../../assets/Chat.png";
 import Bell from "../../assets/Bell_Notification.png";
 import Profile from "../../assets/profile.jpeg";
 import SearchBar from "./SearchBar";
-import { useNavigate } from "react-router-dom";
 
 interface NavBarProps {}
 
@@ -19,10 +18,6 @@ const NavBar: React.FC<NavBarProps> = () => {
     setPage(page);
   };
 
-  const navigate = useNavigate();
-  const navigateToProfile = () => {
-    navigate("/Profile");
-  };
   return (
     <div className="frame">
       <div className="left">
