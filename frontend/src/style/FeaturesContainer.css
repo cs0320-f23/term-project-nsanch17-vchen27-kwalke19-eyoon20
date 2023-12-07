@@ -1,0 +1,126 @@
+.bg,
+.local-to-brown {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.bg {
+  border-radius: var(--br-8xs);
+  background-color: var(--light-theme-background);
+  box-shadow: 0 20px 52.29px rgba(68, 68, 68, 0.04);
+  width: 1920px;
+  height: 200px;
+}
+.local-to-brown {
+  font-weight: 500;
+  font-family: Jost;
+}
+.trust-your-buyers {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  font-size: var(--font-size-base);
+  line-height: 26px;
+  font-family: "Jost";
+}
+.text {
+  position: absolute;
+  top: 0;
+  left: 64px;
+  width: 245px;
+  height: 56px;
+  font-family: "Jost";
+}
+.feature,
+.icon,
+.icon1,
+.text1 {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 51px;
+  height: 50px;
+}
+.feature,
+.icon1,
+.text1 {
+  top: 0;
+  width: 309px;
+  height: 56px;
+}
+.icon1,
+.text1 {
+  left: 51px;
+  width: 211px;
+}
+.icon1 {
+  top: 3px;
+  left: 0;
+  width: 38px;
+  height: 50px;
+}
+.feature1,
+.text2,
+.vector-icon2 {
+  position: absolute;
+  top: 0;
+  left: 393px;
+  width: 262px;
+  height: 56px;
+}
+.text2,
+.vector-icon2 {
+  left: 59px;
+  width: 209px;
+}
+.vector-icon2 {
+  top: 3px;
+  left: 0;
+  width: 46px;
+  height: 50px;
+}
+.feature2,
+.icon2,
+.text3 {
+  position: absolute;
+  top: 0;
+  left: 755px;
+  width: 268px;
+  height: 56px;
+}
+.icon2,
+.text3 {
+  left: 63px;
+  width: 150px;
+}
+.icon2 {
+  top: 3px;
+  left: 0;
+  width: 50px;
+  height: 50px;
+}
+.feature3,
+.features,
+.features1 {
+  position: absolute;
+  top: 0;
+  left: 1068px;
+  width: 213px;
+  height: 56px;
+}
+.features,
+.features1 {
+  top: 72px;
+  left: 320px;
+  width: 1281px;
+}
+.features {
+  top: 303vh;
+  left: -15vw;
+  width: 1920px;
+  height: 200px;
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--color-darkslategray);
+  font-family: var(--font-poppins);
+}

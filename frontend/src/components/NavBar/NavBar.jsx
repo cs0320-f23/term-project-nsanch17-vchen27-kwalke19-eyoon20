@@ -1,7 +1,7 @@
 import React from "react";
 import "../../style/NavBar.css";
 import "../../style/App.css";
-import Logo from "../../assets/image-logo.png"
+import Logo from "../../assets/image-logo.png";
 import Heart from "../../assets/Heart_01.png";
 import DarkHeart from "../../assets/dark_heart.png";
 import Chat from "../../assets/Chat.png";
