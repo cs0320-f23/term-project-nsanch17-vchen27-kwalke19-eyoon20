@@ -1,7 +1,9 @@
 .App {
   text-align: center;
-  width: 1920px;
-  height: default;
+  /* width: 1920px; */
+  width: 100%;
+  /* height: default; */
+  height: 100%;
 }
 
 .App-logo {

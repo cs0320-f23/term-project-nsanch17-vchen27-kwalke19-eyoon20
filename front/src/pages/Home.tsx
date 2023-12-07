@@ -57,11 +57,13 @@ const Home: FunctionComponent<HomeProps> = () => {
           <div className="div">»</div>
         </div>
       </div>
-      <NavBar />
+      <div className="nav">
+        <NavBar />
+      </div>
       <RecommendedProducts />
       <FeaturesContainer />
       <Footer />
-      <Header />
+
       <WelcomeContainer />
     </div>
   );

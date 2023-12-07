@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Home from "./pages/Home.tsx";
+import {Messaging} from "./components/Messaging/Messaging.tsx"
 import "./style/App.css";
 import Profile from "./pages/Profile.tsx";
 
@@ -10,7 +11,7 @@ import Profile from "./pages/Profile.tsx";
 function App() {
   return (
     <div className="App">
-      <Profile />
+      <Messaging />
     </div>
   );
 }

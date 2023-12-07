@@ -2,8 +2,6 @@
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  left: 20px;
-  top: 0px;
   position: absolute;
 }
 
@@ -28,8 +26,11 @@ input{
 .frame{
   padding-top: 20px;
   padding-bottom: 16px;
-  background-color: white;
-  border-radius: 12px;
+  background-color: #D2F6DA;
+  width: 100%;
+  
+ 
+  /* border-radius: 12px; */
   justify-content: space-between;
   display: inline-flex;
 }
@@ -50,15 +51,13 @@ input{
 .logo{
   width: 34px;
   height: 34px;
-  left: 460px;
-  top: 23px;
-  position: absolute;
 }
+
+
 
 .title{
   color: #151924;
   font-size: 18px;
-  left:px;
   font-weight: 500px;
   line-height: 40px;
   word-wrap: break-word;
@@ -85,9 +84,8 @@ input{
 .searchImage{
   width: 15.83px;
   height: 15.83px;
-  left: 830px;
-  top: 34px;
-  position: absolute;
+  left: 260px;
+  position: relative;
 }
 
 .spacer{
@@ -109,6 +107,9 @@ input{
  width: 24px;
  height: 24px;
  position: relative; 
+ right: 100px;
+ top: 10px;
+
 }
 
 .heart{
@@ -117,7 +118,15 @@ input{
   left: 3px;
   top: 4.54px;
   position: absolute;
+  cursor:pointer;
 }
+.darkHeart{
+  display: none;
+}
+.heart:hover ~ .darkHeart{
+  display: flex; 
+}
+
 
 .chat{
   width: 18px;
@@ -125,6 +134,15 @@ input{
   left: 3px;
   top: 4px;
   position: absolute;
+  cursor:pointer;
+
+}
+.darkChat{
+  display:none;
+}
+.chat:hover ~ .darkChat{
+  display: flex; 
+  cursor:pointer;
 }
 
 .bell{
@@ -139,5 +157,16 @@ input{
   width: 40px;
  height: 40px;
  position: relative; 
+ right: 100px;;
 }
+
+.right{
+  display: flex;
+  position: relative;
+
+}
+
+/* .titleSearch{
+  right: 500px;
+} */
 
