@@ -127,6 +127,6 @@
   overflow: hidden;
   text-align: left;
   font-size: var(--font-size-base);
-  color: var(--color-black);
+  color: black;
   font: jost;
 }
