@@ -1,0 +1,398 @@
+html,
+body,
+#root {
+  min-height: 100%;
+}
+body {
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.all {
+  display: grid;
+  grid-template-columns: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  width: 100%;
+  height: 7%;
+  z-index: 1000;
+  padding-bottom: 100px;
+}
+
+.page {
+  display: flex;
+  flex-direction: row;
+  height: 93%;
+  width: 100%;
+  position: relative;
+  top: 80px;
+}
+
+.pfp {
+  width: 100px;
+  height: 100px;
+  /* margin-left: 487px; */
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  border-radius: 9999px;
+}
+
+.messageHolder {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+
+  height: 79px;
+}
+
+.messageBox {
+  width: 600px;
+  margin: 0 auto;
+
+  position: relative;
+  background-color: rgba(239, 246, 252, 0.87);
+  border: none;
+  border-radius: 25px;
+
+  height: 30px;
+  max-height: 100px;
+
+  padding: 30px;
+  position: relative;
+  color: #303030;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 1.2;
+  word-wrap: break-word;
+
+  overflow-y: auto;
+}
+
+.sendTo {
+  width: 100%;
+  /* margin-left: 5px; */
+  height: 32px;
+
+  margin-top: -40px;
+  position: relative;
+  color: #303030;
+  font-size: 32px;
+
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  word-wrap: break-word;
+}
+
+.sendTo:hover {
+  color: green;
+}
+
+.sendBorder {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  /* left: 796px; */
+  /* top: 176px; */
+  position: relative;
+  /* border: 1px rgba(179.56, 170.88, 170.88, 0.66) solid; */
+}
+
+.otherBubble {
+  max-width: 50%;
+  color: #303030;
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: 1.3px;
+  margin: 10px 0;
+  word-wrap: break-word;
+
+  padding: 20px;
+  background: #e7e7e7;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.otherTime {
+  width: 171px;
+  height: 26px;
+  position: relative;
+  color: #707070;
+  font-size: 20px;
+
+  font-weight: 300;
+  letter-spacing: 1px;
+  word-wrap: break-word;
+}
+
+.openMsg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.senderBubble {
+  background: #47a55c;
+  border-radius: 25px;
+  padding: 20px;
+
+  color: #303030;
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: 0.8;
+  word-wrap: break-word;
+
+  max-width: 50%;
+  margin: 15px 0 5px auto;
+
+  border-top-left-radius: 25px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.scrollContainer {
+  height: 90%;
+  width: 100%;
+  overflow-y: auto;
+  flex-direction: column;
+  /* overflow-anchor: auto; */
+}
+
+.allBubblesContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.senderTime {
+  width: 171px;
+  height: 26px;
+  left: 1522px;
+  /* top: 865, */
+  /* position: absolute; */
+
+  color: #707070;
+  font-size: 20px;
+
+  font-weight: 300;
+  letter-spacing: 1px;
+  word-wrap: break-word;
+}
+
+.leftScreen {
+  display: flex;
+
+  height: 100%;
+  width: 42.1%;
+  flex-direction: column;
+  border-right: 1px rgba(179.56, 170.88, 170.88, 0.66) solid;
+  border-right-width: 5px;
+}
+
+.content {
+  display: flex;
+
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+}
+
+.msgTitle {
+  top: 60px;
+  position: relative;
+  color: #303030;
+  font-size: 59px;
+
+  font-weight: 700;
+  letter-spacing: 1.95px;
+  word-wrap: break-word;
+}
+
+.photoIcon {
+  height: 30px;
+  position: relative;
+  top: 20px;
+}
+
+.photoIcon:hover {
+  height: 40px;
+  cursor: pointer;
+}
+
+.elms {
+  display: flex;
+  gap: 50px;
+}
+
+span[contenteditable]:empty:focus::before,
+span[contenteditable]:empty::before {
+  content: "Start texting here...";
+}
+
+.msgCat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  margin-bottom: 16px;
+}
+
+.catAll,
+.catBuying,
+.catSelling {
+  text-align: center;
+
+  position: relative;
+
+  color: #303030;
+  font-size: 30px;
+
+  font-weight: 400;
+  letter-spacing: 1.5;
+  word-wrap: break-word;
+  cursor: pointer;
+}
+
+.catBuying {
+  margin-left: 30px;
+}
+
+.catSelling {
+  margin-left: 30px;
+}
+
+.msgs {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: pink;
+  top: 298px;
+}
+
+.cell1 {
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+  /* background-color: black; */
+}
+
+.us1pfp {
+  width: 50px;
+  height: 50px;
+
+  margin-left: 14px;
+  margin-top: 17px;
+  position: absolute;
+  border-radius: 9999px;
+}
+
+.us1:hover {
+  background-color: lightgray;
+}
+
+.name1 {
+  margin-left: 120px;
+  margin-top: 13px;
+
+  color: #303030;
+  font-size: 20px;
+
+  font-weight: 700;
+  letter-spacing: 1px;
+  word-wrap: break-word;
+}
+
+.stamp1 {
+  margin-top: 34px;
+  margin-left: 500px;
+  position: absolute;
+  color: #7c7c7c;
+  font-size: 16px;
+
+  font-weight: 400;
+  letter-spacing: 0.16px;
+  word-wrap: break-word;
+}
+
+.prev1 {
+  margin-left: 120px;
+  margin-top: 15px;
+  position: absolute;
+  color: #303030;
+  font-size: 16px;
+
+  font-weight: 300;
+  letter-spacing: 0.8px;
+  word-wrap: break-word;
+}
+
+.unread {
+  width: 25px;
+  height: 25px;
+  left: 696px;
+  top: 512px;
+  position: absolute;
+  background: #f24e1e;
+  border-radius: 50%;
+}
+
+.catAll.selected,
+.catBuying.selected,
+.catSelling.selected {
+  text-decoration: underline;
+  font-size: 35px;
+
+  color: green;
+}
+
+.us1.selected{
+   background-color: lightgray;
+}
+
+.us1,
+.us2,
+.us3 {
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  width: 100%;
+  border-top: 1px rgba(179.56, 170.88, 170.88, 0.66) solid;
+  border-bottom: 1px rgba(179.56, 170.88, 170.88, 0.66) solid;
+}
+
+@media only screen and (max-width: 2155px) {
+  .stamp1 {
+    display: none;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px rgba(179.56, 170.88, 170.88, 0.66) solid;
+  border-width: 6px;
+}
