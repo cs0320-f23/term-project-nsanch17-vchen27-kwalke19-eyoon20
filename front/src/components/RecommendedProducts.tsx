@@ -3,14 +3,24 @@ import ProductCard from "./ProductCard";
 import "../style/RecommendedProducts.css";
 import Model from "../assets/model-placeholder.png";
 import Model2 from "../assets/model2-placeholder.png";
+import { useNavigate } from "react-router-dom";
+
 
 const RecommendedProductsContainer: React.FC = () => {
+
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate('/single-item'); // Navigate to the messaging route
+  };
+
   return (
     <div className="products">
       <ProductCard
         productImageName={Model}
         productDescription="Rounded Red Hat"
         productPrice="$8.00"
+        onClick={handleCardClick}
       />
       <div className="product-02">
         <div className="divsf-pcard1">

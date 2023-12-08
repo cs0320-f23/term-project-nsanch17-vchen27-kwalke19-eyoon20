@@ -7,6 +7,7 @@ interface ProductCardProps {
   productPrice: string;
   propLeft?: string;
   propTop?: string;
+  onClick?: () => void;
 }
 
 const ProductCard: FC<ProductCardProps> = ({
@@ -15,6 +16,7 @@ const ProductCard: FC<ProductCardProps> = ({
   productPrice,
   propLeft,
   propTop,
+  onClick,
 }) => {
   const product01Style = useMemo(() => {
     return {
@@ -24,7 +26,7 @@ const ProductCard: FC<ProductCardProps> = ({
   }, [propLeft, propTop]);
 
   return (
-    <div className="product-01" style={product01Style}>
+    <div className="product-01" style={product01Style} onClick={onClick}> {/* Attach onClick handler */}
       <div className="divsf-pcard">
         <div className="link-responsive-image">
           <img

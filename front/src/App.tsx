@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/messaging" element={<Messaging />} />
-          <Route path="/single-item" element={<SingleItemDisplay />} />
+          <Route path="/single-item/" element={<SingleItemDisplay />} />
           {/* Add additional routes as needed */}
         </Routes>
       </div>
