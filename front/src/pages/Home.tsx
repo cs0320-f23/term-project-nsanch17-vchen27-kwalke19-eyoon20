@@ -8,7 +8,6 @@ import RecommendedProducts from "../components/RecommendedProducts";
 import FeaturesContainer from "../components/FeaturesContainer";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import Messaging from "../components/Messaging";
 import WelcomeContainer from "../components/WelcomeContainer";
 import Logo from "../assets/image-logo.png";
 
