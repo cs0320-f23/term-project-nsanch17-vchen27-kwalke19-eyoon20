@@ -126,3 +126,5 @@ export function Messaging() {
     </div>
   );
 }
+
+export default Messaging;
