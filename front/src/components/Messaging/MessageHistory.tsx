@@ -45,7 +45,7 @@ export const MessageHistory = ({ messages }: MessageHistoryProps) => {
           {message.content}
         </div>
       ))}
-      ;
+      
     </div>
   );
 };
