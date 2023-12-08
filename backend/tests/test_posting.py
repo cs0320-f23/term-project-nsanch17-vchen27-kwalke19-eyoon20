@@ -4,10 +4,11 @@ url = "http://127.0.0.1:5000/posting"  # Adjust the URL if your Flask app is run
 
 # Example data (replace with your actual data)
 params = {
-    "name": "Mocked Item",
+    "item_name": "Mocked Item",
+    "seller_name": "Mocked Seller",
     "price": "100",
     "description": "This is a mocked item",
-    "date_posted": "2023-12-07"
+    "date": "2023-12-07"
 }
 
 response = requests.get(url, params=params)
