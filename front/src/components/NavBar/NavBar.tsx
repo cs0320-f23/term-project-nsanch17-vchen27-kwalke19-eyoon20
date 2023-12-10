@@ -18,11 +18,14 @@ const NavBar: React.FC<NavBarProps> = () => {
   const navigate = useNavigate(); // Create navigate function
 
   const handleChatClick = () => {
-    navigate('/messaging'); // Navigate to the messaging route
+    navigate("/messaging"); // Navigate to the messaging route
   };
 
-  
-     return (
+  const handleProfileClick = () => {
+    navigate("/profile"); // Navigate to the messaging route
+  };
+
+  return (
     <div className="frame">
       <div className="titleSearch">
         <div className="left">
@@ -31,26 +34,31 @@ const NavBar: React.FC<NavBarProps> = () => {
             <div className="title">Ivy Exchange</div>
           </div>
           <div className="searchHolder">
-            <SearchBar setValue={setSearchValue} ariaLabel="Search"/>
+            <SearchBar setValue={setSearchValue} ariaLabel="Search" />
           </div>
         </div>
       </div>
       <div className="spacer">
         <div className="innerSpacer">
-        <div className="rightHolders">
-        <img className="heart" src={Heart} />
-        <img className="darkHeart" src={DarkHeart} />
-      </div>
-      <div className="rightHolders">
-        <img className="chat" src={Chat} onClick={handleChatClick} /> {/* Add onClick event here */}
-        <img className="darkChat" src={DarkChat} />
-      </div>
+          <div className="rightHolders">
+            <img className="heart" src={Heart} />
+            <img className="darkHeart" src={DarkHeart} />
+          </div>
+          <div className="rightHolders">
+            <img className="chat" src={Chat} onClick={handleChatClick} />{" "}
+            {/* Add onClick event here */}
+            <img className="darkChat" src={DarkChat} />
+          </div>
           <div className="right">
             <div className="rightHolders">
               <img className="bell" src={Bell} />
             </div>
             <div className="profileHolder">
-              <img className="profile" src={Profile} />
+              <img
+                className="profile"
+                src={Profile}
+                onClick={handleProfileClick}
+              />
             </div>
           </div>
         </div>

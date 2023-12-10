@@ -22,6 +22,9 @@ const Home: FunctionComponent<HomeProps> = () => {
 
   return (
     <div className="home">
+      <div className="nav">
+        <NavBar />
+      </div>
       <img className="ivy-exchange-logo-transparent" alt="" src={Logo} />
       <FilterContainer />
       <div className="recommended">
@@ -56,9 +59,6 @@ const Home: FunctionComponent<HomeProps> = () => {
         <div className="next">
           <div className="div">»</div>
         </div>
-      </div>
-      <div className="nav">
-        <NavBar />
       </div>
       <RecommendedProducts />
       <FeaturesContainer />
