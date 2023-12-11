@@ -1,9 +1,7 @@
 from flask import Flask, request, jsonify
-from Posting.PostingHandler import posting_bp
-from User.UserHandler import user_bp
-from User.UserHandler import UserHandler
-from User.UserManager import UserManager
-from Posting.PostingHandler import PostingHandler
+from main.Posting.posting_handler import posting_bp
+from main.User.user_handler import user_bp
+
 
 
 app = Flask(__name__)
