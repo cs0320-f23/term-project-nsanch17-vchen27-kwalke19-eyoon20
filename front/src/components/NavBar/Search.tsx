@@ -13,24 +13,26 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
   const searchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Event listener to detect all clicks on the document
+    
+    // hide SearchHistory if user clicks outside of Search
     const handleClickOutside = (event: MouseEvent) => {
         if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
-        setShowHistory(false); // Hide history if clicked outside of search bar
+        setShowHistory(false);
       }
     };
 
-    // Attach the listener to the document
     document.addEventListener('mousedown', handleClickOutside);
 
-    // Cleanup the listener on component unmount
     return () => document.removeEventListener('mousedown', handleClickOutside);
+
   }, [searchRef]);
 
+  // show SearchHistory if SearchBar is clicked again
   const handleSearchBarClick = () => {
-    setShowHistory(true); // Show history when search bar is clicked
+    setShowHistory(true);
   };
 
+  // show the five most recent searches
   const handleSearchSubmit = () => {
     if (searchTerm) {
       onSearch(searchTerm);
@@ -44,6 +46,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
     onSearch(term); 
   };
 
+  // only show SearchHistory if showHistory is true
   return (
     <div className="search-wrapper"ref={searchRef} onClick={handleSearchBarClick}>
       <SearchBar
