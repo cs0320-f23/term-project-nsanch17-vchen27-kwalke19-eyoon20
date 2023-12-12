@@ -1,18 +1,30 @@
-import React, { useEffect, useState } from "react";
-import Home from "./pages/Home.tsx";
-import {Messaging} from "./components/Messaging/Messaging.tsx"
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar/NavBar";
+// Import the pages and components
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import Messaging from "./components/Messaging/Messaging";
 import "./style/App.css";
-import Profile from "./pages/Profile.tsx";
+import SingleItemDisplay from "./pages/SingleItemDisplay";
+import ProfilePage from "./pages/ProfilePage";
 
-// REMEMBER TO PUT YOUR API KEY IN A FOLDER THAT IS GITIGNORED!!
-// (for instance, /src/private/api_key.tsx)
-// import {API_KEY} from "./private/api_key"
+// If you had other imports, they would go here, following the same pattern
 
 function App() {
   return (
-    <div className="App">
-      <Messaging />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/public" element={<ProfilePage />} />
+          <Route path="/messaging" element={<Messaging />} />
+          <Route path="/single-item/" element={<SingleItemDisplay />} />
+          {/* Add additional routes as needed */}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

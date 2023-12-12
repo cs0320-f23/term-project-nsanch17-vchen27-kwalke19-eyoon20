@@ -1,39 +1,41 @@
-import React, { ChangeEvent, Dispatch, SetStateAction } from "react";
-import "../../style/App.css";
+import React from "react";
 import "../../style/NavBar.css";
 import Search from "../../assets/search-normal.png";
 
-interface SearchBarProps {
-  setValue: Dispatch<SetStateAction<string>>;
-  ariaLabel: string;
+interface SearchbarProps {
+  onSearchSubmit: () => void;
+  searchTerm: string;
+  setSearchTerm: (searchTerm: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({
-  setValue,
-  ariaLabel,
-}: SearchBarProps) => {
-  // Default implementation for setValue
-  const defaultSetValue: React.Dispatch<React.SetStateAction<string>> = (
-    value
-  ) => {
-    // You can customize the default behavior here if needed
-    console.log("Setting value:", value);
-  };
+const SearchBar: React.FC<SearchbarProps> = ({
+  onSearchSubmit,
+  searchTerm,
+  setSearchTerm,
+}) => {
 
-  // Use provided setValue or the default implementation
-  const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
-    setValue ? setValue(ev.target.value) : defaultSetValue(ev.target.value);
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    // Check if Enter key is pressed
+    if (event.key === 'Enter') {
+      onSearchSubmit(); // Call the search submit function
+    }
   };
 
   return (
-    <div>
-      <img className="searchImage" src={Search} alt="Search Icon" />
+    <div className="searchbar-container">
       <input
+        className="search-input"
         type="text"
-        className="search-box"
-        placeholder="Search Here"
-        onChange={handleChange}
-        aria-label={ariaLabel}
+        placeholder="Search Ivy Exchange" 
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        onKeyDown={handleKeyDown} // Add the key down event handler
+      />
+      <img
+        className="search-image"
+        src={Search}
+        alt="Search Icon"
+        onClick={onSearchSubmit}
       />
     </div>
   );

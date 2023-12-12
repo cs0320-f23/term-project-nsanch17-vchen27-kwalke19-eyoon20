@@ -1,9 +1,15 @@
 import React from "react";
 import NavBar from "../components/NavBar/NavBar";
+import { useNavigate } from "react-router-dom";
 import "../style/Profile.css";
 import Stars from "../components/Stars.tsx";
 
 const Profile: React.FC = () => {
+  const navigate = useNavigate(); // Create navigate function
+  const handlePublicProfile = () => {
+    navigate("/public"); // Navigate to the messaging route
+  };
+
   return (
     <div>
       <NavBar />
@@ -72,7 +78,12 @@ const Profile: React.FC = () => {
                 </button>
                 <button className="public-profile">
                   <div className="overlap-3">
-                    <div className="text-wrapper-6">View Public Profile</div>
+                    <div
+                      className="text-wrapper-6"
+                      onClick={handlePublicProfile}
+                    >
+                      View Public Profile
+                    </div>
                   </div>
                 </button>
                 <div className="text-wrapper-7">I love to shop!</div>

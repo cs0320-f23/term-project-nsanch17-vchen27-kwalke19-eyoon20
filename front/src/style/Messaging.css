@@ -41,35 +41,38 @@ body {
 }
 
 .pfp {
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   /* margin-left: 487px; */
   position: relative;
   margin-top: 20px;
+  margin-left: 25px;
   margin-bottom: 40px;
   border-radius: 9999px;
 }
 
 .messageHolder {
+  display: flex; /* Use flexbox to allow children to grow and shrink */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Align children in the center */
+  justify-content: flex-start; /* Align children to the start of the main axis */
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
-
   height: 79px;
 }
 
 .messageBox {
-  width: 600px;
-  margin: 0 auto;
-
-  position: relative;
+  flex-grow: 1; /* Allow the message box to grow to fill the space */
+  width: 80%; /* Start with 80% of the container's width */
+  min-width: 200px; /* Maximum width stays at 600px */
+  margin: 0 10%; /* Center the message box with equal margins on both sides */
+  
   background-color: rgba(239, 246, 252, 0.87);
   border: none;
   border-radius: 25px;
-
-  height: 30px;
-  max-height: 100px;
-
+  height: 30px; /* Initial height, but can grow */
+  max-height: 100px; /* Maximum height it can grow to */
   padding: 30px;
   position: relative;
   color: #303030;
@@ -77,24 +80,35 @@ body {
   font-weight: 300;
   letter-spacing: 1.2;
   word-wrap: break-word;
-
   overflow-y: auto;
 }
 
-.sendTo {
-  width: 100%;
-  /* margin-left: 5px; */
-  height: 32px;
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .messageBox {
+    width: 90%; /* Allow it to take more space on smaller screens */
+    margin: 0 5%; /* Adjust the margins accordingly */
+    padding: 15px; /* Less padding on smaller screens */
+    font-size: 18px; /* Smaller font size on smaller screens */
+  }
+}
 
-  margin-top: -40px;
-  position: relative;
+
+.sendTo {
+  width: 300px;
+  height: 26px;
+
+  margin-top: 27px;
+  text-align: left; 
+  margin-left: 20px;
   color: #303030;
-  font-size: 32px;
+  font-size: 28px;
 
   font-weight: 600;
   letter-spacing: 1.6px;
-  word-wrap: break-word;
+  word-wrap: normal;
 }
+
 
 .sendTo:hover {
   color: green;
@@ -122,7 +136,7 @@ body {
 
   padding: 20px;
   background: #e7e7e7;
-  border-top-left-radius: 0px;
+  border-top-left-radius: 25px;
   border-top-right-radius: 25px;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
@@ -151,22 +165,27 @@ body {
 .senderBubble {
   background: #47a55c;
   border-radius: 25px;
-  padding: 20px;
+  padding: 10px;
 
   color: #303030;
-  font-size: 21px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.8;
   word-wrap: break-word;
 
-  max-width: 50%;
-  margin: 15px 0 5px auto;
+  display: inline-block;
+  max-width: 80%; /* Adjusted for narrower width */
+  margin: 5px 10px 5px auto; /* Adjusted for margin from the edge */
 
   border-top-left-radius: 25px;
   border-top-right-radius: 0px;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
+
+  float: right; /* Added to align to the right */
 }
+
+
 
 .scrollContainer {
   height: 90%;
@@ -203,8 +222,8 @@ body {
   height: 100%;
   width: 42.1%;
   flex-direction: column;
-  border-right: 1px rgba(179.56, 170.88, 170.88, 0.66) solid;
-  border-right-width: 5px;
+  border-right: 0.5px rgba(179.56, 170.88, 170.88, 0.66) solid;
+  border-right-width: 2px;
 }
 
 .content {
@@ -219,7 +238,8 @@ body {
   top: 60px;
   position: relative;
   color: #303030;
-  font-size: 59px;
+  font-size:calc(12px + 3vw);
+  
 
   font-weight: 700;
   letter-spacing: 1.95px;
@@ -234,6 +254,16 @@ body {
 
 .photoIcon:hover {
   height: 40px;
+  cursor: pointer;
+}
+
+.sendIcon {
+  height: 30px;
+  position: relative;
+  top: 20px; 
+}
+
+.sendIcon:hover {
   cursor: pointer;
 }
 
@@ -252,7 +282,7 @@ span[contenteditable]:empty::before {
   justify-content: center;
   align-items: center;
   width: auto;
-  margin-bottom: 16px;
+  margin-bottom: 15px;
 }
 
 .catAll,
@@ -263,8 +293,7 @@ span[contenteditable]:empty::before {
   position: relative;
 
   color: #303030;
-  font-size: 30px;
-
+  font-size:calc(12px + 1.5vw);
   font-weight: 400;
   letter-spacing: 1.5;
   word-wrap: break-word;
@@ -359,8 +388,7 @@ span[contenteditable]:empty::before {
 .catBuying.selected,
 .catSelling.selected {
   text-decoration: underline;
-  font-size: 35px;
-
+  font-size:calc(12px + 2vw);
   color: green;
 }
 
@@ -387,10 +415,11 @@ span[contenteditable]:empty::before {
 
 .info {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
   width: 100%;
+  height: 80px;
   border-bottom: 1px rgba(179.56, 170.88, 170.88, 0.66) solid;
-  border-width: 6px;
+  border-width: 2px;
 }

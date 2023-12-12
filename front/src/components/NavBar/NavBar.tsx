@@ -1,55 +1,85 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../style/NavBar.css";
-import "../../style/App.css";
 import Logo from "../../assets/image-logo.png";
 import Heart from "../../assets/Heart_01.png";
-import DarkHeart from "../../assets/dark_heart.png";
 import Chat from "../../assets/Chat.png";
-import DarkChat from "../../assets/dark_chat.png";
 import Bell from "../../assets/Bell_Notification.png";
-import Profile from "../../assets/profile.jpeg";
-import SearchBar from "./SearchBar";
+import UserIcon from "../../assets/User_Icon.png";
+import UserProfilePic from "../../assets/profile.jpeg";
+import Search from "./Search";
+import Notification from "../Notifications/Notifications";
+import LoggedInProfilePopup from "../ProfilePopups/LoggedInProfilePopup";
+import LoggedOutProfilePopup from "../ProfilePopups/LoggedOutProfilePopup";
 
-interface NavBarProps {}
+import mockNotifications from "../../mocks/mockNotifications";
 
-const NavBar: React.FC<NavBarProps> = () => {
-  const [searchValue, setSearchValue] = useState("");
+interface NavBarProps {
+  isLoggedIn: boolean;
+}
 
-  
-     return (
-    <div className="frame">
-      <div className="titleSearch">
-        <div className="left">
-          <div className="titleLogo">
-            <img className="logo" src={Logo} alt="Ivy Exchange Logo" />
-            <div className="title">Ivy Exchange</div>
-          </div>
-          <div className="searchHolder">
-            <SearchBar setValue={setSearchValue} ariaLabel="Search"/>
-          </div>
-        </div>
+const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
+  const navigate = useNavigate();
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [showProfilePopup, setShowProfilePopup] = useState(false);
+
+
+  //Notifications popup should disappear if other part of screen is clicked
+  const NotificationsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (NotificationsRef.current && !NotificationsRef.current.contains(event.target as Node)) {
+        setShowNotifications(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+
+  // Handlers
+  const handleChatClick = () => navigate("/messaging");
+  const handleHomeClick = () => navigate("/");
+
+  return (
+    <nav className="navbar">
+      <div className="left-menu">
+        <img onClick={handleHomeClick} src={Logo} alt="Logo" className="logo" />
+        <span onClick={handleHomeClick} className="brand-name">
+          Ivy Exchange
+        </span>
+        <Search onSearch={setSearchKeyword} />
       </div>
-      <div className="spacer">
-        <div className="innerSpacer">
-          <div className="rightHolders">
-            <img className="heart" src={Heart} />
-            <img className="darkHeart" src={DarkHeart} />
-          </div>
-          <div className="rightHolders">
-            <img className="chat" src={Chat} />
-            <img className="darkChat" src={DarkChat} />
-          </div>
-          <div className="right">
-            <div className="rightHolders">
-              <img className="bell" src={Bell} />
-            </div>
-            <div className="profileHolder">
-              <img className="profile" src={Profile} />
-            </div>
-          </div>
-        </div>
+      <div className="right-menu">
+        <img src={Heart} alt="Saved Items" className="navbar-icon" />
+        <img
+          onClick={handleChatClick}
+          src={Chat}
+          alt="Messaging"
+          className="navbar-icon"
+        />
+        <img
+          onClick={() => setShowNotifications(!showNotifications)}
+          src={Bell}
+          alt="Notifications"
+          className="navbar-icon"
+        />
+        {showNotifications && (
+          <Notification notifications={mockNotifications} ref={NotificationsRef} />
+        )}
+        <img
+          onClick={() => setShowProfilePopup(!showProfilePopup)}
+          src={isLoggedIn ? UserProfilePic : UserIcon}
+          alt="User"
+          className="user-icon"
+        />
+        {showProfilePopup &&
+          (isLoggedIn ? <LoggedInProfilePopup /> : <LoggedOutProfilePopup />)}
       </div>
-    </div>
+    </nav>
   );
 };
 

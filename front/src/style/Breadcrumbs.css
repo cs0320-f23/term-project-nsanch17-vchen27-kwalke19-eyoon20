@@ -1,0 +1,29 @@
+.breadcrumbs {
+    color: #b3b5c6;
+    font-size: 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    line-height: 28.80px;
+    letter-spacing: 0.12px;
+    word-wrap: break-word;
+  }
+  
+  .breadcrumb-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .breadcrumb-item {
+    margin-right: 8px; /* Adjust space between breadcrumbs as needed */
+  }
+  
+  .breadcrumb-item a {
+    text-decoration: none;
+    color: inherit; /* Ensures the anchor tag doesn't get default styles */
+  }
+  
+  .breadcrumb-separator {
+    margin-right: 8px; /* Adjust space around the separator as needed */
+  }
