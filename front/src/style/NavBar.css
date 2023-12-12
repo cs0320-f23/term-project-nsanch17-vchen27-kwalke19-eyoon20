@@ -1,172 +1,128 @@
-.profile{
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  position: absolute;
-}
-
-.search-box{
-  border-radius: 25px;
-  background-color: #F5F6F7;
-  border: none;
-  flex: 1 1 0;
-  color:#797F8F;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 3;
-  word-wrap: break-word;
-
-}
-
-input{
-  color: #797F8F;
-  text-indent: 10px;
-}
-
-.frame{
-  padding-top: 20px;
-  padding-bottom: 16px;
-  background-color: #D2F6DA;
+.navbar {
   width: 100%;
-  
- 
-  /* border-radius: 12px; */
+  min-width: 850px;
+  display: flex;
   justify-content: space-between;
-  display: inline-flex;
-}
-
-.left{
-  display: flex;
-  width: 748px;
-  justify-content: flex-start;
-  gap: 65px;
-}
-
-.titleLogo{
-  justify-content: flex-start;
-  gap: 7px;
-  display: flex;
-}
-
-.logo{
-  width: 34px;
-  height: 34px;
-}
-
-
-
-.title{
-  color: #151924;
-  font-size: 18px;
-  font-weight: 500px;
-  line-height: 40px;
-  word-wrap: break-word;
-}
-
-.searchHolder{
-  height: 36px;
-  padding-left: 16px;
-  padding-right: 1px;
-  padding-top: 6px;
-  padding-bottom: 8px;
-  justify-content: flex-start;
   align-items: center;
-  gap: 12px;
+  height: 90px;
+  padding: 25px 40px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+}
+
+.left-menu,
+.right-menu {
   display: flex;
+  align-items: center;
+  height: 40px; /* Set the height of inner containers */
 }
 
-.imageSearchHolder{
-  width: 20px;
-  height: 20px;
-  position: relative;
+.left-menu {
+  margin-left: 20px; /* Space from the left margin */
+  flex-grow: 1;
 }
 
-.searchImage{
-  width: 15.83px;
-  height: 15.83px;
-  left: 260px;
-  position: relative;
+.logo {
+  height: 34px;
+  width: 34px;
+  margin-right: 7px;
 }
 
-.spacer{
- height: 40px;
- justify-content: flex-end;
- align-items: center;
- gap: 24px;
- display: flex;
+.brand-name {
+  white-space: nowrap; /* Prevent wrapping */
+  font-size: 16px;
+  margin-right: 35px;
 }
 
-.innerSpacer{
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 24px;
+.searchbar {
+  flex-grow: 1;
+  background-color: #F5F6F7; /* Gray background */
+  height: 40px; /* Set the height */
+  border-radius: 20px; /* Curved edges */
+  border: none; /* Remove default border */
+  padding-left: 10px; /* Add some padding inside the search bar */
+  /* Additional styling for the search input if necessary */
+}
+
+.right-menu {
   display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px; /* Space between items */
+  margin-right: 48px; /* Space from the right margin */
 }
 
-.rightHolders{
- width: 24px;
- height: 24px;
- position: relative; 
- right: 100px;
- top: 10px;
-
+.navbar-icon, .user-icon {
+  height: 24px;
+  width: 24px;
+  margin: 8px 0; /* Centered vertically by adding top and bottom margins */
 }
 
-.heart{
-  width: 18px;
-  height: 15.96px;
-  left: 3px;
-  top: 4.54px;
-  position: absolute;
-  cursor:pointer;
-}
-.darkHeart{
-  display: none;
-}
-.heart:hover ~ .darkHeart{
-  display: flex; 
-}
-
-
-.chat{
-  width: 18px;
-  height: 16.92px;
-  left: 3px;
-  top: 4px;
-  position: absolute;
-  cursor:pointer;
-
-}
-.darkChat{
-  display:none;
-}
-.chat:hover ~ .darkChat{
-  display: flex; 
-  cursor:pointer;
-}
-
-.bell{
-  width: 17px;
-  height: 19px;
-  left: 4px;
-  top: 2px;
-  position: absolute;
-}
-
-.profileHolder{
+.user-icon {
+  height: 40px;
   width: 40px;
- height: 40px;
- position: relative; 
- right: 100px;;
 }
 
-.right{
+.search-wrapper {
   display: flex;
+  flex-direction: column;
+  width: 100%; /* Ensure it takes full width */
   position: relative;
-
 }
 
-/* .titleSearch{
-  right: 500px;
-} */
+.searchbar-container {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  height: 36px; /* Height of the search bar */
+  background-color: #f0f0f0; /* Light grey background */
+  border-radius: 18px; /* Half the height to make it fully rounded */
+  padding: 0 12px; /* Padding inside the search container */
+  margin-right: 25px; /* Space between search container and right-side menu */
+}
+
+.search-image {
+  height: 24px; /* Assuming the search icon is 24x24 pixels */
+  margin-right: 8px; /* Space between the icon and the input */
+}
+
+.search-input {
+  flex-grow: 1; /* Allows the input to fill the container */
+  border: none; /* Removes the border */
+  outline: none; /* Removes the outline */
+  background-color: transparent; /* Makes the background transparent */
+  padding: 8px 12px; /* Top and bottom padding */
+  font-size: 16px; /* Sets the font size */
+}
+
+/* Make sure the input has no border and the outline is removed when focused */
+.search-input:focus {
+  border: none;
+  outline: none;
+}
+
+.search-history {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  position: absolute;
+  top: 100%; /* Position just below the search bar */
+  left: 0;
+  background-color: white;
+  border-radius: 5px;
+  width: 90%; /* Match the width of the search bar container */
+  z-index: 10; /* Ensure it's above other content */
+}
+
+.search-history li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search-history li:hover {
+  background-color: #f0f0f0;
+}
+
+
 
