@@ -14,11 +14,11 @@
 .right-menu {
   display: flex;
   align-items: center;
-  height: 40px; /* Set the height of inner containers */
+  height: 40px; 
 }
 
 .left-menu {
-  margin-left: 20px; /* Space from the left margin */
+  margin-left: 20px;
   flex-grow: 1;
 }
 
@@ -29,33 +29,32 @@
 }
 
 .brand-name {
-  white-space: nowrap; /* Prevent wrapping */
+  white-space: nowrap; 
   font-size: 16px;
   margin-right: 35px;
 }
 
 .searchbar {
   flex-grow: 1;
-  background-color: #F5F6F7; /* Gray background */
-  height: 40px; /* Set the height */
-  border-radius: 20px; /* Curved edges */
-  border: none; /* Remove default border */
-  padding-left: 10px; /* Add some padding inside the search bar */
-  /* Additional styling for the search input if necessary */
+  background-color: #F5F6F7; 
+  height: 40px; 
+  border-radius: 20px; 
+  border: none; 
+  padding-left: 10px; 
 }
 
 .right-menu {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 24px; /* Space between items */
-  margin-right: 48px; /* Space from the right margin */
+  gap: 24px;
+  margin-right: 48px;
 }
 
 .navbar-icon, .user-icon {
   height: 24px;
   width: 24px;
-  margin: 8px 0; /* Centered vertically by adding top and bottom margins */
+  margin: 8px 0; 
 }
 
 .user-icon {
@@ -66,7 +65,7 @@
 .search-wrapper {
   display: flex;
   flex-direction: column;
-  width: 100%; /* Ensure it takes full width */
+  width: 100%; 
   position: relative;
 }
 
@@ -74,28 +73,28 @@
   display: flex;
   align-items: center;
   flex-grow: 1;
-  height: 36px; /* Height of the search bar */
-  background-color: #f0f0f0; /* Light grey background */
-  border-radius: 18px; /* Half the height to make it fully rounded */
-  padding: 0 12px; /* Padding inside the search container */
-  margin-right: 25px; /* Space between search container and right-side menu */
+  height: 36px; 
+  background-color: #f0f0f0; 
+  border-radius: 18px; 
+  padding: 0 12px; 
+  margin-right: 25px; 
 }
 
 .search-image {
-  height: 24px; /* Assuming the search icon is 24x24 pixels */
-  margin-right: 8px; /* Space between the icon and the input */
+  height: 24px; 
+  margin-right: 8px; 
 }
 
 .search-input {
-  flex-grow: 1; /* Allows the input to fill the container */
-  border: none; /* Removes the border */
-  outline: none; /* Removes the outline */
-  background-color: transparent; /* Makes the background transparent */
-  padding: 8px 12px; /* Top and bottom padding */
-  font-size: 16px; /* Sets the font size */
+  flex-grow: 1; 
+  border: none; 
+  outline: none; 
+  background-color: transparent; 
+  padding: 8px 12px; 
+  font-size: 16px; 
 }
 
-/* Make sure the input has no border and the outline is removed when focused */
+
 .search-input:focus {
   border: none;
   outline: none;
@@ -107,12 +106,12 @@
   padding: 0;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   position: absolute;
-  top: 100%; /* Position just below the search bar */
+  top: 100%; 
   left: 0;
   background-color: white;
   border-radius: 5px;
-  width: 90%; /* Match the width of the search bar container */
-  z-index: 10; /* Ensure it's above other content */
+  width: 90%; 
+  z-index: 10;
 }
 
 .search-history li {
