@@ -3,6 +3,8 @@ from datetime import datetime
 from dataclasses import dataclass
 import dataclasses
 from main.User.user_manager import UserManager
+from main.User.user_manager import UserDoesNotExistException
+from main.User.user_manager import UserExistsException
 
 user_bp = Blueprint('user', __name__)
 user_manager = UserManager()
@@ -30,7 +32,7 @@ class UserHandler:
         
         try:
            user_manager.create_user(first_name,last_name,username,email)
-        except:
+        except (UserExistsException):
             result_dict.update({"result": "error"})
             result_dict.update({"error_message": "User already exists. Try again."})
             return jsonify(result_dict), 400
