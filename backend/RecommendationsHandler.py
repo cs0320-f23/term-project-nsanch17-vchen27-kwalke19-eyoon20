@@ -10,7 +10,7 @@ class RecommendationsHandler:
         for wishlist_item in wishlist:
         # If the item is in the item listings, calculate similarity scores
             if wishlist_item in item_listings:
-            # Calculate Jaccard similarity score (example similarity measure)
+            # Calculate similarity score (example similarity measure)
                 intersection = len(set(wishlist[wishlist_item]) & set(item_listings[wishlist_item]))
                 union = len(set(wishlist[wishlist_item]) | set(item_listings[wishlist_item]))
                 similarity_scores[wishlist_item] = intersection / union
