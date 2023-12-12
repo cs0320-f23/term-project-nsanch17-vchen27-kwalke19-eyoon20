@@ -1,0 +1,57 @@
+.notifications-popup {
+    position: absolute;
+    top: 100%; /* Positions the top of the popup right below the bell icon */
+    right: 0; /* Aligns the popup to the right edge of its parent */
+    width: 450px;
+    max-height: 650px;
+    overflow-y: auto; /* Allows scrolling within the popup */
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensures the popup is on top of other content */
+  }
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 10px;
+  min-height: 30px;
+  margin-bottom: 0px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.notification-item:hover {
+  background-color: #f0f0f0;
+}
+
+.notification-photo {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.notification-content {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.notification-message {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.notification-timestamp {
+  font-size: 12px;
+  color: grey;
+  margin-top: 2px;
+}

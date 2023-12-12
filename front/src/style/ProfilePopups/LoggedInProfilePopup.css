@@ -1,0 +1,28 @@
+
+
+.logged-in-popup {
+    position: absolute;
+    top: 100%; 
+    right: 0;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 200px; 
+    z-index: 1000;
+  }
+  
+  .popup-item {
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .popup-item:last-child {
+    border-bottom: none;
+  }
+  
+  .popup-item:hover {
+    background-color: #f0f0f0;
+  }
+  

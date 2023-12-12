@@ -26,12 +26,14 @@
   height: 34px;
   width: 34px;
   margin-right: 7px;
+  cursor: pointer;
 }
 
 .brand-name {
   white-space: nowrap; 
   font-size: 16px;
   margin-right: 35px;
+  cursor: pointer;
 }
 
 .searchbar {
@@ -44,22 +46,34 @@
 }
 
 .right-menu {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 24px;
-  margin-right: 48px;
+  margin-right: 12px;
 }
 
 .navbar-icon, .user-icon {
-  height: 24px;
-  width: 24px;
-  margin: 8px 0; 
+  height: 20px;
+  width: 20px;
+  margin: 8px 0;
+  cursor: pointer;
 }
 
 .user-icon {
-  height: 40px;
-  width: 40px;
+  height: 21px;
+  width: 21px;
+  margin-top: 5px;
+}
+
+.user-profile-pic {
+  width: 40px;  
+  height: 40px; 
+  border-radius: 50%; 
+  object-fit: cover; 
+  border: 2px solid #fff; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .search-wrapper {
@@ -81,8 +95,9 @@
 }
 
 .search-image {
-  height: 24px; 
+  height: 18px; 
   margin-right: 8px; 
+  cursor: pointer;
 }
 
 .search-input {
@@ -91,7 +106,7 @@
   outline: none; 
   background-color: transparent; 
   padding: 8px 12px; 
-  font-size: 16px; 
+  font-size: 14px; 
 }
 
 
@@ -107,11 +122,12 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   position: absolute;
   top: 100%; 
-  left: 0;
+  left: 1.8%;
   background-color: white;
   border-radius: 5px;
   width: 90%; 
   z-index: 10;
+  font-size: 12px; 
 }
 
 .search-history li {
