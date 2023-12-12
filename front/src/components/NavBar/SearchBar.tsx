@@ -26,7 +26,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
       <input
         className="search-input"
         type="text"
-        placeholder="Search Awesome Map"
+        placeholder="Search Ivy Exchange" 
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={handleKeyDown} // Add the key down event handler
