@@ -9,10 +9,10 @@ const WelcomeContainer: FunctionComponent = () => {
         <h1>Welcome to Ivy Exchange!</h1>
         <img src={Logo} alt="Ivy Exchange Logo" className="Logo" />
       </div>
-      <h4>
+      <p>
         Online marketplace for Brown students and staff to buy and resell
         concert tickets, clothing, and more!
-      </h4>
+      </p>
     </div>
   );
 };
