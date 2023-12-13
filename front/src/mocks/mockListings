@@ -1,7 +1,6 @@
-import { Posting } from '../types' 
 import Model from '../assets/model-placeholder.png'
 
-export const mockListings: Posting[] = [
+const mockListings = [
   {
     id: '1',
     name: 'Product 1',
@@ -103,3 +102,4 @@ export const mockListings: Posting[] = [
     additionalPhotos: [Model, Model],
   },
 ];
+export default mockListings;
