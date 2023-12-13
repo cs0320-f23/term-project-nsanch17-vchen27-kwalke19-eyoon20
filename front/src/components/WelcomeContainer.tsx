@@ -1,25 +1,22 @@
 import React, { FunctionComponent } from "react";
 import "../style/Home/WelcomeContainer.css";
 import Logo from "../assets/image-logo.png";
-import Arrow from "../assets/arrow.png";
 
 const WelcomeContainer: FunctionComponent = () => {
   return (
-    <div className="title">
-      <div className="breadcrumbs">
-        <div className="home4">Home</div>
-        <div className="svg1">
-          <img className="vector-icon4" alt="" src={Arrow} />
-        </div>
-        <div className="recommendations">Recommendations</div>
+    <div className="welcome-container">
+      <div className="welcome-title-container"> 
+        <h1>Welcome to Ivy Exchange!</h1>
+        <img src={Logo} alt="Ivy Exchange Logo" className="Logo" />
       </div>
-      <div className="welcome">Welcome to Ivy Exchange!</div>
-      <div className="description">
+      <h4>
         Online marketplace for Brown students and staff to buy and resell
         concert tickets, clothing, and more!
-      </div>
+      </h4>
     </div>
   );
 };
 
 export default WelcomeContainer;
+
+

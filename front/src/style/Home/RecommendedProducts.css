@@ -223,7 +223,6 @@
 }
 .products {
   position: absolute;
-  top: 57vh;
   left: 27vw;
   width: 978px;
   height: 1655.33px;
@@ -231,4 +230,5 @@
   font-size: var(--font-size-base);
   color: var(--color-black);
   font-family: var(--font-volkhov);
+  cursor: pointer;
 }

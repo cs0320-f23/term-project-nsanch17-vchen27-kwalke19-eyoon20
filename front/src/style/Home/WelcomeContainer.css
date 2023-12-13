@@ -1,69 +1,35 @@
-.home4 {
-  position: absolute;
-  top: 1.75px;
-  left: 0;
-  line-height: 22.5px;
+/* WelcomeContainer.css */
+.welcome-container {
+  text-align: center; /* Center aligns the content */
+  padding: 20px; /* Add padding for spacing */
+  background-color: #ffffff; /* Match the background color if it's not already white */
+  min-width: 850px;
+  width: 100%;
 }
-.vector-icon4 {
-  position: relative;
-  width: 6.64px;
-  height: 8.43px;
-}
-.svg1 {
-  position: absolute;
-  top: 8.5px;
-  left: 54.34px;
-  width: 9px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 0.5791947841644287px 2.371983051300049px 0.5792076587677002px
-    2.371983528137207px;
-  box-sizing: border-box;
-}
-.recommendations {
-  position: absolute;
-  top: 0;
-  left: 79px;
-  font-size: var(--font-size-base);
-  line-height: 24px;
-}
-.breadcrumbs {
-  position: absolute;
-  top: 152px;
-  left: 383px;
-  width: 203px;
-  height: 24.75px;
-}
-.welcome {
-  color: #000;
 
+.welcome-container h1 {
+  position: relative;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color:#3c3b3b;
   text-align: center;
-  font-family: Volkhov;
-  font-size: 42px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 32px; /* 76.19% */
-  text-transform: capitalize;
+  flex: 0 1 auto;
 }
-.description {
-  position: absolute;
-  top: 101px;
-  left: 106px;
-  font-size: var(--font-size-base);
-  line-height: 24px;
+
+.welcome-title-container {
+  display: flex; /* Use flexbox to lay out children */
+  justify-content: center; /* Center children horizontally */
+  align-items: center; /* Align children vertically */
+  gap: 20px; /* Add space between the logo and the title */
 }
-.title {
-  position: absolute;
-  top: 25vh;
-  left: 17vw;
-  width: 937px;
-  height: 195px;
-  overflow: hidden;
-  text-align: center;
-  font-size: var(--font-size-mini);
-  color: var(--color-black);
-  font-family: var(--font-jost);
+
+.welcome-container .Logo {
+  position: relative; /* Position the logo absolutely */
+  height: 40px;
+  width: 40px;
+}
+
+.welcome-container p {
+  color: #666; /* Lighter text color for the subtitle, adjust as needed */
+  margin-left: auto; /* Center the block horizontally */
+  margin-right: auto;
 }
