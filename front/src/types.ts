@@ -12,3 +12,27 @@ export interface Notification {
   export interface NotificationsProps {
     notifications: Notification[];
   }
+
+  export type Posting = {
+    id: string;
+    name: string;
+    seller: User;
+    price: number;
+    description: string;
+    qty: number;
+    date: string;
+    coverPhoto: string;
+    additionalPhotos: string[];
+  };
+
+  export type User = {
+    firstName: string;
+    lastName: string;
+    username: string;
+    profilePicture: string;
+    dateJoined: string;
+    email: string;
+    purchases: Record<string, any>; 
+    sellings: Record<string, any>; 
+  };
+  

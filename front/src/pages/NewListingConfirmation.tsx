@@ -10,7 +10,7 @@ const NewListingConfirmation = () => {
   };
 
   const goToListing = () => {
-    navigate("/new-listing-confirmation"); // replace with the actual path to the listing
+    navigate("/listings"); // replace with the actual path to the listing
   };
 
   return (

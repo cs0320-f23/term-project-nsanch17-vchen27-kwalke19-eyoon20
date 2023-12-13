@@ -9,6 +9,7 @@ import SingleItemDisplay from "./pages/SingleItemDisplay";
 import ProfilePage from "./pages/ProfilePage";
 import CreateNewListing from "./pages/CreateNewListing";
 import NewListingConfirmation from "./pages/NewListingConfirmation";
+import Listings from "./pages/Listings";
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route path="/single-item/" element={<SingleItemDisplay />} />
           <Route path="/create-new-listing" element={<CreateNewListing />} />
           <Route path="/new-listing-confirmation" element={<NewListingConfirmation />} />
+          <Route path="/listings" element={<Listings />} />
+
  
           {/* Add additional routes as needed */}
         </Routes>
