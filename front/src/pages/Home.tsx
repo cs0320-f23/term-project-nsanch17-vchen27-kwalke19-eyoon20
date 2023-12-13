@@ -25,46 +25,48 @@ const Home: FunctionComponent<HomeProps> = () => {
       <div className="nav">
         <NavBar />
       </div>
-      <img className="ivy-exchange-logo-transparent" alt="" src={Logo} />
-      <FilterContainer />
-      <div className="recommended">
-        <div className="spansf-select-custom-trigger">
-          <div className="div">Recommended</div>
-        </div>
-      </div>
-      <div className="spansf-select-custom-trigger1">
-        <div className="svg">
-          <img className="vector-icon" alt="" src={Logo} />
-        </div>
-      </div>
-      <div className="pagination">
-        <div
-          className={`page-1 ${selectedPage === 1 ? "selected" : ""}`}
-          onClick={() => handlePageClick(1)}
-        >
-          <div className="div">1</div>
-        </div>
-        <div
-          className={`page-2 ${selectedPage === 2 ? "selected" : ""}`}
-          onClick={() => handlePageClick(2)}
-        >
-          <div className="div">2</div>
-        </div>
-        <div
-          className={`page-3 ${selectedPage === 3 ? "selected" : ""}`}
-          onClick={() => handlePageClick(3)}
-        >
-          <div className="div">3</div>
-        </div>
-        <div className="next">
-          <div className="div">»</div>
-        </div>
-      </div>
-      <RecommendedProducts />
-      <FeaturesContainer />
-      <Footer />
+      <div className="hero">
+                  <img className="ivy-exchange-logo-transparent" alt="" src={Logo} />
+                  <FilterContainer />
+                  <div className="recommended">
+                    <div className="spansf-select-custom-trigger">
+                      <div className="div">Recommended</div>
+                    </div>
+                  </div>
+                  <div className="spansf-select-custom-trigger1">
+                    <div className="svg">
+                      <img className="vector-icon" alt="" src={Logo} />
+                    </div>
+                  </div>
+                  <div className="pagination">
+                    <div
+                      className={`page-1 ${selectedPage === 1 ? "selected" : ""}`}
+                      onClick={() => handlePageClick(1)}
+                    >
+                      <div className="div">1</div>
+                    </div>
+                    <div
+                      className={`page-2 ${selectedPage === 2 ? "selected" : ""}`}
+                      onClick={() => handlePageClick(2)}
+                    >
+                      <div className="div">2</div>
+                    </div>
+                    <div
+                      className={`page-3 ${selectedPage === 3 ? "selected" : ""}`}
+                      onClick={() => handlePageClick(3)}
+                    >
+                      <div className="div">3</div>
+                    </div>
+                    <div className="next">
+                      <div className="div">»</div>
+                    </div>
+                  </div>
+                  <RecommendedProducts />
+                  <FeaturesContainer />
+                  <Footer />
 
-      <WelcomeContainer />
+                  <WelcomeContainer />
+      </div>
     </div>
   );
 };

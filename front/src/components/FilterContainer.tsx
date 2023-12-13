@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../style/FilterContainer.css";
+import "../style/Home/FilterContainer.css";
 
 const FilterContainer: React.FC = () => {
   const [selectedPriceRange, setSelectedPriceRange] = useState<string | null>(

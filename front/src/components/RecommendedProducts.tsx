@@ -1,6 +1,6 @@
 import React from "react";
 import ProductCard from "./ProductCard";
-import "../style/RecommendedProducts.css";
+import "../style/Home/RecommendedProducts.css";
 import Model from "../assets/model-placeholder.png";
 import Model2 from "../assets/model2-placeholder.png";
 import { useNavigate } from "react-router-dom";

@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import "../style/WelcomeContainer.css";
+import "../style/Home/WelcomeContainer.css";
 import Logo from "../assets/image-logo.png";
 import Arrow from "../assets/arrow.png";
 

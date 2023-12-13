@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/FeaturesContainer.css";
+import "../style/Home/FeaturesContainer.css";
 import Hand from "../assets/hand-icon.png";
 import Secure from "../assets/secure-icon.png";
 import Box from "../assets/box-icon.png";
