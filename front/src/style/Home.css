@@ -30,6 +30,7 @@
 
 .layoutFilterContainer {
   width: 20%; /* Adjust the width as needed, can be more or less */
+  min-width: 150px;
   height:auto;
 }
 
