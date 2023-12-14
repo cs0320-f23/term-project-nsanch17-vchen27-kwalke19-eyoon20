@@ -1,27 +1,84 @@
 .listings-container {
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    height: calc(100vh - 100px);
-    padding: 20px;
-  }
-  
-  .listing-item {
-    display: flex;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    overflow: hidden;
-  }
-  
-  .listing-cover-photo {
-    width: 20%;
-    height: auto;
-    object-fit: cover;
-  }
-  
-  .listing-details {
-    padding: 10px;
-    flex-grow: 1;
-  }
-  
+  margin: 100px;
+}
+.listing-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.listing-cover-photo {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.listing-details {
+  padding: 10px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-start; 
+}
+
+.listing-info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.listing-name, .listing-price, .listing-quantity, .listing-date {
+  margin: 0;
+  padding: 2px 0;
+  text-align: left;
+}
+
+.listing-description {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.listing-buttons {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.view-listing-btn {
+  padding: 8px 16px;
+  background-color: #ADD8E6;
+  color: #00008B;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-listing-btn {
+  padding: 8px 16px;
+  background-color: #ADD8E6;
+  color: #00008B;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-listing-btn {
+  padding: 8px 16px;
+  background-color: #FFCCCC;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+.my-listings-header {
+  text-align: center;
+  font-size: 24px;
+  margin-top: 20px;
+}
