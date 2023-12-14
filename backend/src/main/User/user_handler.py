@@ -58,7 +58,7 @@ class UserHandler:
         This endpoint was created for testing. It accesses the entire dictionary of users.
         '''
         
-        return jsonify(user_manager.get_user_database())
+        return jsonify(user_manager.users)
             
     
     

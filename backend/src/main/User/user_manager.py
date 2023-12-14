@@ -44,8 +44,7 @@ class UserManager:
             raise UserDoesNotExistException(f"User not found with username {username}")
         return  user
     
-    def get_user_database(self):
-        return self.users
+   
     
     
 
