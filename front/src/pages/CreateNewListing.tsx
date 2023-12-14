@@ -39,7 +39,7 @@ const CreateNewListing = () => {
           />
           <input
             type="text"
-            placeholder="Price"
+            placeholder="Price (i.e. 54.99, 5.00)"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />

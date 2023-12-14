@@ -1,17 +1,24 @@
-import React from 'react';
-import { Posting } from '../types'; 
-import '../style/Listings.css';
+import React from "react";
+import { Posting } from "../types";
+import "../style/Listings.css";
+import NavBar from "../components/NavBar/NavBar";
 
 interface ListingsProps {
-    listings: Posting[];
-  }
-  
-  const Listings: React.FC<ListingsProps> = ({ listings }) => {
-    return (
+  listings: Posting[];
+}
+
+const Listings: React.FC<ListingsProps> = ({ listings }) => {
+  return (
+    <div>
+      <NavBar />
       <div className="listings-container">
-        {listings.map(listing => (
+        {listings.map((listing) => (
           <div key={listing.id} className="listing">
-            <img src={listing.coverPhoto} alt={listing.name} className="listing-cover-photo" />
+            <img
+              src={listing.coverPhoto}
+              alt={listing.name}
+              className="listing-cover-photo"
+            />
             <div className="listing-details">
               <h2>{listing.name}</h2>
               <p>{listing.description}</p>
@@ -23,7 +30,8 @@ interface ListingsProps {
           </div>
         ))}
       </div>
-    );
-  };
-  
+    </div>
+  );
+};
+
 export default Listings;

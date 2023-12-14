@@ -20,10 +20,15 @@ export interface Notification {
     price: number;
     description: string;
     qty: number;
-    date: string;
+    date: Date;
+    link: string;
     coverPhoto: string;
     additionalPhotos: string[];
   };
+
+  export interface SavedItemsProps {
+    saveditems: Posting[];
+  }
 
   export type User = {
     firstName: string;

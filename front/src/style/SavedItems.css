@@ -1,4 +1,4 @@
-.notifications-popup {
+.saveditems-popup {
     position: absolute;
     top: 100%; 
     right: 0; 
@@ -11,7 +11,7 @@
     z-index: 1000; 
   }
 
-.notification-item {
+.saveditems-item {
   display: flex;
   align-items: center;
   padding: 20px 15px;
@@ -22,25 +22,25 @@
   border-radius: 5px;
 }
 
-.notification-item:hover {
+.saveditems-item:hover {
   background-color: #f0f0f0;
 }
 
-.notification-photo {
-  width: 22px;
-  height: 22px;
+.saveditems-photo {
+    width: 22px;
+    height: 22px;
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;
 }
 
-.notification-content {
+.saveditems-content {
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
-.notification-message {
+.saveditems-message {
   font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
@@ -50,7 +50,7 @@
   -webkit-box-orient: vertical;
 }
 
-.notification-timestamp {
+.saveditems-timestamp {
     text-align: left;
   font-size: 12px;
   color: grey;

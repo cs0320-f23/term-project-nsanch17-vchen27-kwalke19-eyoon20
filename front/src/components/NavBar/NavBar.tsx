@@ -11,8 +11,10 @@ import Search from "./Search";
 import Notification from "../Notifications/Notifications";
 import LoggedInProfilePopup from "../ProfilePopups/LoggedInProfilePopup";
 import LoggedOutProfilePopup from "../ProfilePopups/LoggedOutProfilePopup";
+import SavedItem from "../SavedItems/SavedItems";
 
 import mockNotifications from "../../mocks/mockNotifications";
+import mockedSavedItems from "../../mocks/mockSavedItems";
 
 interface NavBarProps {
   isLoggedIn: boolean;
@@ -22,6 +24,7 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
   const navigate = useNavigate();
   const [searchKeyword, setSearchKeyword] = useState("");
   const [showNotifications, setShowNotifications] = useState(false);
+  const [showSavedItems, setShowSavedItems] = useState(false);
   const [showProfilePopup, setShowProfilePopup] = useState(false);
 
   isLoggedIn = true;
@@ -36,6 +39,40 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
         !NotificationsRef.current.contains(event.target as Node)
       ) {
         setShowNotifications(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  //Saved Items popup should disappear if other part of screen is clicked
+  const SavedItemsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        SavedItemsRef.current &&
+        !SavedItemsRef.current.contains(event.target as Node)
+      ) {
+        setShowSavedItems(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  //Profile popup should disappear if other part of screen is clicked
+  const ProfileRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        ProfileRef.current &&
+        !ProfileRef.current.contains(event.target as Node)
+      ) {
+        setShowProfilePopup(false);
       }
     };
 
@@ -66,7 +103,18 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
             Create New Listing
           </button>
         )}
-        <img src={Heart} alt="Saved Items" className="navbar-icon" />
+        <img 
+          onClick={() => setShowSavedItems(!showSavedItems)}
+          src={Heart} 
+          alt="Saved Items" 
+          className="navbar-icon" 
+        />
+        {showSavedItems && (
+          <SavedItem
+            saveditems={mockedSavedItems}
+            ref={SavedItemsRef}
+          />
+        )}
         <img
           onClick={handleChatClick}
           src={Chat}
@@ -86,13 +134,18 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
           />
         )}
         <img
-          onClick={() => setShowProfilePopup(!showProfilePopup)}
-          src={isLoggedIn ? UserProfilePic : UserIcon}
-          alt="User"
-          className={isLoggedIn ? "user-profile-pic" : "user-icon"}
-        />
-        {showProfilePopup &&
-          (isLoggedIn ? <LoggedInProfilePopup /> : <LoggedOutProfilePopup />)}
+        onClick={() => setShowProfilePopup(!showProfilePopup)}
+        src={isLoggedIn ? UserProfilePic : UserIcon}
+        alt="User"
+        className={isLoggedIn ? "user-profile-pic" : "user-icon"}
+      />
+      {showProfilePopup &&
+        (isLoggedIn ? (
+          <LoggedInProfilePopup ref={ProfileRef} />
+        ) : (
+          <LoggedOutProfilePopup ref={ProfileRef} />
+        ))
+      }
       </div>
     </nav>
   );
