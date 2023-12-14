@@ -1,12 +1,12 @@
 from flask import Flask, request, jsonify, Blueprint
 from dataclasses import dataclass
 import dataclasses
-from main.Posting.post_manager import PostingManager
-from main.Posting.post_manager import user_manager
-from main.User.user_manager import UserDoesNotExistException
-from main.User.user_manager import UserExistsException
-from main.Posting.post_manager import PostingExistsException
-from main.Posting.post_manager import ItemNotFoundException
+from main.posting.post_manager import PostingManager
+from main.posting.post_manager import user_manager
+from main.user.user_manager import UserDoesNotExistException
+from main.user.user_manager import UserExistsException
+from main.posting.post_manager import PostingExistsException
+from main.posting.post_manager import ItemNotFoundException
 
 
 
@@ -17,14 +17,23 @@ posting_bp = Blueprint('posting', __name__)
 class PostingHandler:
      
     # @staticmethod
-    @posting_bp.route("/create")
+    @posting_bp.route("/create",methods=['GET', 'POST'])
     def make_posting():
-        item_name = request.args.get("item_name")
-        seller_name = request.args.get("seller_name")
-        price = request.args.get("price")
-        description = request.args.get("description")
-        qty = request.args.get("qty")
-        
+
+        if request.method == 'GET':
+            item_name = request.args.get("item_name")
+            seller_name = request.args.get("seller_name")
+            price = request.args.get("price")
+            description = request.args.get("description")
+            qty = request.args.get("qty")
+        elif request.method == 'POST':
+            data = request.get_json()
+
+            item_name = data.get("item_name")
+            seller_name = data.get("seller_name")
+            price = data.get("price")
+            description = data.get("description")
+            qty = data.get("qty")
 
         result_dict = {}
 
@@ -57,19 +66,26 @@ class PostingHandler:
        
         
         
-        result_dict = dataclasses.asdict(posting)
+        result_dict = {"item": dataclasses.asdict(posting)}
         result_dict.update({"result": "success"})
         
         return jsonify(result_dict), 200
 
     # Endpoint for deleting an item
     # @staticmethod
-    @posting_bp.route("/delete")
+    @posting_bp.route("/delete",methods=['GET', 'POST'])
     def delete_item():
+        
         result_dict ={"result" : None}
 
-        item_name= request.args.get("item_name")
-        seller = request.args.get("seller_name")
+        if request.method == 'GET':
+            item_name= request.args.get("item_name")
+            seller = request.args.get("seller_name")
+        elif request.method == 'POST':
+            data = request.get_json()
+
+            item_name= data.get("item_name")
+            seller = data.get("seller_name")
 
         if not item_name or not seller:
             result_dict.update({"result": "error"})
@@ -89,14 +105,23 @@ class PostingHandler:
     
             return jsonify(result_dict), 400
         
-    @posting_bp.route("/modify")
+    @posting_bp.route("/modify",methods=['GET', 'POST'])
     def modify_posting():
         result_dict = {"result" : None}
 
-        item_name= request.args.get("item_name")
-        seller = request.args.get("seller_name")
-        attribute = request.args.get("attribute")
-        new_value = request.args.get("new_value")
+
+        if request.method == 'GET':
+            item_name= request.args.get("item_name")
+            seller = request.args.get("seller_name")
+            attribute = request.args.get("attribute")
+            new_value = request.args.get("new_value")
+        elif request.method == 'POST':
+            data = request.get_json()
+
+            item_name= data.get("item_name")
+            seller = data.get("seller_name")
+            attribute = data.get("attribute")
+            new_value = data.args.get("new_value")
 
 
         if not item_name or not seller:
@@ -110,12 +135,18 @@ class PostingHandler:
             mod_item = dataclasses.asdict(post_manager.change_posting(key, attribute,new_value))
             result_dict ={"result" : "success"}
             result_dict.update({"message": "Item updated successfully", "updated_item": mod_item})
-            return jsonify(result_dict)
-        except(ItemNotFoundException, PermissionError):
+            return jsonify(result_dict),200
+        except(ItemNotFoundException):
             result_dict.update({"result": "error"})
-            result_dict.update({"error": f"Item with key {key} not found"})
+            result_dict.update({"error_message": f"Item with key {key} not found"})
+            return jsonify(result_dict),400
+        except(PermissionError):
+            result_dict.update({"result": "error"})
+            result_dict.update({"error_message": f"Attribute {attribute} cannot be modified or is not found."})
+            return jsonify(result_dict),400
 
-            return jsonify(result_dict), 400
+
+            
         
     
 

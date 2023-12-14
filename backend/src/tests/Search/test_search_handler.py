@@ -1,69 +1,84 @@
-# import unittest
-# from flask import Flask, request
-# from unittest.mock import patch
-# from backend.src.main.Search.SearchHandler import SearchHandler
+import pytest
+from main.app import app
+from main.search.search_handler import SearchHandler
 
-# class TestSearchHandler(unittest.TestCase):
 
-#     def setUp(self):
-#         self.app = Flask(__name__)
 
-#     @patch('SearchHandler.request')
-#     def test_search_handler(self, mock_request):
-#         # Mock request data
-#         mock_request.args.get.return_value = 'phone'
-#         # You might need to adjust the request mocking based on how your search handler reads data from the request
+@pytest.fixture()
+def client():
+    return app.test_client()
 
-#         # Mock data in the item_database (assuming your search handler uses a database)
-#         item_data_1 = {
-#             "item_name": "Phone",
-#             "seller_name": "John",
-#             "price": "500",
-#             "description": "Smartphone",
-#             "date": "2023-01-01"
-#         }
+    
+def test_search_handler_success(client):
+     with app.app_context():
 
-#         item_data_2 = {
-#             "item_name": "Laptop",
-#             "seller_name": "Alice",
-#             "price": "1000",
-#             "description": "Powerful laptop",
-#             "date": "2023-01-02"
-#         }
+        client.get('/user/new_user', query_string={
+            "first_name": "rich",
+            "last_name": "dwindle",
+            "username": "rdwin",
+            "email": "rdwin@aol.com"
+        })
 
-#         item_data_3 = {
-#             "item_name": "Tablet",
-#             "seller_name": "Bob",
-#             "price": "300",
-#             "description": "Portable tablet",
-#             "date": "2023-01-03"
-#         }
+        client.get('/posting/create', query_string={
+            "item_name": "hair i love turtles",
+            "seller_name": "rdwin",
+            "price": "25.0",
+            "description": "fantastic",
+            "qty":"1"  
+            })
+        
+        client.get('/posting/create', query_string={
+            "item_name": "yellow_hair turtles are pretty cool",
+            "seller_name": "rdwin",
+            "price": "25.0",
+            "description": "fantastic",
+            "qty":"1"  
+            })
+        
+        client.get('/user/new_user', query_string={
+            "first_name": "sarah",
+            "last_name": "wilson",
+            "username": "swillie",
+            "email": "swil@aol.com"
+        })
 
-#         item_database = {
-#             "Phone_John_2023-01-01": item_data_1,
-#             "Laptop_Alice_2023-01-02": item_data_2,
-#             "Tablet_Bob_2023-01-03": item_data_3
-#         }
+        client.get('/posting/create', query_string={
+            "item_name": "turtle yellow turtle",
+            "seller_name": "swillie",
+            "price": "4.0",
+            "description": "amazon turtle",
+            "qty":"5"  
+            })
+        
+        search_response =  client.get('/search/search_postings', query_string={
+            "query": "hair"
+            })
+        
+        search_response_empty = client.get('/search/search_postings', query_string={
+            "query": "this won't be related at all"
+            })
+        
+        search_response_empty = client.get('/search/search_postings', query_string={
+            "query": "this won't be related at all"
+            })
+        
+        search_response_turtle = client.get('/search/search_postings', query_string={
+            "query": "please give me a turtle result"
+            })
+        
+        #should filter out a result that doesn't contain the query in its description
+        search = search_response.get_json()
+        assert len(search["search_results"]) == 2
 
-#         # Set the mocked item_database in the SearchHandler
-#         SearchHandler.item_database = item_database
+        #should filter out all words for a completely unrelated query
+        search = search_response_empty.get_json()
+        assert len(search["search_results"]) == 0
 
-#         # Call the handle_search method
-#         response = SearchHandler.handle_search()
+        #all items contain the world turtle (even if not full query) so all should be returned
+        search = search_response_turtle.get_json()
+        assert len(search["search_results"]) == 3
 
-#         # Check the response status code
-#         self.assertEqual(response.status_code, 200)
-
-#         # Check the response JSON content
-#         response_json = response.get_json()
-#         self.assertIn('search_results', response_json)
-#         search_results = response_json['search_results']
-
-#         # Check if search results are as expected
-#         self.assertEqual(len(search_results), 1)
-#         self.assertEqual(search_results[0]['item'], item_data_1)
-
-#         # Add more specific assertions based on your expected results
-
-# if __name__ == '__main__':
-#     unittest.main()
+        #first result contains turtle the most, so score should be highest
+        assert search["search_results"]["turtle yellow turtle_swillie"]["score"] > search["search_results"]["yellow_hair turtles are pretty cool_rdwin"]["score"]
+        assert search["search_results"]["turtle yellow turtle_swillie"]["score"] > search["search_results"]["hair i love turtles_rdwin"]["score"]
+        
