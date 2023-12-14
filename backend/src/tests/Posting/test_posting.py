@@ -1,16 +1,14 @@
 import pytest
-import json
-from flask import Flask, request
+
 
 from main.app import app
-from main.User.user_manager import User
+from main.user.user_manager import User
 
 from datetime import datetime
 
 @pytest.fixture()
 def client():
-    with app.app_context():
-        yield app.test_client()
+    return app.test_client()
 
 def test_create_posting_success(client):
     '''
@@ -47,14 +45,14 @@ def test_create_posting_success(client):
     
     
     #all user information should be correctly presented
-    assert data["name"] == "Squishmallow"
-    assert data["seller"] == "sarbar"
-    assert data["price"]== 25.0
-    assert data["description"]== "Pretty new...a few mysterious stains lol"
-    assert data["qty"]== 1
+    assert data["item"]["name"] == "Squishmallow"
+    assert data["item"]["seller"] == "sarbar"
+    assert data["item"]["price"]== 25.0
+    assert data["item"]["description"]== "Pretty new...a few mysterious stains lol"
+    assert data["item"]["qty"]== 1
 
     #listing should exist for seller and be equal to the original listing
-    assert new_data["sarbar"]["sellings"]["Squishmallow"] == data
+    assert new_data["sarbar"]["sellings"]["Squishmallow"] == data["item"]
 
    
 def test_create_posting_failure(client):
@@ -77,8 +75,8 @@ def test_create_posting_failure(client):
     
     #a new instance of Posting should not be created, so no key for this information should exist
     with pytest.raises(KeyError):
-        assert data["item_name"] == None
-        assert data["seller_name"] == None
+        assert data["item"]["item_name"] == None
+        assert data["item"]["seller_name"] == None
 
     assert response.status_code == 400
     assert data['result'] == 'error'
@@ -95,8 +93,8 @@ def test_create_posting_failure(client):
     
     #a new instance of Posting should not be created, so no key for this information should exist
     with pytest.raises(KeyError):
-        assert data["item_name"] == None
-        assert data["seller_name"] == None
+        assert data["item"]["item_name"] == None
+        assert data["item"]["seller_name"] == None
 
     #Invalid number inputs will lead to the posting not being created
     response = client.get('/posting/create', query_string={
@@ -112,8 +110,8 @@ def test_create_posting_failure(client):
     
     #a new instance of Posting should not be created, so no key for this information should exist
     with pytest.raises(KeyError):
-        assert data["item_name"] == None
-        assert data["seller_name"] == None
+        assert data["item"]["item_name"] == None
+        assert data["item"]["seller_name"] == None
 
 def test_create_posting_existing(client):
     '''
@@ -197,7 +195,7 @@ def test_delete_success(client):
     item = item_response.get_json()
     del item["result"]
     assert data["message"] == "Item deleted successfully"
-    assert data["deleted_item"] == item
+    assert data["deleted_item"] == item["item"]
 
 def test_delete_fail(client):
     '''
@@ -246,7 +244,7 @@ def test_modify_success(client):
             "email": "smith@gmail.com"
         })
 
-        item_response = client.get('/posting/create', query_string={
+        client.get('/posting/create', query_string={
             "item_name": "Squishmallow",
             "seller_name": "ajjj",
             "price": "89",
@@ -266,10 +264,81 @@ def test_modify_success(client):
             
             })
 
-    item = item_response.get_json()
     modified = modify_response.get_json()
     user_data = user_data_fetch.get_json()
 
+    #price in returned modified item should equal price in user's sellings dict
     assert modified["updated_item"]["price"] == user_data["ajjj"]["sellings"]["Squishmallow"]["price"]
+
+def test_modify_fail(client):
+        '''
+        These tests check that malformed attempts to modify a posting are handled gracefully under several cases.
+        '''
+        #Created item unsuccessfully, so it won't be found and can't be modified
+        with app.app_context():
+            client.get('/posting/create', query_string={
+                "item_name": "Haunted creepy Doll",
+                "seller_name": "help",
+                "price": "5",
+                "description": "This doll is haunted...please take it I'm willing to lower the price.",
+                "qty":"1"  
+            })
+
+            modify_response = client.get('/posting/modify', query_string={
+                "item_name": "Haunted creepy Doll",
+                "seller_name": "help",
+                "attribute": "price",
+                "new_value": "0"
+    
+            })
+
+        data = modify_response.get_json()
+
+        assert data["error_message"] == "Item with key Haunted creepy Doll_help not found"
+
+    #Created item successfully but incorrect name used to retrieve it, still won't be found
+        with app.app_context():
+
+            client.get('/user/new_user', query_string={
+                "first_name": "Savannah",
+                "last_name": "Reed",
+                "username": "help",
+                "email": "pleasetakethisdoll@gmail.com"
+            })
+            
+            client.get('/posting/create', query_string={
+                "item_name": "Haunted creepy Doll",
+                "seller_name": "help",
+                "price": "5",
+                "description": "This doll is haunted...please take it I'm willing to lower the price.",
+                "qty":"1"  
+            })
+
+            modify_response = client.get('/posting/modify', query_string={
+                "item_name": "Amazing doll",
+                "seller_name": "help",
+                "attribute": "price",
+                "new_value": "0"
+            })
+
+            modify_response_illegal =  client.get('/posting/modify', query_string={
+                "item_name": "Haunted creepy Doll",
+                "seller_name": "help",
+                "attribute": "date",
+                "new_value": "today lol"
+            })
+
+
+            data = modify_response.get_json()
+            assert data["error_message"] == "Item with key Amazing doll_help not found"
+
+    #Attempting to modify a field that can't be changed
+        data_illegal = modify_response_illegal.get_json()
+        assert data_illegal["error_message"] == "Attribute date cannot be modified or is not found."
+      
+
+
+
+
 
     
