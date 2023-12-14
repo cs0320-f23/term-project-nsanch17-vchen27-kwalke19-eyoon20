@@ -1,8 +1,5 @@
 import pytest
 from main.app import app
-from main.search.search_handler import SearchHandler
-
-
 
 @pytest.fixture()
 def client():
@@ -13,15 +10,15 @@ def test_search_handler_success(client):
     with app.app_context():
 
         client.get('/user/new_user', query_string={
-            "first_name": "rich",
-            "last_name": "dwindle",
-            "username": "rdwin",
+            "first_name": "savanna",
+            "last_name": "roard",
+            "username": "alpj",
             "email": "rdwin@aol.com"
         })
 
         client.get('/posting/create', query_string={
             "item_name": "hair i love turtles",
-            "seller_name": "rdwin",
+            "seller_name": "alpj",
             "price": "25.0",
             "description": "fantastic",
             "qty":"1"  
@@ -29,7 +26,7 @@ def test_search_handler_success(client):
         
         client.get('/posting/create', query_string={
             "item_name": "yellow_hair turtles are pretty cool",
-            "seller_name": "rdwin",
+            "seller_name": "alpj",
             "price": "25.0",
             "description": "fantastic",
             "qty":"1"  
@@ -38,7 +35,7 @@ def test_search_handler_success(client):
 
         client.get('/posting/create', query_string={
             "item_name": "turtle yellow turtle",
-            "seller_name": "swillie",
+            "seller_name": "alpj",
             "price": "4.0",
             "description": "amazon turtle",
             "qty":"5"  
@@ -70,16 +67,17 @@ def test_search_handler_success(client):
     assert len(search["search_results"]) == 2
 
     #should filter out all words for a completely unrelated query
-    search = search_response_empty.get_json()
-    assert len(search["search_results"]) == 0
+    search_empty = search_response_empty.get_json()
+    assert len(search_empty["search_results"]) == 0
+
 
     #all items contain the world turtle (even if not full query) so all should be returned
-    search = search_response_turtle.get_json()
-    assert len(search["search_results"]) == 3
+    search_turtle = search_response_turtle.get_json()
+    assert len(search_turtle["search_results"]) == 3
 
     #first result contains turtle the most, so score should be highest
-    assert search["search_results"]["turtle yellow turtle_swillie"]["score"] > search["search_results"]["yellow_hair turtles are pretty cool_rdwin"]["score"]
-    assert search["search_results"]["turtle yellow turtle_swillie"]["score"] > search["search_results"]["hair i love turtles_rdwin"]["score"]
+    assert search_turtle["search_results"]["turtle yellow turtle_alpj"]["score"] > search_turtle["search_results"]["yellow_hair turtles are pretty cool_alpj"]["score"]
+    assert search_turtle["search_results"]["turtle yellow turtle_alpj"]["score"] > search_turtle["search_results"]["hair i love turtles_alpj"]["score"]
 
 def test_search_handler_fail(client):
     #incorrect search format

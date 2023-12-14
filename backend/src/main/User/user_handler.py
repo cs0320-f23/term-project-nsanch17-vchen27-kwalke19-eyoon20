@@ -46,7 +46,7 @@ class UserHandler:
         
 
         # returns a JSON response with the user profile data
-        result_dict = {"user":dataclasses.asdict(user_manager.get_user(username))}
+        result_dict = {"user":dataclasses.asdict(user_manager.users[username])}
         result_dict.update({"result":"success"}),200
 
         

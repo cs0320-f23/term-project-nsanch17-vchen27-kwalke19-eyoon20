@@ -48,22 +48,20 @@ class PostingManager:
             raise PostingExistsException("Please create a new name for your listing.")
 
         try:
-            user_manager.get_user(seller).addItem(item_name,False, posting)
+            user_manager.users[seller].addItem(item_name,False, posting)
             self.postings[key] = posting
 
         except Exception:
             raise UserDoesNotExistException("User does not exist.")
         return posting
 
-    def get_posting(self, item_name):
-        return self.postings.get(item_name)
     
     def delete_posting(self,key:str):
         if key not in self.postings:
             raise ItemNotFoundException( f"Item with key {key} not found")
         else:
             removed_item = self.postings.pop(key)
-            del dataclasses.asdict(user_manager.get_user(key.split("_")[1]))["sellings"][key.split("_")[0]]
+            del user_manager.users[key.split("_")[1]].sellings[key.split("_")[0]]
             return removed_item
         
     def change_posting(self,key:str,attribute:str,new_value:str):

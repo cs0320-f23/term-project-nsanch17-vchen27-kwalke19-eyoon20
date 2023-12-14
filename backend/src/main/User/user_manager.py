@@ -1,4 +1,3 @@
-import dataclasses
 from dataclasses import dataclass
 from datetime import datetime
 class UserDoesNotExistException(Exception):
@@ -15,6 +14,7 @@ class User:
     email: str
     purchases: dict()
     sellings: dict()
+    wishlist: dict()
 
 
 
@@ -34,15 +34,11 @@ class UserManager:
         if username in self.users:
             raise UserExistsException("User already exists.")
         else:
-            user = User(first_name, last_name, username, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), email, {}, {})
+            user = User(first_name, last_name, username, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), email, {}, {}, {})
             self.users[username] = user
             return user
 
-    def get_user(self, username:str):
-        user = self.users.get(username)
-        if user is None:
-            raise UserDoesNotExistException(f"User not found with username {username}")
-        return  user
+ 
     
    
     
