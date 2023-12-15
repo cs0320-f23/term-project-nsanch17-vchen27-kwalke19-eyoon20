@@ -1,8 +1,6 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar/NavBar";
 import Home from "./pages/Home";
-import Profile from "./pages/Profile";
+import Profile from "./components/UserProfile/Profile";
 import Messaging from "./components/Messaging/Messaging";
 import "./style/App.css";
 import SingleItemDisplay from "./pages/SingleItemDisplay";
@@ -23,11 +21,15 @@ function App() {
           <Route path="/messaging" element={<Messaging />} />
           <Route path="/single-item/" element={<SingleItemDisplay />} />
           <Route path="/create-new-listing" element={<CreateNewListing />} />
-          <Route path="/new-listing-confirmation" element={<NewListingConfirmation />} />
-          <Route path="/listings" element={<Listings listings={mockListings} />} />
+          <Route
+            path="/new-listing-confirmation"
+            element={<NewListingConfirmation />}
+          />
+          <Route
+            path="/listings"
+            element={<Listings listings={mockListings} />}
+          />
 
-
- 
           {/* Add additional routes as needed */}
         </Routes>
       </div>
