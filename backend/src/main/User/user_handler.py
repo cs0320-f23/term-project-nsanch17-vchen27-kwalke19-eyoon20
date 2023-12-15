@@ -22,6 +22,7 @@ class UserHandler:
             last_name = request.args.get("last_name")
             username = request.args.get("username")
             email = request.args.get("email")
+            profile = request.args.get("profile")
 
         elif request.method == 'POST':
             data = request.get_json()
@@ -30,15 +31,17 @@ class UserHandler:
             last_name = data.get("last_name")
             username = data.get("username")
             email = data.get("email")
+            profile = data.get("profile")
+
 
           # checks if all parameters are provided
-        if not first_name or not last_name or not username or not email:
+        if not first_name or not last_name or not username or not email or not profile:
             result_dict.update({"result": "error"})
             result_dict.update({"error_message": "Missing parameters"})
             return jsonify(result_dict), 400
         
         try:
-           user_manager.create_user(first_name,last_name,username,email)
+           user_manager.create_user(first_name,last_name,username,email,profile)
         except (UserExistsException):
             result_dict.update({"result": "error"})
             result_dict.update({"error_message": "User already exists. Try again."})

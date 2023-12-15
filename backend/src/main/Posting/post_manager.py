@@ -4,6 +4,7 @@ from datetime import datetime
 from main.user.user_manager import User
 from main.user.user_manager import UserDoesNotExistException
 from main.user.user_manager import UserExistsException
+from enum import Enum
 
 from main.user.user_handler import user_manager
 
@@ -11,6 +12,11 @@ class PostingExistsException(Exception):
     pass
 class ItemNotFoundException(Exception):
     pass
+class Status(str,Enum):
+    FOR_SALE = "For sale"
+    PENDING = "Pending"
+    PURCHASED = "Purchased"
+
 
 @dataclass
 class Posting:
@@ -20,19 +26,13 @@ class Posting:
     description: str
     qty: int
     date: str
+    status: Status 
+    picture:str
+    additional_pics:list()
 
     def dict(self):
 
         return {'seller': self.seller.__dict__}
-    # def asdict(self):
-    #     return {
-    #         'name': self.name,
-    #         'seller': self.seller.asdict(),  # Call the asdict method on the nested data class
-    #         'price': self.price,
-    #         'description': self.description,
-    #         'qty': self.qty,
-    #         'date': self.date
-    #     }
 
 
 class PostingManager:
@@ -40,15 +40,15 @@ class PostingManager:
         self.postings = {}
         
 
-    def create_posting(self, item_name, seller, price, description, qty):
-        posting = Posting(item_name, seller, price, description, qty, datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-        key = f"{item_name}_{seller}"
+    def create_posting(self, item_name, seller_name, price, description, qty, big_pic, pics):
+        posting = Posting(item_name, seller_name, price, description, qty, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), Status.FOR_SALE, big_pic, [pic for pic in pics.split(",")])
+        key = f"{item_name}_{seller_name}"
 
         if key in self.postings:
             raise PostingExistsException("Please create a new name for your listing.")
 
         try:
-            user_manager.users[seller].addItem(item_name,False, posting)
+            user_manager.users[seller_name].sellings.update({key: posting})
             self.postings[key] = posting
 
         except Exception:
@@ -61,7 +61,7 @@ class PostingManager:
             raise ItemNotFoundException( f"Item with key {key} not found")
         else:
             removed_item = self.postings.pop(key)
-            del user_manager.users[key.split("_")[1]].sellings[key.split("_")[0]]
+            del user_manager.users[key.split("_")[1]].sellings[key]
             return removed_item
         
     def change_posting(self,key:str,attribute:str,new_value:str):
@@ -79,8 +79,20 @@ class PostingManager:
                 else:
                     setattr(mod_posting, attribute, new_value)
                     self.postings[key] = mod_posting
-                    # dataclasses.asdict(self.postings[key])[attribute] = new_value
+                
                     return mod_posting
+                
+    def buy_posting(self,buyer_name,key):
+        if key not in self.postings:
+            raise ItemNotFoundException( f"Item with key {key} not found")
+        else:
+            try:
+                user_manager.users[buyer_name].purchases.update({key:self.postings[key]})
+                self.postings[key].status = Status.PURCHASED
+                return self.postings[key]
+            except:
+                UserDoesNotExistException("Cannot find user to purchase posting.")
+
 
 
 

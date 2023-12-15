@@ -23,7 +23,9 @@ def test_create_user_profile_success(client):
         "first_name": "John",
         "last_name": "Doe",
         "username": "jdo",
-        "email": "jdoe@gmail.com"
+        "email": "jdoe@gmail.com",
+        "profile":"/link"
+
     })
     data = response.get_json()
     #no sellings should exist prior to making a posting
@@ -75,14 +77,18 @@ def test_create_user_profile_existing(client):
             "first_name": "John",
             "last_name": "Doe",
             "username": "jdo",
-            "email": "jdoe@gmail.com"
+            "email": "jdoe@gmail.com",
+            "profile":"/link"
+
         })
 
         response = client.get('/user/new_user', query_string={
             "first_name": "Sarah",
             "last_name": "Smith",
             "username": "jdo",
-            "email": "smith@gmail.com"
+            "email": "smith@gmail.com",
+            "profile":"/link"
+
         })
 
         data_response = client.get("/user/data")

@@ -26,6 +26,9 @@ class PostingHandler:
             price = request.args.get("price")
             description = request.args.get("description")
             qty = request.args.get("qty")
+            big_pic = request.args.get("big_pic")
+            pics = request.args.get("pics")
+
         elif request.method == 'POST':
             data = request.get_json()
 
@@ -34,6 +37,8 @@ class PostingHandler:
             price = data.get("price")
             description = data.get("description")
             qty = data.get("qty")
+            big_pic = data.get("big_pic")
+            pics = data.get("pics")
 
         result_dict = {}
 
@@ -53,7 +58,7 @@ class PostingHandler:
    
 
         try:
-            posting = post_manager.create_posting(item_name, seller_name, price,description, qty)
+            posting = post_manager.create_posting(item_name, seller_name, price,description, qty, big_pic,pics)
 
         except (PostingExistsException):
             result_dict.update({"result": "error"})
@@ -145,6 +150,38 @@ class PostingHandler:
             result_dict.update({"error_message": f"Attribute {attribute} cannot be modified or is not found."})
             return jsonify(result_dict),400
 
+    @posting_bp.route("/buy",methods=['GET', 'POST'])
+    def buy_posting():
+        result_dict = {"result" : None}
+
+
+        if request.method == 'GET':
+            item_name= request.args.get("item_name")
+            seller = request.args.get("seller_name")
+            buyer = request.args.get("buyer_name")
+            
+        elif request.method == 'POST':
+            data = request.get_json()
+
+            item_name= data.get("item_name")
+            seller = data.get("seller_name")
+            buyer = data.get("buyer_name")
+
+        key = f"{item_name}_{seller}"
+        try:
+            bought = dataclasses.asdict(post_manager.buy_posting(buyer,key))
+            result_dict ={"result" : "success"}
+            result_dict.update({"message": "Item purchased successfully", "purchased_item": bought})
+            return jsonify(result_dict),200
+        except ItemNotFoundException:
+            result_dict.update({"result": "error"})
+            result_dict.update({"error_message": f"Listing cannot be found."})
+            return jsonify(result_dict),400
+        except UserDoesNotExistException:
+            result_dict.update({"result": "error"})
+            result_dict.update({"error_message": f"Buyer cannot be found"})
+            return jsonify(result_dict),400
+           
 
             
         

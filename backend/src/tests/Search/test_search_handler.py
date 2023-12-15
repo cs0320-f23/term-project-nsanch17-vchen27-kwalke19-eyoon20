@@ -13,7 +13,9 @@ def test_search_handler_success(client):
             "first_name": "savanna",
             "last_name": "roard",
             "username": "alpj",
-            "email": "rdwin@aol.com"
+            "email": "rdwin@aol.com",
+            "profile":"/link"
+
         })
 
         client.get('/posting/create', query_string={
@@ -21,7 +23,9 @@ def test_search_handler_success(client):
             "seller_name": "alpj",
             "price": "25.0",
             "description": "fantastic",
-            "qty":"1"  
+            "qty":"1",
+            "big_pic":"/link",
+            "pics":"/link"  
             })
         
         client.get('/posting/create', query_string={
@@ -29,7 +33,9 @@ def test_search_handler_success(client):
             "seller_name": "alpj",
             "price": "25.0",
             "description": "fantastic",
-            "qty":"1"  
+            "qty":"1",
+            "big_pic":"/link",
+            "pics":"/link"   
             })
         
 
@@ -38,7 +44,9 @@ def test_search_handler_success(client):
             "seller_name": "alpj",
             "price": "4.0",
             "description": "amazon turtle",
-            "qty":"5"  
+            "qty":"5",
+            "big_pic":"/link",
+            "pics":"/link"   
             })
         
         search_response =  client.get('/search/search_postings', query_string={
@@ -87,7 +95,9 @@ def test_search_handler_fail(client):
             "first_name": "rich",
             "last_name": "dwindle",
             "username": "rdwin",
-            "email": "rdwin@aol.com"
+            "email": "rdwin@aol.com",
+            "profile":"/link"
+
         })
 
         client.get('/posting/create', query_string={
@@ -95,7 +105,9 @@ def test_search_handler_fail(client):
             "seller_name": "rdwin",
             "price": "25.0",
             "description": "fantastic",
-            "qty":"1"  
+            "qty":"1",
+            "big_pic":"/link",
+            "pics":"/link"   
             })
         
         search_response =  client.get('/search/search_postings', query_string={
@@ -124,28 +136,36 @@ def test_search_user_success(client):
             "first_name": "caroline",
             "last_name": "james",
             "username": "olinecaro",
-            "email": "cjjj@aol.com"
+            "email": "cjjj@aol.com",
+            "profile":"/link"
+
         })
 
         client.get('/user/new_user', query_string={
             "first_name": "riuy",
             "last_name": "ponb",
             "username": "rieu",
-            "email": "rieu@aol.com"
+            "email": "rieu@aol.com",
+            "profile":"/link"
+
         })
 
         client.get('/user/new_user', query_string={
             "first_name": "keo",
             "last_name": "rikley",
             "username": "keor",
-            "email": "rikleykeo@aol.com"
+            "email": "rikleykeo@aol.com",
+            "profile":"/link"
+
         })
 
         client.get('/user/new_user', query_string={
             "first_name": "polly",
             "last_name": "truth",
             "username": "optruth",
-            "email": "jimmy@aol.com"
+            "email": "jimmy@aol.com",
+            "profile":"/link"
+
         })
 
         search_response =  client.get('/search/search_postings', query_string={

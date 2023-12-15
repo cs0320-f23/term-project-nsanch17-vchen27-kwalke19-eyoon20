@@ -11,7 +11,9 @@ def test_add_wishlist_success(client):
                 "first_name": "rich",
                 "last_name": "dwindle",
                 "username": "rdwin",
-                "email": "rdwin@aol.com"
+                "email": "rdwin@aol.com",
+                "profile":"/link"
+
         })
 
         posting_response = client.get('/posting/create', query_string={
@@ -19,14 +21,18 @@ def test_add_wishlist_success(client):
                 "seller_name": "rdwin",
                 "price": "65.0",
                 "description": "fantastic",
-                "qty":"1"  
+                "qty":"1",
+                "big_pic":"/link",
+                "pics":"/link"  
         })
         
         client.get('/user/new_user', query_string={
                 "first_name": "sienna",
                 "last_name": "mae",
                 "username": "smae",
-                "email": "beaniebabylovr@aol.com"
+                "email": "beaniebabylovr@aol.com",
+                "profile":"/link"
+
         })
         response = client.get('/wishlist/add_wish', query_string={
                 "posting_name": "beanie baby rare turtle find",
@@ -53,14 +59,18 @@ def test_add_wishlist_failure(client):
                 "seller_name": "appa",
                 "price": "65.0",
                 "description": "fantastic",
-                "qty":"1"  
+                "qty":"1",
+                "big_pic":"/link",
+                "pics":"/link"  
         })
         
         client.get('/user/new_user', query_string={
                 "first_name": "sienna",
                 "last_name": "mae",
                 "username": "baeme",
-                "email": "beaniebabylovr@aol.com"
+                "email": "beaniebabylovr@aol.com",
+                "profile":"/link"
+
         })
         response = client.get('/wishlist/add_wish', query_string={
                 "posting_name": "beanie baby rare turtle find",
@@ -77,7 +87,10 @@ def test_add_wishlist_failure(client):
                 "first_name": "rich",
                 "last_name": "dwindle",
                 "username": "swindler",
-                "email": "rdwin@aol.com"
+                "email": "rdwin@aol.com",
+                "profile":"/link"
+
+
         })
 
         client.get('/posting/create', query_string={
@@ -85,7 +98,9 @@ def test_add_wishlist_failure(client):
                 "seller_name": "swindler",
                 "price": "65.0",
                 "description": "fantastic",
-                "qty":"1"  
+                "qty":"1",
+                "big_pic":"/link",
+                "pics":"/link"  
         })
         
         response = client.get('/wishlist/add_wish', query_string={
@@ -103,14 +118,18 @@ def test_add_wishlist_failure(client):
                 "first_name": "rich",
                 "last_name": "dwindle",
                 "username": "coppaz",
-                "email": "rdwin@aol.com"
+                "email": "rdwin@aol.com",
+                "profile":"/link"
+
         })
         
         client.get('/user/new_user', query_string={
                 "first_name": "sienna",
                 "last_name": "mae",
                 "username": "checker",
-                "email": "beaniebabylovr@aol.com"
+                "email": "beaniebabylovr@aol.com",
+                "profile":"/link"
+
         })
         response = client.get('/wishlist/add_wish', query_string={
                 "posting_name": "random unfound item?",
@@ -127,7 +146,9 @@ def test_add_wishlist_failure(client):
                 "first_name": "rich",
                 "last_name": "dwindle",
                 "username": "rdwin",
-                "email": "rdwin@aol.com"
+                "email": "rdwin@aol.com",
+                "profile":"/link"
+
         })
 
         client.get('/posting/create', query_string={
@@ -135,14 +156,18 @@ def test_add_wishlist_failure(client):
                 "seller_name": "rdwin",
                 "price": "65.0",
                 "description": "fantastic",
-                "qty":"1"  
+                "qty":"1",
+                "big_pic":"/link",
+                "pics":"/link"  
         })
         
         client.get('/user/new_user', query_string={
                 "first_name": "sienna",
                 "last_name": "mae",
                 "username": "smae",
-                "email": "beaniebabylovr@aol.com"
+                "email": "beaniebabylovr@aol.com",
+                "profile":"/link"
+
         })
         response = client.get('/wishlist/add_wish', query_string={
                 "posting_name": "beanie baby rare turtle find",
@@ -159,7 +184,9 @@ def test_delete_wishlist(client):
                 "first_name": "ghost",
                 "last_name": "winter",
                 "username": "gwinter",
-                "email": "rdwin@aol.com"
+                "email": "rdwin@aol.com",
+                "profile":"/link"
+
         })
 
         posting_response = client.get('/posting/create', query_string={
@@ -167,14 +194,18 @@ def test_delete_wishlist(client):
                 "seller_name": "gwinter",
                 "price": "65.0",
                 "description": "fantastic",
-                "qty":"1"  
+                "qty":"1",
+                "big_pic":"/link",
+                "pics":"/link"  
         })
         
         client.get('/user/new_user', query_string={
                 "first_name": "kelsey",
                 "last_name": "mae",
                 "username": "kmae",
-                "email": "beaniebabylovr@aol.com"
+                "email": "beaniebabylovr@aol.com",
+                "profile":"/link"
+
         })
         client.get('/wishlist/add_wish', query_string={
                 "posting_name": "beanie baby rare turtle find",
