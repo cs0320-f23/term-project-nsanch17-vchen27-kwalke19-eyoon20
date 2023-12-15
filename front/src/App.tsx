@@ -9,6 +9,7 @@ import CreateNewListing from "./pages/CreateNewListing";
 import NewListingConfirmation from "./pages/NewListingConfirmation";
 import Listings from "./pages/Listings";
 import mockListings from "./mocks/mockListings";
+import Signup from "./components/SIgnUp/Signup";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/messaging" element={<Messaging />} />
           <Route path="/single-item/" element={<SingleItemDisplay />} />
           <Route path="/create-new-listing" element={<CreateNewListing />} />
+          <Route path="/signup-login" element={<Signup />} />
           <Route
             path="/new-listing-confirmation"
             element={<NewListingConfirmation />}

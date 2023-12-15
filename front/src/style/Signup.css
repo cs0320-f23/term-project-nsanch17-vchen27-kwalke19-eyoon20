@@ -1,0 +1,52 @@
+/* src/components/Signup.css */
+
+.signup-container {
+  display: flex;
+  justify-content: center; /* Centers horizontally in the flex container */
+  align-items: center; /* Centers vertically in the flex container */
+  height: 100vh; /* Full viewport height */
+  background-color: #e6f7ff; /* Light blue background */
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Align children in the center horizontally */
+  padding: 40px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  width: 400px; /* Wider form */
+}
+
+.form-title {
+  width: 100%; /* Full width */
+  text-align: center;
+  margin-bottom: 30px;
+  color: #003366; /* Dark blue for the title */
+  font-size: 24px; /* Larger font size */
+}
+
+.form-input {
+  width: calc(100% - 30px); /* Full width minus padding */
+  padding: 15px;
+  margin-bottom: 30px;
+  border-radius: 6px;
+  border: 2px solid #007bff; /* Blue border */
+  font-size: 16px; /* Larger font size */
+}
+
+.signup-button {
+  width: calc(100% - 30px); /* Full width minus padding */
+  padding: 15px;
+  background-color: #007bff; /* Blue button */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px; /* Larger font size */
+}
+
+.signup-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}

@@ -27,7 +27,7 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
   const [showSavedItems, setShowSavedItems] = useState(false);
   const [showProfilePopup, setShowProfilePopup] = useState(false);
 
-  isLoggedIn = true;
+  isLoggedIn = false;
 
   //Notifications popup should disappear if other part of screen is clicked
   const NotificationsRef = useRef<HTMLDivElement>(null);
@@ -103,17 +103,14 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
             Create New Listing
           </button>
         )}
-        <img 
+        <img
           onClick={() => setShowSavedItems(!showSavedItems)}
-          src={Heart} 
-          alt="Saved Items" 
-          className="navbar-icon" 
+          src={Heart}
+          alt="Saved Items"
+          className="navbar-icon"
         />
         {showSavedItems && (
-          <SavedItem
-            saveditems={mockedSavedItems}
-            ref={SavedItemsRef}
-          />
+          <SavedItem saveditems={mockedSavedItems} ref={SavedItemsRef} />
         )}
         <img
           onClick={handleChatClick}
@@ -134,18 +131,17 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
           />
         )}
         <img
-        onClick={() => setShowProfilePopup(!showProfilePopup)}
-        src={isLoggedIn ? UserProfilePic : UserIcon}
-        alt="User"
-        className={isLoggedIn ? "user-profile-pic" : "user-icon"}
-      />
-      {showProfilePopup &&
-        (isLoggedIn ? (
-          <LoggedInProfilePopup ref={ProfileRef} />
-        ) : (
-          <LoggedOutProfilePopup ref={ProfileRef} />
-        ))
-      }
+          onClick={() => setShowProfilePopup(!showProfilePopup)}
+          src={isLoggedIn ? UserProfilePic : UserIcon}
+          alt="User"
+          className={isLoggedIn ? "user-profile-pic" : "user-icon"}
+        />
+        {showProfilePopup &&
+          (isLoggedIn ? (
+            <LoggedInProfilePopup ref={ProfileRef} />
+          ) : (
+            <LoggedOutProfilePopup ref={ProfileRef} />
+          ))}
       </div>
     </nav>
   );
