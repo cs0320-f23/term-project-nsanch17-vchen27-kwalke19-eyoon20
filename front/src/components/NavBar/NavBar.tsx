@@ -11,8 +11,10 @@ import Search from "./Search";
 import Notification from "../Notifications/Notifications";
 import LoggedInProfilePopup from "../ProfilePopups/LoggedInProfilePopup";
 import LoggedOutProfilePopup from "../ProfilePopups/LoggedOutProfilePopup";
+import SavedItem from "../SavedItems/SavedItems";
 
 import mockNotifications from "../../mocks/mockNotifications";
+import mockedSavedItems from "../../mocks/mockSavedItems";
 
 interface NavBarProps {
   isLoggedIn: boolean;
@@ -22,15 +24,20 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
   const navigate = useNavigate();
   const [searchKeyword, setSearchKeyword] = useState("");
   const [showNotifications, setShowNotifications] = useState(false);
+  const [showSavedItems, setShowSavedItems] = useState(false);
   const [showProfilePopup, setShowProfilePopup] = useState(false);
 
+  isLoggedIn = false;
 
   //Notifications popup should disappear if other part of screen is clicked
   const NotificationsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (NotificationsRef.current && !NotificationsRef.current.contains(event.target as Node)) {
+      if (
+        NotificationsRef.current &&
+        !NotificationsRef.current.contains(event.target as Node)
+      ) {
         setShowNotifications(false);
       }
     };
@@ -39,10 +46,44 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  //Saved Items popup should disappear if other part of screen is clicked
+  const SavedItemsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        SavedItemsRef.current &&
+        !SavedItemsRef.current.contains(event.target as Node)
+      ) {
+        setShowSavedItems(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  //Profile popup should disappear if other part of screen is clicked
+  const ProfileRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        ProfileRef.current &&
+        !ProfileRef.current.contains(event.target as Node)
+      ) {
+        setShowProfilePopup(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   // Handlers
   const handleChatClick = () => navigate("/messaging");
   const handleHomeClick = () => navigate("/");
+  const handleCreateNewListingClick = () => navigate("/create-new-listing");
 
   return (
     <nav className="navbar">
@@ -54,7 +95,23 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
         <Search onSearch={setSearchKeyword} />
       </div>
       <div className="right-menu">
-        <img src={Heart} alt="Saved Items" className="navbar-icon" />
+        {isLoggedIn && (
+          <button
+            onClick={handleCreateNewListingClick}
+            className="create-listing-btn"
+          >
+            Create New Listing
+          </button>
+        )}
+        <img
+          onClick={() => setShowSavedItems(!showSavedItems)}
+          src={Heart}
+          alt="Saved Items"
+          className="navbar-icon"
+        />
+        {showSavedItems && (
+          <SavedItem saveditems={mockedSavedItems} ref={SavedItemsRef} />
+        )}
         <img
           onClick={handleChatClick}
           src={Chat}
@@ -68,16 +125,23 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
           className="navbar-icon"
         />
         {showNotifications && (
-          <Notification notifications={mockNotifications} ref={NotificationsRef} />
+          <Notification
+            notifications={mockNotifications}
+            ref={NotificationsRef}
+          />
         )}
         <img
           onClick={() => setShowProfilePopup(!showProfilePopup)}
           src={isLoggedIn ? UserProfilePic : UserIcon}
           alt="User"
-          className="user-icon"
+          className={isLoggedIn ? "user-profile-pic" : "user-icon"}
         />
         {showProfilePopup &&
-          (isLoggedIn ? <LoggedInProfilePopup /> : <LoggedOutProfilePopup />)}
+          (isLoggedIn ? (
+            <LoggedInProfilePopup ref={ProfileRef} />
+          ) : (
+            <LoggedOutProfilePopup ref={ProfileRef} />
+          ))}
       </div>
     </nav>
   );

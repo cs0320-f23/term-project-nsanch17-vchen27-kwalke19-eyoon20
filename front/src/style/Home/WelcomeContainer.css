@@ -1,0 +1,35 @@
+/* WelcomeContainer.css */
+.welcome-container {
+  text-align: center; /* Center aligns the content */
+  padding: 20px; /* Add padding for spacing */
+  background-color: #ffffff; /* Match the background color if it's not already white */
+  min-width: 850px;
+  width: 100%;
+}
+
+.welcome-container h1 {
+  position: relative;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color:#3c3b3b;
+  text-align: center;
+  flex: 0 1 auto;
+}
+
+.welcome-title-container {
+  display: flex; /* Use flexbox to lay out children */
+  justify-content: center; /* Center children horizontally */
+  align-items: center; /* Align children vertically */
+  gap: 20px; /* Add space between the logo and the title */
+}
+
+.welcome-container .Logo {
+  position: relative; /* Position the logo absolutely */
+  height: 40px;
+  width: 40px;
+}
+
+.welcome-container p {
+  color: #666; /* Lighter text color for the subtitle, adjust as needed */
+  margin-left: auto; /* Center the block horizontally */
+  margin-right: auto;
+}

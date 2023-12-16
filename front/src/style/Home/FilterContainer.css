@@ -1,0 +1,40 @@
+/* FilterContainer.css */
+.filter {
+  display: flex;
+  flex-direction: column;
+  padding: 20px; /* Adjust padding as necessary */
+  background: #FFF; /* Assuming a white background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: adds some depth */
+  border-radius: 4px; /* Optional: rounds corners */
+  margin-bottom: 20px; /* Spacing between this container and whatever is below */
+}
+
+.filter-section {
+  margin-bottom: 20px; /* Spacing between filter sections */
+}
+
+.filter-section-header {
+  font-weight: bold;
+  margin-bottom: 10px; /* Spacing between header and items */
+  font-size: 1rem; /* Adjust as necessary */
+  color: #333; /* Adjust as necessary */
+}
+
+.filter-item {
+  cursor: pointer;
+  padding: 10px 0; /* Spacing for clickable area */
+  border-radius: 4px; /* Optional: rounds corners for each item */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.filter-item:hover {
+  background-color: #f5f5f5; /* Hover background color */
+}
+
+.filter-item.selected {
+  color: black; /* Selected item text color */
+  background-color: #e0e0e0; /* Selected item background color */
+  font-weight: bold; /* Optionally make the selected item bolder */
+}
+
+/* Additional styles as needed */

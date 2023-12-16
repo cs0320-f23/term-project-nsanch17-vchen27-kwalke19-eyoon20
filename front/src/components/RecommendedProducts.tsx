@@ -1,6 +1,6 @@
 import React from "react";
 import ProductCard from "./ProductCard";
-import "../style/RecommendedProducts.css";
+import "../style/Home/RecommendedProducts.css";
 import Model from "../assets/model-placeholder.png";
 import Model2 from "../assets/model2-placeholder.png";
 import { useNavigate } from "react-router-dom";
@@ -29,10 +29,6 @@ const RecommendedProductsContainer: React.FC = () => {
               <img className="jpg-icon" alt="" src={Model2} />
             </div>
             <div className="spanprod-tag">
-              <div className="sold-out">
-                <p className="sold">Sold</p>
-                <p className="sold">Out</p>
-              </div>
             </div>
           </div>
           <div className="divmt-31">

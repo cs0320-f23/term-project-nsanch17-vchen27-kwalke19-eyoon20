@@ -1,11 +1,6 @@
 import pytest
-import json
-from flask import Flask, request
 
 from main.app import app
-from main.User.user_manager import User
-
-from datetime import datetime
 
 @pytest.fixture()
 def client():
@@ -23,17 +18,19 @@ def test_create_user_profile_success(client):
         "first_name": "John",
         "last_name": "Doe",
         "username": "jdo",
-        "email": "jdoe@gmail.com"
+        "email": "jdoe@gmail.com",
+        "profile":"/link"
+
     })
     data = response.get_json()
     #no sellings should exist prior to making a posting
-    assert data["sellings"] == {}
+    assert data["user"]["sellings"] == {}
     
     #all user information should be correctly presented
-    assert data["first_name"] == "John"
-    assert data["last_name"] == "Doe"
-    assert data["username"] == "jdo"
-    assert data["email"] == "jdoe@gmail.com"
+    assert data["user"]["first_name"] == "John"
+    assert data["user"]["last_name"] == "Doe"
+    assert data["user"]["username"] == "jdo"
+    assert data["user"]["email"] == "jdoe@gmail.com"
 
 
 
@@ -75,14 +72,18 @@ def test_create_user_profile_existing(client):
             "first_name": "John",
             "last_name": "Doe",
             "username": "jdo",
-            "email": "jdoe@gmail.com"
+            "email": "jdoe@gmail.com",
+            "profile":"/link"
+
         })
 
         response = client.get('/user/new_user', query_string={
             "first_name": "Sarah",
             "last_name": "Smith",
             "username": "jdo",
-            "email": "smith@gmail.com"
+            "email": "smith@gmail.com",
+            "profile":"/link"
+
         })
 
         data_response = client.get("/user/data")
@@ -99,9 +100,8 @@ def test_create_user_profile_existing(client):
 
     #a new instance of User should not be created, so no key for this information should exist
     with pytest.raises(KeyError):
-        assert data["first_name"] == None
-        assert data["last_name"] == None
-
-    # assert data_response_json[]
+        assert data["user"]["first_name"] == None
+        assert data["user"]["last_name"] == None
+        
     assert response.status_code == 400
     assert data['result'] == 'error'
