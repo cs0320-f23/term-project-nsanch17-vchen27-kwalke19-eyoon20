@@ -1,10 +1,5 @@
 import pytest
-
-
 from main.app import app
-from main.user.user_manager import User
-
-from datetime import datetime
 
 @pytest.fixture()
 def client():
@@ -75,7 +70,7 @@ def test_create_posting_failure(client):
             })
     data = response.get_json()
     #Since user did not exist, error response given
-    assert data["error_message"] == "User not found."
+    assert data["error_message"] == "User does not exist."
     
     #a new instance of Posting should not be created, so no key for this information should exist
     with pytest.raises(KeyError):
@@ -165,7 +160,7 @@ def test_create_posting_existing(client):
 
     
     #An error message will be given based on the attempt to replace the current username
-    assert data["error_message"] == "Item already created under this name."
+    assert data["error_message"] == "Please create a new name for your listing."
     
 
     #In the user dictionary, the posting will point to the original.
@@ -362,7 +357,7 @@ def test_modify_fail(client):
 
     #Attempting to modify a field that can't be changed
         data_illegal = modify_response_illegal.get_json()
-        assert data_illegal["error_message"] == "Attribute date cannot be modified or is not found."
+        assert data_illegal["error_message"] == "Cannot change the following property: date."
       
 
 def test_purchase(client):

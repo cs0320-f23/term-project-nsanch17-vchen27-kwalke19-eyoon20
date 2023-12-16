@@ -1,11 +1,6 @@
 import pytest
-import json
-from flask import Flask, request
 
 from main.app import app
-from main.user.user_manager import User
-
-from datetime import datetime
 
 @pytest.fixture()
 def client():
