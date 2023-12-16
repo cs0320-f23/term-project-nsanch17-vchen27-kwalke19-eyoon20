@@ -27,7 +27,7 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
   const [showSavedItems, setShowSavedItems] = useState(false);
   const [showProfilePopup, setShowProfilePopup] = useState(false);
 
-  isLoggedIn = false;
+  isLoggedIn = true;
 
   //Notifications popup should disappear if other part of screen is clicked
   const NotificationsRef = useRef<HTMLDivElement>(null);
