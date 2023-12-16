@@ -16,6 +16,7 @@ class User:
     sellings: dict()
     wishlist: dict()
     reviews: dict()
+    notifications: dict()
 
 
 class UserManager:
@@ -27,9 +28,10 @@ class UserManager:
         if username in self.users:
             raise UserExistsException("User already exists.")
         else:
-            user = User(first_name, last_name, username, profile, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), email, {}, {}, {},{})
+            user = User(first_name, last_name, username, profile, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), email, {}, {}, {},{},{})
             self.users[username] = user
             return user
+        
 
  
     

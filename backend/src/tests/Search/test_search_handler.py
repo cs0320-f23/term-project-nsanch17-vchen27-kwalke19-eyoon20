@@ -49,23 +49,23 @@ def test_search_handler_success(client):
             "pics":"/link"   
             })
         
-        search_response =  client.get('/search/search_postings', query_string={
+        search_response =  client.get('/search/search', query_string={
             "query": "hair",
             "type": "posting"
             })
         
-        search_response_empty = client.get('/search/search_postings', query_string={
+        search_response_empty = client.get('/search/search', query_string={
             "query": "this won't be related at all",
             "type": "posting"
 
             })
         
-        search_response_empty = client.get('/search/search_postings', query_string={
+        search_response_empty = client.get('/search/search', query_string={
             "query": "this won't be related at all",
             "type": "posting"
             })
         
-        search_response_turtle = client.get('/search/search_postings', query_string={
+        search_response_turtle = client.get('/search/search', query_string={
             "query": "please give me a turtle result",
             "type": "posting" 
             })
@@ -110,11 +110,11 @@ def test_search_handler_fail(client):
             "pics":"/link"   
             })
         
-        search_response =  client.get('/search/search_postings', query_string={
+        search_response =  client.get('/search/search', query_string={
             "query": "hair",
             })
         
-        search_response_illegal =  client.get('/search/search_postings', query_string={
+        search_response_illegal =  client.get('/search/search', query_string={
             "query": "today",
             "type":"date"
             })
@@ -168,17 +168,17 @@ def test_search_user_success(client):
 
         })
 
-        search_response =  client.get('/search/search_postings', query_string={
+        search_response =  client.get('/search/search', query_string={
             "query": "olinecaro",
             "type":"user"
         })
         
-        search_response_broad =  client.get('/search/search_postings', query_string={
+        search_response_broad =  client.get('/search/search', query_string={
             "query": "o",
             "type":"user"
         })
 
-        search_response_empty =  client.get('/search/search_postings', query_string={
+        search_response_empty =  client.get('/search/search', query_string={
             "query": "kamiedw",
             "type":"user"
         })

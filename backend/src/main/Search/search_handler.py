@@ -7,8 +7,8 @@ search_manager = SearchManager()
 search_bp = Blueprint('search', __name__)
 class SearchHandler:
 
-    @search_bp.route("/search_postings",methods=['GET', 'POST'])
-    def handle_search_posting():
+    @search_bp.route("/search",methods=['GET', 'POST'])
+    def handle_search():
         result_dict = {}
 
         if request.method == 'GET':
