@@ -33,7 +33,6 @@ class UserHandler:
             email = data.get("email")
             profile = data.get("profile")
 
-
           # checks if all parameters are provided
         if not first_name or not last_name or not username or not email or not profile:
             result_dict.update({"result": "error"})
