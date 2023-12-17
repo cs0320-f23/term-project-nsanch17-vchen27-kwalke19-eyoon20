@@ -1,12 +1,12 @@
 import dataclasses
 from dataclasses import dataclass
 from datetime import datetime
-from main.user.user_manager import User
-from main.user.user_manager import UserDoesNotExistException
-from main.user.user_manager import UserExistsException
+from main.User.user_manager import User
+from main.User.user_manager import UserDoesNotExistException
+from main.User.user_manager import UserExistsException
 from enum import Enum
 
-from main.user.user_handler import user_manager
+from main.User.user_handler import user_manager
 
 class PostingExistsException(Exception):
     pass

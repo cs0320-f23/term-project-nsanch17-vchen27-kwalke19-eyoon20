@@ -20,9 +20,6 @@ const Home: FunctionComponent<HomeProps> = () => {
 
   return (
     <div className="home">
-      <div className="nav">
-        <NavBar />
-      </div>
       <div className="hero">
         <div className="layoutWelcomeContainer">
           <WelcomeContainer />
@@ -36,29 +33,29 @@ const Home: FunctionComponent<HomeProps> = () => {
           <div className="layoutRecommendedProducts">
             <RecommendedProducts />
           </div>
-            <div className="pagination">
-              <div
-                className={`page-1 ${selectedPage === 1 ? "selected" : ""}`}
-                onClick={() => handlePageClick(1)}
-              >
-                <div className="div">1</div>
-              </div>
-              <div
-                className={`page-2 ${selectedPage === 2 ? "selected" : ""}`}
-                onClick={() => handlePageClick(2)}
-              >
-                <div className="div">2</div>
-              </div>
-              <div
-                className={`page-3 ${selectedPage === 3 ? "selected" : ""}`}
-                onClick={() => handlePageClick(3)}
-              >
-                <div className="div">3</div>
-              </div>
-              <div className="next">
-                <div className="div">»</div>
-              </div>
+          <div className="pagination">
+            <div
+              className={`page-1 ${selectedPage === 1 ? "selected" : ""}`}
+              onClick={() => handlePageClick(1)}
+            >
+              <div className="div">1</div>
             </div>
+            <div
+              className={`page-2 ${selectedPage === 2 ? "selected" : ""}`}
+              onClick={() => handlePageClick(2)}
+            >
+              <div className="div">2</div>
+            </div>
+            <div
+              className={`page-3 ${selectedPage === 3 ? "selected" : ""}`}
+              onClick={() => handlePageClick(3)}
+            >
+              <div className="div">3</div>
+            </div>
+            <div className="next">
+              <div className="div">»</div>
+            </div>
+          </div>
         </div>
         <div className="layoutFeaturesContainer">
           <FeaturesContainer />

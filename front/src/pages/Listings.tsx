@@ -20,7 +20,6 @@ const Listings: React.FC<ListingsProps> = ({ listings }) => {
 
   return (
     <div>
-      <NavBar />
       <h2 className="my-listings-header">My Listings</h2>
       <div className="listings-container">
         {listings.map((listing) => (

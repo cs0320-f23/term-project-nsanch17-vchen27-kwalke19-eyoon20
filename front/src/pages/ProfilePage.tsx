@@ -8,10 +8,6 @@ const ProfilePage: React.FC = () => {
       className="Group1000001767"
       style={{ width: 1575, height: 985, position: "relative" }}
     >
-      <div className="nav">
-        <NavBar />
-      </div>
-
       <div
         className="Rectangle1269"
         style={{

@@ -1,17 +1,15 @@
 import React from "react";
 import "../style/SingleItemDisplay.css";
 import NavBar from "../components/NavBar/NavBar";
-import Breadcrumbs from "../components/SingleItemDisplay/Breadcrumbs"
+import Breadcrumbs from "../components/SingleItemDisplay/Breadcrumbs";
 import ProductImage from "../components/SingleItemDisplay/ProductImage";
 import ProductDetails from "../components/SingleItemDisplay/ProductDetails";
 import ActionButton from "../components/SingleItemDisplay/ActionButton";
 import Reviews from "../components/SingleItemDisplay/Reviews";
 
 const SingleItemDisplay = () => {
-
   return (
     <>
-      <NavBar />
       <div className="item-container">
         <section className="left-side">
           <Breadcrumbs

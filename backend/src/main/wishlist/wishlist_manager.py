@@ -1,10 +1,10 @@
-from main.posting.posting_handler import post_manager
-from main.user.user_manager import UserDoesNotExistException
-from main.posting.post_manager import ItemNotFoundException
+from main.Posting.posting_handler import post_manager
+from main.User.user_manager import UserDoesNotExistException
+from main.Posting.post_manager import ItemNotFoundException
 import dataclasses
 from copy import copy, deepcopy
 
-from main.user.user_handler import user_manager
+from main.User.user_handler import user_manager
 
 class WishlistManager:
     def __init__(self):

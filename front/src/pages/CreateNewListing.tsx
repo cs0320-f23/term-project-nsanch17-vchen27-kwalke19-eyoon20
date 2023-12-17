@@ -9,7 +9,7 @@ const CreateNewListing = () => {
   const [quantity, setQuantity] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
-  
+
   // Initialize the navigate function
   const navigate = useNavigate();
 
@@ -23,7 +23,6 @@ const CreateNewListing = () => {
 
   return (
     <div>
-      <NavBar />
       <div className="create-listing-container">
         <h1>Create A New Listing</h1>
         <div className="form-container">

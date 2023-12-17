@@ -1,7 +1,7 @@
 from flask import request, jsonify, Blueprint
 from main.wishlist.wishlist_manager import WishlistManager
-from main.user.user_manager import UserDoesNotExistException
-from main.posting.post_manager import ItemNotFoundException
+from main.User.user_manager import UserDoesNotExistException
+from main.Posting.post_manager import ItemNotFoundException
 
 wishlist_bp = Blueprint('wishlist', __name__)
 wishlist_manager = WishlistManager()
