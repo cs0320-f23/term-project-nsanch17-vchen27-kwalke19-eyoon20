@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import "../style/Home/FilterContainer.css";
 
-const FilterContainer: React.FC = () => {
+const FilterContainer: React.FC<{ onPriceFilterChange: (priceRange: string | null) => void }> = ({ onPriceFilterChange }) => {
   const [selectedPriceRange, setSelectedPriceRange] = useState<string | null>(null);
   const [selectedCollection, setSelectedCollection] = useState<string | null>(null);
 
   const handlePriceRangeClick = (range: string) => {
-    setSelectedPriceRange(prevRange => prevRange === range ? null : range);
+    setSelectedPriceRange(prevRange => {
+      const newRange = prevRange === range ? null : range;
+      onPriceFilterChange(newRange); // Pass the selected price range up
+      return newRange;
+    });
   };
 
   const handleCollectionClick = (collection: string) => {
     setSelectedCollection(prevCollection => prevCollection === collection ? null : collection);
   };
+  
 
   return (
     <div className="filter">

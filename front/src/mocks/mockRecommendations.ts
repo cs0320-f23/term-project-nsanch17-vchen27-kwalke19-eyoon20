@@ -44,7 +44,7 @@ const mockRecommendations = [
       dateJoined: new Date('2023-03-22'),
       email: 'laura.m@brown.edu',
     },
-    price: 30,
+    price: 20,
     description: 'Bundle of 4 graphic tees, size S. Barely worn, in great condition.',
     qty: 1,
     date: new Date('2023-12-12'),

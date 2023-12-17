@@ -17,6 +17,13 @@ const Home: FunctionComponent<HomeProps> = () => {
     setSelectedPage(page);
   };
 
+  const [selectedPriceRange, setSelectedPriceRange] = useState<string | null>(null);
+
+  const handlePriceFilterChange = (priceRange: string | null) => {
+    setSelectedPriceRange(priceRange);
+  };
+
+
   return (
     <div className="home">
       <div className="hero">
@@ -27,11 +34,11 @@ const Home: FunctionComponent<HomeProps> = () => {
           {" "}
           {/* This will contain both the filter and recommended products */}
           <div className="layoutFilterContainer">
-            <FilterContainer />
-          </div>
-          <div className="layoutRecommendedProducts">
-            <RecommendedProducts />
-          </div>
+        <FilterContainer onPriceFilterChange={handlePriceFilterChange} />
+      </div>
+      <div className="layoutRecommendedProducts">
+        <RecommendedProducts selectedPriceRange={selectedPriceRange} />
+      </div>
           <div className="pagination">
             <div
               className={`page-1 ${selectedPage === 1 ? "selected" : ""}`}

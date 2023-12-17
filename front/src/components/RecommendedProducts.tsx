@@ -4,16 +4,25 @@ import "../style/Home/RecommendedProducts.css";
 import { useNavigate } from "react-router-dom";
 import mockRecommendations from "../mocks/mockRecommendations.ts";
 
-const RecommendedProductsContainer: React.FC = () => {
+const RecommendedProductsContainer: React.FC<{ selectedPriceRange: string | null }> = ({ selectedPriceRange }) => {
   const navigate = useNavigate();
   const [recommendations, setRecommendations] = useState([]);
 
-  // Replace this with the actual way of getting the logged-in user's username
-  const currentUsername = localStorage.getItem('currentUsername');
-
   useEffect(() => {
-    // Simulate fetching data
-    setRecommendations(mockRecommendations);
+    // Filter logic based on price range
+    const filteredRecommendations = mockRecommendations.filter(posting => {
+      if (selectedPriceRange === '$0-$25') {
+        return posting.price <= 25;
+      } else if (selectedPriceRange === '$25-$50') {
+        return posting.price > 25 && posting.price <= 50;
+      } else if (selectedPriceRange === '$50+') {
+        return posting.price > 50;
+      }
+      return true; // No filter selected
+    });
+
+    setRecommendations(filteredRecommendations);
+  }, [selectedPriceRange]);
     
     /* Commenting out the backend call
     const fetchRecommendations = async () => {
@@ -41,7 +50,7 @@ const RecommendedProductsContainer: React.FC = () => {
 
     fetchRecommendations();
     */
-  }, [currentUsername]); // Dependency array includes currentUsername
+
 
   return (
     <div className="products">

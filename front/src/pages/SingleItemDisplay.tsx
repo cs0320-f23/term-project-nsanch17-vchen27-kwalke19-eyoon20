@@ -40,7 +40,7 @@ const SingleItemDisplay = () => {
         </button>
         </section>
       </div>
-      <Reviews />
+        {/* <Reviews /> */}
     </>
   );
 };

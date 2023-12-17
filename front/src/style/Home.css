@@ -8,7 +8,7 @@
 /* Home.css */
 .hero {
   width: 100%;
-  padding-top: 90px; /* Adjust this value to match the actual height of your NavBar */
+  padding-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,26 +16,25 @@
 
 .layoutWelcomeContainer {
   width: 100%;
-  text-align: center; /* Center the text for WelcomeContainer */
-  margin-bottom: 20px; /* Add some space below WelcomeContainer */
+  text-align: center; 
+  margin-bottom: 20px; 
 }
 
-/* Layout for the filter and recommended products */
 .layoutContainer {
   display: flex;
-  justify-content: space-between; /* Spaces out children */
-  width: calc(100% - 40px); /* Adjust for margins */
-  margin: 20px; /* This margin ensures a minimum of 20px from the borders of hero */
+  justify-content: space-between; 
+  width: calc(100% - 40px); 
+  margin: 20px; 
 }
 
 .layoutFilterContainer {
-  width: 20%; /* Adjust the width as needed, can be more or less */
+  width: 20%; 
   min-width: 150px;
   height:auto;
 }
 
 .layoutRecommendedProducts {
-  width: 75%; /* Adjust the width as needed, should be larger than filter container */
+  width: 75%; 
   height: auto;
 }
 
@@ -43,16 +42,15 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 20px 0; /* Space above and below the pagination */
+  margin: 20px 0; 
   position: absolute;
   top: 2500px;
 }
 
-/* ... rest of the styles ... */
 
 
 .pagination .div {
-  margin: 0 10px; /* Spacing between pagination numbers */
+  margin: 0 10px; 
   cursor: pointer;
 }
 

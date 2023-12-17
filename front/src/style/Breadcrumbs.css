@@ -16,14 +16,14 @@
   }
   
   .breadcrumb-item {
-    margin-right: 8px; /* Adjust space between breadcrumbs as needed */
+    margin-right: 8px; 
   }
   
   .breadcrumb-item a {
     text-decoration: none;
-    color: inherit; /* Ensures the anchor tag doesn't get default styles */
+    color: inherit; 
   }
   
   .breadcrumb-separator {
-    margin-right: 8px; /* Adjust space around the separator as needed */
+    margin-right: 8px; 
   }

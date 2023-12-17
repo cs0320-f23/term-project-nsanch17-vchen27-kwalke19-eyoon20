@@ -43,7 +43,7 @@ body {
 .pfp {
   width: 50px;
   height: 50px;
-  /* margin-left: 487px; */
+  
   position: relative;
   margin-top: 20px;
   margin-left: 25px;
@@ -52,10 +52,10 @@ body {
 }
 
 .messageHolder {
-  display: flex; /* Use flexbox to allow children to grow and shrink */
-  flex-direction: column; /* Stack children vertically */
-  align-items: center; /* Align children in the center */
-  justify-content: flex-start; /* Align children to the start of the main axis */
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: flex-start; 
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
@@ -63,16 +63,16 @@ body {
 }
 
 .messageBox {
-  flex-grow: 1; /* Allow the message box to grow to fill the space */
-  width: 80%; /* Start with 80% of the container's width */
-  min-width: 200px; /* Maximum width stays at 600px */
-  margin: 0 10%; /* Center the message box with equal margins on both sides */
+  flex-grow: 1; 
+  width: 80%; 
+  min-width: 200px; 
+  margin: 0 10%; 
   
   background-color: rgba(239, 246, 252, 0.87);
   border: none;
   border-radius: 25px;
-  height: 30px; /* Initial height, but can grow */
-  max-height: 100px; /* Maximum height it can grow to */
+  height: 30px; 
+  max-height: 100px; 
   padding: 30px;
   position: relative;
   color: #303030;
@@ -86,10 +86,10 @@ body {
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .messageBox {
-    width: 90%; /* Allow it to take more space on smaller screens */
-    margin: 0 5%; /* Adjust the margins accordingly */
-    padding: 15px; /* Less padding on smaller screens */
-    font-size: 18px; /* Smaller font size on smaller screens */
+    width: 90%; 
+    margin: 0 5%; 
+    padding: 15px; 
+    font-size: 18px; 
   }
 }
 
