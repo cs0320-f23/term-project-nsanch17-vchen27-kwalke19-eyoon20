@@ -5,6 +5,7 @@ from main.User.user_manager import User
 from main.User.user_manager import UserDoesNotExistException
 from main.User.user_manager import UserExistsException
 from enum import Enum
+from main.notifications.notifications_manager import Notification
 
 from main.User.user_handler import user_manager
 
@@ -29,6 +30,7 @@ class Posting:
     status: Status 
     picture:str
     additional_pics:list()
+    trackers: list()
 
     def dict(self):
 
@@ -41,7 +43,7 @@ class PostingManager:
         
 
     def create_posting(self, item_name, seller_name, price, description, qty, big_pic, pics):
-        posting = Posting(item_name, seller_name, price, description, qty, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), Status.FOR_SALE, big_pic, [pic for pic in pics.split(",")])
+        posting = Posting(item_name, seller_name, price, description, qty, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), Status.FOR_SALE, big_pic, [pic for pic in pics.split(",")], [])
         key = f"{item_name}_{seller_name}"
 
         if key in self.postings:
@@ -69,7 +71,7 @@ class PostingManager:
             raise ItemNotFoundException( f"Item with key {key} not found")
         else:
             if attribute == "date" or  attribute == "seller":
-                raise PermissionError("Cannot change these properties.")
+                raise PermissionError(f"Cannot change the following property: {attribute}.")
             else:
                 mod_posting = self.postings[key]
                 
@@ -85,12 +87,27 @@ class PostingManager:
     def buy_posting(self,buyer_name,key):
         if key not in self.postings:
             raise ItemNotFoundException( f"Item with key {key} not found")
+        if self.postings[key].status == Status.PURCHASED:
+            raise PermissionError( f"Cannot purchase item already purchased.")
+
         else:
             try:
                 user_manager.users[buyer_name].purchases.update({key:self.postings[key]})
+                
+                id = len( user_manager.users[buyer_name].notifications) + 1
+                
+                #notify user item has been purchased
+                user_manager.users[buyer_name].notifications.update({key:
+                                                                     Notification( f"The seller has marked{key.split('_')[0]} as purchased!",datetime.now().strftime("%Y-%m-%d %H:%M:%S"),id,False)})
+                #notify other users w item in wishlist that it's been purchased
+                for name in self.postings[key].trackers:
+                    if name != buyer_name:
+                        user_manager.users[name].notifications.update({key:
+                                                                     Notification( f"Listing {key.split('_')[0]} has been purchased!",datetime.now().strftime("%Y-%m-%d %H:%M:%S"),id,False)})
+
                 self.postings[key].status = Status.PURCHASED
                 return self.postings[key]
-            except:
+            except KeyError:
                 UserDoesNotExistException("Cannot find user to purchase posting.")
 
 

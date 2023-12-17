@@ -60,14 +60,11 @@ class PostingHandler:
         try:
             posting = post_manager.create_posting(item_name, seller_name, price,description, qty, big_pic,pics)
 
-        except (PostingExistsException):
+        except (PostingExistsException, UserDoesNotExistException) as e:
             result_dict.update({"result": "error"})
-            result_dict.update({"error_message": "Item already created under this name."})
+            result_dict.update({"error_message": str(e)})
             return jsonify(result_dict), 400
-        except (UserDoesNotExistException):
-            result_dict.update({"result": "error"})
-            result_dict.update({"error_message": "User not found."})
-            return jsonify(result_dict), 400
+       
        
         
         
@@ -141,14 +138,11 @@ class PostingHandler:
             result_dict ={"result" : "success"}
             result_dict.update({"message": "Item updated successfully", "updated_item": mod_item})
             return jsonify(result_dict),200
-        except(ItemNotFoundException):
+        except (ItemNotFoundException, PermissionError) as e:
             result_dict.update({"result": "error"})
-            result_dict.update({"error_message": f"Item with key {key} not found"})
+            result_dict.update({"error_message": str(e)})
             return jsonify(result_dict),400
-        except(PermissionError):
-            result_dict.update({"result": "error"})
-            result_dict.update({"error_message": f"Attribute {attribute} cannot be modified or is not found."})
-            return jsonify(result_dict),400
+     
 
     @posting_bp.route("/buy",methods=['GET', 'POST'])
     def buy_posting():
@@ -173,14 +167,12 @@ class PostingHandler:
             result_dict ={"result" : "success"}
             result_dict.update({"message": "Item purchased successfully", "purchased_item": bought})
             return jsonify(result_dict),200
-        except ItemNotFoundException:
+        except (ItemNotFoundException, UserDoesNotExistException, PermissionError) as e:
             result_dict.update({"result": "error"})
-            result_dict.update({"error_message": f"Listing cannot be found."})
+            result_dict.update({"error_message": str(e)})
             return jsonify(result_dict),400
-        except UserDoesNotExistException:
-            result_dict.update({"result": "error"})
-            result_dict.update({"error_message": f"Buyer cannot be found"})
-            return jsonify(result_dict),400
+      
+        
            
 
             

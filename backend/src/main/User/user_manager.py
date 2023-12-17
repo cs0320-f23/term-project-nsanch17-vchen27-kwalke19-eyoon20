@@ -32,6 +32,7 @@ class UserManager:
             user = User(first_name, last_name, username, number, email, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), profile, {}, {}, {}, {})
             self.users[username] = user
             return user
+        
 
  
     
