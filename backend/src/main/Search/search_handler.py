@@ -1,6 +1,6 @@
 from flask import request, jsonify, Blueprint
 import dataclasses
-from main.search.search_manager import SearchManager, InvalidSearchException
+from main.Search.search_manager import SearchManager, InvalidSearchException
 
 
 search_manager = SearchManager()

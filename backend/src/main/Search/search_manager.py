@@ -1,6 +1,6 @@
 
-from main.posting.posting_handler import post_manager
-from main.user.user_handler import user_manager
+from main.Posting.posting_handler import post_manager
+from main.User.user_handler import user_manager
 import dataclasses
 
 class InvalidSearchException(Exception):

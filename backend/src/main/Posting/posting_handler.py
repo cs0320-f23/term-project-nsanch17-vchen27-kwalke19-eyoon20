@@ -1,12 +1,12 @@
 from flask import Flask, request, jsonify, Blueprint
 from dataclasses import dataclass
 import dataclasses
-from main.posting.post_manager import PostingManager
-from main.posting.post_manager import user_manager
-from main.user.user_manager import UserDoesNotExistException
-from main.user.user_manager import UserExistsException
-from main.posting.post_manager import PostingExistsException
-from main.posting.post_manager import ItemNotFoundException
+from main.Posting.post_manager import PostingManager
+from main.Posting.post_manager import user_manager
+from main.User.user_manager import UserDoesNotExistException
+from main.User.user_manager import UserExistsException
+from main.Posting.post_manager import PostingExistsException
+from main.Posting.post_manager import ItemNotFoundException
 
 
 

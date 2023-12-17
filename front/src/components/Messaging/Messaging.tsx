@@ -6,8 +6,6 @@ import { MessageHistory } from "./MessageHistory";
 import { MessageUsers } from "./MessageUsers";
 import "../../style/Messaging.css";
 
-
-
 // Define types for users and messages
 interface User {
   id: number;
@@ -24,7 +22,10 @@ interface Message {
 }
 
 // Mocked structure of a user's messages
-const mockMessages: Record<number, { id: number; sender: string; content: string }[]> = {
+const mockMessages: Record<
+  number,
+  { id: number; sender: string; content: string }[]
+> = {
   1: [
     { id: 1, sender: "other", content: "Hello Anil!" },
     { id: 2, sender: "user", content: "Hi there!" },
@@ -83,16 +84,12 @@ mockUsers = updatePreviews(mockUsers, mockMessages);
 export function Messaging() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
-  const handleSelectUser = (user:User) => {
+  const handleSelectUser = (user: User) => {
     setSelectedUser(user);
   };
 
   return (
     <div className="all">
-      <div className="nav">
-        <NavBar />
-      </div>
-
       <div className="page">
         <div className="leftScreen">
           <MessageUsers users={mockUsers} onSelectUser={handleSelectUser} />

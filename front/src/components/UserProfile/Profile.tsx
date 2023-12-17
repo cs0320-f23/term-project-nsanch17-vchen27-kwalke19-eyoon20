@@ -43,9 +43,6 @@ const Profile: React.FC = () => {
   return (
     <div>
       <div className="box">
-        <div className="nav">
-          <NavBar isLoggedIn={false} />
-        </div>
         <div className="page-background" />
 
         <div>

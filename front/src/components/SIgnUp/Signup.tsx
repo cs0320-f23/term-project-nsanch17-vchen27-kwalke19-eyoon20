@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import "../../style/Signup.css";
+import defaultProfileUrl from "../../assets/default_profile.jpeg";
+import { useNavigate } from "react-router-dom";
 
-const Signup: React.FC = () => {
+interface SignupProps {
+  onLogin: (status: boolean) => void;
+}
+
+const Signup: React.FC<SignupProps> = ({ onLogin }) => {
+  const navigate = useNavigate();
   const [isSignup, setIsSignup] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -9,32 +16,105 @@ const Signup: React.FC = () => {
   const [lastName, setLastName] = useState("");
   const [number, setNumber] = useState("");
   const [username, setUsername] = useState("");
+  const [profileUrl, setProfileUrl] = useState(defaultProfileUrl);
   const [error, setError] = useState(""); // State to store the error message
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setError(""); // Clear any existing errors
-
-    // Check if the email domain is brown.edu
-    const emailDomain = email.split("@")[1];
-    if (emailDomain !== "brown.edu") {
-      setError("You must use a brown.edu email address to sign up.");
-      return;
-    }
+    setError("");
 
     if (isSignup) {
-      // Handle the signup logic here, interact with post from backend.
-      console.log("Signup successful:", {
-        firstName,
-        lastName,
+      // Signup logic
+      const emailDomain = email.split("@")[1];
+      if (emailDomain !== "brown.edu") {
+        setError("You must use a brown.edu email address to sign up.");
+        return;
+      }
+
+      const userData = {
+        first_name: firstName,
+        last_name: lastName,
+        username,
+        email,
+        number,
+        profile: profileUrl,
+        password,
+      };
+
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+      };
+
+      try {
+        const response = await fetch(
+          "http://127.0.0.1:8000/user/new_user",
+          requestOptions
+        );
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data.error_message || "An error occurred during the request."
+          );
+        }
+
+        console.log("Signup successful:", data);
+        onLogin(true);
+        navigate("/");
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error("Signup failed:", error.message);
+          setError(error.message);
+        } else {
+          console.error("Signup failed:", error);
+          setError("An unexpected error occurred.");
+        }
+      }
+    } else {
+      // Login logic using email
+      if (!email || !password) {
+        setError("Please enter both email and password");
+        return;
+      }
+
+      const loginData = {
         email,
         password,
-        number,
-        username,
-      });
-    } else {
-      // Handle the login logic here, interact with get from backend.
-      console.log("Login successful:", { email, password });
+      };
+
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(loginData),
+      };
+
+      try {
+        const response = await fetch(
+          "http://127.0.0.1:8000/user/login",
+          requestOptions
+        );
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data.error_message || "An error occurred during login."
+          );
+        }
+
+        console.log("Login successful:", data);
+        onLogin(true);
+        navigate("/");
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error("Login failed:", error.message);
+          setError(error.message);
+        } else {
+          console.error("Login failed:", error);
+          setError("An unexpected error occurred.");
+        }
+      }
     }
   };
 
@@ -47,8 +127,7 @@ const Signup: React.FC = () => {
     <div className="signup-container">
       <form onSubmit={handleSubmit} className="signup-form">
         <h2 className="form-title">{isSignup ? "Sign Up" : "Login"}</h2>
-        {error && <div className="form-error">{error}</div>}{" "}
-        {/* Display any error messages here */}
+        {error && <div className="form-error">{error}</div>}
         {isSignup && (
           <>
             <input

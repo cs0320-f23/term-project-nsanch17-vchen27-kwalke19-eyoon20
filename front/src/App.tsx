@@ -10,11 +10,33 @@ import NewListingConfirmation from "./pages/NewListingConfirmation";
 import Listings from "./pages/Listings";
 import mockListings from "./mocks/mockListings";
 import Signup from "./components/SIgnUp/Signup";
+import NavBar from "./components/NavBar/NavBar";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    const savedLoginStatus = localStorage.getItem("isLoggedIn");
+    return savedLoginStatus === "true"; // Convert string to boolean
+  });
+
+  // Update local storage whenever isLoggedIn changes
+  useEffect(() => {
+    localStorage.setItem("isLoggedIn", isLoggedIn.toString());
+  }, [isLoggedIn]);
+
+  const handleLogin = (status: boolean | ((prevState: boolean) => boolean)) => {
+    setIsLoggedIn(status);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    localStorage.setItem("isLoggedIn", "false");
+  };
+
   return (
     <Router>
       <div className="App">
+        <NavBar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
@@ -22,7 +44,10 @@ function App() {
           <Route path="/messaging" element={<Messaging />} />
           <Route path="/single-item/" element={<SingleItemDisplay />} />
           <Route path="/create-new-listing" element={<CreateNewListing />} />
-          <Route path="/signup-login" element={<Signup />} />
+          <Route
+            path="/signup-login"
+            element={<Signup onLogin={handleLogin} />}
+          />
           <Route
             path="/new-listing-confirmation"
             element={<NewListingConfirmation />}
