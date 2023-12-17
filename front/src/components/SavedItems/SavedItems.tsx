@@ -5,9 +5,11 @@ import "../../style/SavedItems.css"
 const SavedItems = forwardRef<HTMLDivElement, SavedItemsProps>(({ saveditems }, ref) => {
     const [viewedSavedItems, setViewedSavedItems] = useState<Record<string, boolean>>({});
 
-  const handleNotificationClick = (id: string, link: string) => {
+  const handleNotificationClick = (posting: Posting) => {
+    const id = `${posting.name}_${posting.seller.username}`;
     setViewedSavedItems((prev) => ({ ...prev, [id]: true }));
-    window.location.href = link;
+    // Use link as a path to navigate
+    window.location.href = `/path-to-item/${id}`; // Adjust path as necessary
   };
 
   const getTimeElapsed = (timestamp: Date) => {
@@ -35,19 +37,22 @@ const SavedItems = forwardRef<HTMLDivElement, SavedItemsProps>(({ saveditems }, 
 
   return (
     <div className="saveditems-popup" ref={ref}>
-      {saveditems.slice(0, 50).map((s: Posting) => (
-        <div
-          key={s.id}
-          className={`saveditems-item ${!viewedSavedItems[s.id] ? 'unviewed' : ''}`}
-          onClick={() => handleNotificationClick(s.id, s.link)}
-        >
-          {s.coverPhoto && <img src={s.coverPhoto} alt="User" className="saveditems-photo" />}
-          <div className="saveditems-content">
-            <span className="saveditems-message">{s.name}</span>
-            <span className="saveditems-timestamp">{getTimeElapsed(s.date)}</span>
+      {saveditems.slice(0, 50).map((posting: Posting) => {
+        const id = `${posting.name}_${posting.seller.username}`;
+        return (
+          <div
+            key={id}
+            className={`saveditems-item ${!viewedSavedItems[id] ? 'unviewed' : ''}`}
+            onClick={() => handleNotificationClick(posting)}
+          >
+            {posting.coverPhoto && <img src={posting.coverPhoto} alt="User" className="saveditems-photo" />}
+            <div className="saveditems-content">
+              <span className="saveditems-message">{posting.name}</span>
+              <span className="saveditems-timestamp">{getTimeElapsed(posting.date)}</span>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 });

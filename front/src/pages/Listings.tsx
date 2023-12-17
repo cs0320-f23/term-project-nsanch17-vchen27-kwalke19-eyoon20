@@ -1,21 +1,38 @@
 import React from "react";
 import { Posting } from "../types";
 import "../style/Listings.css";
-import NavBar from "../components/NavBar/NavBar";
 
 interface ListingsProps {
   listings: Posting[];
 }
 
 const Listings: React.FC<ListingsProps> = ({ listings }) => {
-  // ...other code
 
-  const handleEditListing = (id: string) => {
-    // logic to handle editing a listing
-  };
+  const handleDeleteListing = async (listing: Posting) => {
 
-  const handleDeleteListing = (id: string) => {
-    // logic to handle deleting a listing
+    try {
+      const response = await fetch('http://localhost:8000/posting/delete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          item_name: listing.name,
+          seller_name: listing.seller.username
+        })
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Delete successful', result);
+        // Handle successful deletion (e.g., update state or UI)
+      } else {
+        throw new Error('Failed to delete listing');
+      }
+    } catch (error) {
+      console.error('Error deleting listing:', error);
+      // Handle error (e.g., show error message to the user)
+    }
   };
 
   return (
@@ -23,7 +40,7 @@ const Listings: React.FC<ListingsProps> = ({ listings }) => {
       <h2 className="my-listings-header">My Listings</h2>
       <div className="listings-container">
         {listings.map((listing) => (
-          <div key={listing.id} className="listing-item">
+          <div key={`${listing.name}_${listing.seller.username}`} className="listing-item">
             <img
               src={listing.coverPhoto}
               alt={listing.name}
@@ -41,13 +58,13 @@ const Listings: React.FC<ListingsProps> = ({ listings }) => {
                 <button className="view-listing-btn">View Listing</button>
                 <button
                   className="edit-listing-btn"
-                  onClick={() => handleEditListing(listing.id)}
+                  onClick={() => {/* logic to handle edit */}}
                 >
                   Edit Listing
                 </button>
                 <button
                   className="delete-listing-btn"
-                  onClick={() => handleDeleteListing(listing.id)}
+                  onClick={() => handleDeleteListing(listing)}
                 >
                   Delete Listing
                 </button>

@@ -1,6 +1,5 @@
 import React from "react";
 import "../style/SingleItemDisplay.css";
-import NavBar from "../components/NavBar/NavBar";
 import Breadcrumbs from "../components/SingleItemDisplay/Breadcrumbs";
 import ProductImage from "../components/SingleItemDisplay/ProductImage";
 import ProductDetails from "../components/SingleItemDisplay/ProductDetails";

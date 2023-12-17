@@ -1,117 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import "../style/Home/RecommendedProducts.css";
-import Model from "../assets/model-placeholder.png";
-import Model2 from "../assets/model2-placeholder.png";
 import { useNavigate } from "react-router-dom";
 
-
 const RecommendedProductsContainer: React.FC = () => {
-
   const navigate = useNavigate();
+  const [recommendations, setRecommendations] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleCardClick = () => {
-    navigate('/single-item'); // Navigate to the messaging route
-  };
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      setIsLoading(true);
+      setError("");
+
+      try {
+        const response = await fetch('http://localhost:8000/recommendations/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ user: 'current_user_id' }) // Replace with the current user's ID
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setRecommendations(data.recommendations);
+        } else {
+          setError("Failed to load recommendations.");
+        }
+      } catch (error) {
+        setError("Network error.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchRecommendations();
+  }, []);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="products">
-      <ProductCard
-        productImageName={Model}
-        productDescription="Rounded Red Hat"
-        productPrice="$8.00"
-        onClick={handleCardClick}
-      />
-      <div className="product-02">
-        <div className="divsf-pcard1">
-          <div className="divoverflow-hidden">
-            <div className="link-responsive-image1">
-              <img className="jpg-icon" alt="" src={Model2} />
-            </div>
-            <div className="spanprod-tag">
-            </div>
-          </div>
-          <div className="divmt-31">
-            <div className="heading-3-link1">
-              <div className="linen-blend-shirt">Linen-blend Shirt</div>
-            </div>
-            <div className="div5">$17.00</div>
-          </div>
-        </div>
-      </div>
-      <ProductCard
-        productImageName={Model}
-        productDescription="Long-sleeve Coat"
-        productPrice="$106.00"
-        propLeft="652px"
-        propTop="0px"
-      />
-      <ProductCard
-        productImageName={Model2}
-        productDescription="Boxy Denim Hat"
-        productPrice="$25.00"
-        propLeft="0px"
-        propTop="561.61px"
-      />
-      <ProductCard
-        productImageName={Model}
-        productDescription="Linen Plain Top"
-        productPrice="$25.00"
-        propLeft="326px"
-        propTop="561.61px"
-      />
-      <div className="product-06">
-        <div className="divsf-pcard1">
-          <div className="link-responsive-image2">
-            <img className="jpg-icon" alt="" src={Model2} />
-          </div>
-          <div className="divmt-32">
-            <div className="heading-3-link2">
-              <div className="linen-blend-shirt">Oversized T-shirt</div>
-            </div>
-            <div className="divf-price-sale">
-              <div className="spanf-price-item">
-                <div className="div6">$11.00</div>
-              </div>
-              <div className="strikethrough">
-                <div className="div7">$14.00</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="product-07">
-        <div className="divsf-pcard1">
-          <div className="link-responsive-image2">
-            <img className="jpg-icon" alt="" src={Model} />
-          </div>
-          <div className="divmt-32">
-            <div className="heading-3-link3">
-              <div className="linen-blend-shirt">Polarised Sunglasses</div>
-            </div>
-            <div className="divf-price-sale1">
-              <div className="spanf-price-item">
-                <div className="div6">$18.00</div>
-              </div>
-              <div />
-            </div>
-          </div>
-        </div>
-      </div>
-      <ProductCard
-        productImageName={Model2}
-        productDescription="Rockstar Jacket"
-        productPrice="$22.00"
-        propLeft="326px"
-        propTop="1123.22px"
-      />
-      <ProductCard
-        productImageName={Model}
-        productDescription="Dotted Black Dress"
-        productPrice="$20.00"
-        propLeft="652px"
-        propTop="1123.22px"
-      />
+      {Object.entries(recommendations).map(([postingId, postingData]) => (
+        <ProductCard
+          key={postingId}
+          posting={postingData}
+          onClick={() => navigate(`/single-item/${postingId}`)}
+        />
+      ))}
     </div>
   );
 };
