@@ -33,6 +33,12 @@ class UserManager:
             if user.email == email:
                 return user
         raise UserDoesNotExistException("User not found.")
+    
+    def get_user_by_username(self, username):
+        user = self.users.get(username)
+        if not user:
+            raise UserDoesNotExistException(f"User with username {username} does not exist")
+        return user
 
     def create_user(self, first_name: str, last_name: str, username: str, email: str, number: str, profile: str, password: str):
             if username in self.users:

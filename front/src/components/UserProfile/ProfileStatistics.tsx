@@ -5,26 +5,54 @@ import Model2 from "../../assets/model2-placeholder.png";
 import UserProfile from "../../assets/default_profile.jpeg";
 import PhoneIcon from "../../assets/phone.png";
 import EmailIcon from "../../assets/email.png";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../UserProfile/UserContext";
 
+interface UserData {
+  username: string;
+}
 interface ProfileStatisticsProps {
   profilePic: string;
-  username: string;
   bio: string;
 }
 
 const ProfileStatistics: React.FC<ProfileStatisticsProps> = ({
   profilePic,
-  username,
   bio,
 }) => {
-  const [showBuyerReview, setShowBuyerReview] = useState(false); //
+  const [showBuyerReview, setShowBuyerReview] = useState(false);
+  const [userData, setUserData] = useState<UserData>({ username: "" });
+  const { user } = useUser();
   const navigate = useNavigate();
   const handlePublicProfile = () => {
     navigate("/public"); // Navigate to the messaging route
   };
+  useEffect(() => {
+    if (user) {
+      fetchUserData();
+    }
+  }, [user]);
 
+  const fetchUserData = async () => {
+    if (!user || !user.username) {
+      console.error("No user found");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:8000/user/profile/${user.username}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch user data");
+      }
+      const data = await response.json();
+      setUserData(data);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
   const toggleBuyerReview = () => {
     setShowBuyerReview(!showBuyerReview); // Toggle visibility
   };
@@ -53,7 +81,7 @@ const ProfileStatistics: React.FC<ProfileStatisticsProps> = ({
           </div>
         </div>
         <img className="profile-picture" src={profilePic} />
-        <div className="username">{username}</div>
+        <div className="username">{userData.username}</div>
         <div className="user-id">User ID: XXXXXXXXX</div>
         <Stars className="user-stars" rating="five" />
         <div className="num-reviews">1 Review</div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../style/Signup.css";
 import defaultProfileUrl from "../../assets/default_profile.jpeg";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../UserProfile/UserContext";
 
 interface SignupProps {
   onLogin: (status: boolean) => void;
@@ -18,6 +19,7 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
   const [username, setUsername] = useState("");
   const [profileUrl, setProfileUrl] = useState(defaultProfileUrl);
   const [error, setError] = useState(""); // State to store the error message
+  const { setUser } = useUser();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -61,6 +63,8 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
         }
 
         console.log("Signup successful:", data);
+
+        setUser({ username: data.username });
         onLogin(true);
         navigate("/");
       } catch (error) {
@@ -104,6 +108,7 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
         }
 
         console.log("Login successful:", data);
+        setUser({ username: data.username });
         onLogin(true);
         navigate("/");
       } catch (error) {

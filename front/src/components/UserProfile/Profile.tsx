@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import ProfileStatistics from "./ProfileStatistics";
 import ProfileSettings from "./ProfileSettings";
 import UserProfile from "../../assets/default_profile.jpeg";
-import NavBar from "../NavBar/NavBar";
 
 const Profile: React.FC = () => {
   const [profilePic, setProfilePic] = useState<string>(UserProfile);
@@ -44,22 +43,13 @@ const Profile: React.FC = () => {
     <div>
       <div className="box">
         <div className="page-background" />
-
-        <div>
-          <ProfileStatistics
-            profilePic={profilePic}
-            username={username}
-            bio={bio}
-          />
-          <div className="profile-statistics">
-            <ProfileSettings
-              onProfilePicChange={handleProfilePicChange}
-              onUsernameChange={handleUsernameChange}
-              onBioChange={handleBioChange}
-              onUpdateProfile={handleUpdateProfile} // Pass the new handler
-            />
-          </div>
-        </div>
+        <ProfileStatistics profilePic={profilePic} bio={bio} />
+        <ProfileSettings
+          onProfilePicChange={handleProfilePicChange}
+          onUsernameChange={handleUsernameChange}
+          onBioChange={handleBioChange}
+          onUpdateProfile={handleUpdateProfile}
+        />
       </div>
     </div>
   );
