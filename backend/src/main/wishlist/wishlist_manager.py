@@ -1,13 +1,6 @@
-<<<<<<< HEAD
 from main.Posting.posting_handler import post_manager
 from main.User.user_manager import UserDoesNotExistException
 from main.Posting.post_manager import ItemNotFoundException
-=======
-from main.posting.posting_handler import post_manager
-from main.user.user_manager import UserDoesNotExistException
-from main.posting.post_manager import ItemNotFoundException
-from main.notifications.notifications_manager import Notification
->>>>>>> 927540b32662922890bd5fc595e4adee5edc1802
 import dataclasses
 from datetime import datetime
 from copy import copy, deepcopy
