@@ -30,7 +30,6 @@ export type Posting = {
   date: Date;
   coverPhoto: string;
   additionalPhotos: string[];
-  status: string; //enum; cj
 
 };
 
@@ -46,13 +45,13 @@ export type User = {
   lastName: string;
   username: string;
   profilePicture: string;
-  dateJoined: string;
+  dateJoined: Date;
   email: string;
-  purchases: Record<string, any>; //key: (item_name)_(item_user) 
-  sellings: Record<string, any>; //key: (item_name)_(item_user) 
-  wishlist: Record<string, any>; //key: (item_name)_(item_user)
-  reviews: Record<string, any>; //key is author of review
-  notifications: Notification[]; //need to call User.notifications for the frontend
+  //purchases: Record<string, any>; //key: (item_name)_(item_user) 
+  //sellings: Record<string, any>; //key: (item_name)_(item_user) 
+  //wishlist: Record<string, any>; //key: (item_name)_(item_user)
+  //reviews: Record<string, any>; //key is author of review
+  //notifications: Notification[]; //need to call User.notifications for the frontend
 };
 
 export type Review = {
