@@ -80,7 +80,6 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
   }, []);
 
   // Handlers
-  const handleChatClick = () => navigate("/messaging");
   const handleHomeClick = () => navigate("/");
   const handleCreateNewListingClick = () => navigate("/create-new-listing");
 
@@ -111,12 +110,6 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
         {showSavedItems && (
           <SavedItem saveditems={mockedSavedItems} ref={SavedItemsRef} />
         )}
-        <img
-          onClick={handleChatClick}
-          src={Chat}
-          alt="Messaging"
-          className="navbar-icon"
-        />
         <img
           onClick={() => setShowNotifications(!showNotifications)}
           src={Bell}

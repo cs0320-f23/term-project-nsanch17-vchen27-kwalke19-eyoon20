@@ -1,12 +1,25 @@
 import React from "react";
 import "../style/SingleItemDisplay.css";
+import { useNavigate, useLocation } from "react-router-dom";
+
 import Breadcrumbs from "../components/SingleItemDisplay/Breadcrumbs";
 import ProductImage from "../components/SingleItemDisplay/ProductImage";
 import ProductDetails from "../components/SingleItemDisplay/ProductDetails";
-import ActionButton from "../components/SingleItemDisplay/ActionButton";
 import Reviews from "../components/SingleItemDisplay/Reviews";
 
 const SingleItemDisplay = () => {
+  const location = useLocation();
+  const posting = location.state?.posting;
+  const navigate = useNavigate();
+  
+  const handleWishlistClick = () => navigate("/new-wishlist-confirmation");
+
+  
+  if (!posting) {
+    // handle the case where the data is not available
+    return <div>No product data available</div>;
+  }
+
   return (
     <>
       <div className="item-container">
@@ -21,9 +34,10 @@ const SingleItemDisplay = () => {
           <ProductImage />
         </section>
         <section className="right-side">
-          <ProductDetails />
-          <ActionButton text="Wishlist" type="wishlist" />
-          <ActionButton text="Message" type="message" />
+        <ProductDetails posting={posting} />
+        <button onClick={handleWishlistClick} className="button white-button">
+          Add to Wishlist
+        </button>
         </section>
       </div>
       <Reviews />

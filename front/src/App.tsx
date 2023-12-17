@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Profile from "./components/UserProfile/Profile";
-import Messaging from "./components/Messaging/Messaging";
 import "./style/App.css";
 import SingleItemDisplay from "./pages/SingleItemDisplay";
 import ProfilePage from "./pages/ProfilePage";
@@ -12,6 +11,7 @@ import mockListings from "./mocks/mockListings";
 import Signup from "./components/SIgnUp/Signup";
 import NavBar from "./components/NavBar/NavBar";
 import { useEffect, useState } from "react";
+import NewWishlistConfirmation from "./pages/NewWishlistConfirmation";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -41,9 +41,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/public" element={<ProfilePage />} />
-          <Route path="/messaging" element={<Messaging />} />
           <Route path="/single-item/" element={<SingleItemDisplay />} />
           <Route path="/create-new-listing" element={<CreateNewListing />} />
+          <Route path="/single-item/:index" element={<SingleItemDisplay />} />
+
           <Route
             path="/signup-login"
             element={<Signup onLogin={handleLogin} />}
@@ -51,6 +52,10 @@ function App() {
           <Route
             path="/new-listing-confirmation"
             element={<NewListingConfirmation />}
+          />
+          <Route
+            path="/new-wishlist-confirmation"
+            element={<NewWishlistConfirmation />}
           />
           <Route
             path="/listings"

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import NavBar from "../components/NavBar/NavBar";
 import "../style/Home.css";
 import "../style/App.css";
 import { FunctionComponent } from "react";

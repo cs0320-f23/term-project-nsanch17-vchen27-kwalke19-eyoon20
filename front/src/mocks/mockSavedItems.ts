@@ -3,12 +3,12 @@ import Model from '../assets/model-placeholder.png';
 const mockedSavedItems = [
   {
     id: '1',
-    name: 'Hypothetical Item 1',
+    name: 'Premium Watch',
     seller: {
       // Include seller information as needed
     },
     price: 50,
-    description: 'This is the description for Hypothetical Item 1.',
+    description: 'This is a high-quality premium watch.',
     qty: 10,
     date: new Date(new Date().setDate(new Date().getDate() - 7)),
     coverPhoto: Model,
@@ -16,12 +16,12 @@ const mockedSavedItems = [
   },
   {
     id: '2',
-    name: 'Hypothetical Item 2',
+    name: 'Designer Sunglasses',
     seller: {
       // Include seller information as needed
     },
     price: 75,
-    description: 'Hypothetical Item 2 is a high-quality item for sale.',
+    description: 'Designer sunglasses for fashion enthusiasts.',
     qty: 5,
     date: new Date(new Date().setDate(new Date().getDate() - 7)),
     coverPhoto: Model,
@@ -29,12 +29,12 @@ const mockedSavedItems = [
   },
   {
     id: '3',
-    name: 'Hypothetical Item 3',
+    name: 'Affordable Smartphone',
     seller: {
       // Include seller information as needed
     },
     price: 30,
-    description: 'Affordable Hypothetical Item 3 with multiple photos.',
+    description: 'An affordable smartphone with multiple features.',
     qty: 15,
     date: new Date(new Date().setDate(new Date().getDate() - 7)),
     coverPhoto: Model,
@@ -42,12 +42,12 @@ const mockedSavedItems = [
   },
   {
     id: '4',
-    name: 'Hypothetical Item 4',
+    name: 'Vintage Camera',
     seller: {
       // Include seller information as needed
     },
     price: 60,
-    description: 'Hypothetical Item 4 in excellent condition.',
+    description: 'A vintage camera in excellent condition.',
     qty: 8,
     date: new Date(new Date().setDate(new Date().getDate() - 7)),
     coverPhoto: Model,
@@ -55,12 +55,12 @@ const mockedSavedItems = [
   },
   {
     id: '5',
-    name: 'Hypothetical Item 5',
+    name: 'Artistic Paintings',
     seller: {
       // Include seller information as needed
     },
     price: 45,
-    description: 'Hypothetical Item 5 with a discount offer.',
+    description: 'Artistic paintings with a discount offer.',
     qty: 12,
     date: new Date(new Date().setDate(new Date().getDate() - 7)),
     coverPhoto: Model,
@@ -68,12 +68,12 @@ const mockedSavedItems = [
   },
   {
     id: '6',
-    name: 'Hypothetical Item 6',
+    name: 'Antique Furniture',
     seller: {
       // Include seller information as needed
     },
     price: 65,
-    description: 'Hypothetical Item 6 for bargain hunters.',
+    description: 'Antique furniture for collectors and bargain hunters.',
     qty: 20,
     date: new Date(new Date().setDate(new Date().getDate() - 7)),
     coverPhoto: Model,
@@ -81,12 +81,12 @@ const mockedSavedItems = [
   },
   {
     id: '7',
-    name: 'Hypothetical Item 7',
+    name: 'Wireless Headphones',
     seller: {
       // Include seller information as needed
     },
     price: 40,
-    description: 'Hypothetical Item 7 with free shipping.',
+    description: 'Wireless headphones with free shipping.',
     qty: 9,
     date: new Date(new Date().setDate(new Date().getDate() - 7)),
     coverPhoto: Model,
@@ -94,12 +94,12 @@ const mockedSavedItems = [
   },
   {
     id: '8',
-    name: 'Hypothetical Item 8',
+    name: 'Gaming Laptop',
     seller: {
       // Include seller information as needed
     },
     price: 55,
-    description: 'Hypothetical Item 8 with limited stock.',
+    description: 'High-performance gaming laptop with limited stock.',
     qty: 6,
     date: new Date(new Date().setDate(new Date().getDate() - 7)),
     coverPhoto: Model,
@@ -107,12 +107,12 @@ const mockedSavedItems = [
   },
   {
     id: '9',
-    name: 'Hypothetical Item 9',
+    name: 'Rare Collectibles',
     seller: {
       // Include seller information as needed
     },
     price: 70,
-    description: 'Hypothetical Item 9 for collectors.',
+    description: 'Rare collectibles for dedicated collectors.',
     qty: 3,
     date: new Date(new Date().setDate(new Date().getDate() - 7)),
     coverPhoto: Model,
@@ -120,12 +120,12 @@ const mockedSavedItems = [
   },
   {
     id: '10',
-    name: 'Hypothetical Item 10',
+    name: 'Smart Home Devices',
     seller: {
       // Include seller information as needed
     },
     price: 25,
-    description: 'Hypothetical Item 10 at a special price.',
+    description: 'Smart home devices at a special price.',
     qty: 18,
     date: new Date(new Date().setDate(new Date().getDate() - 7)),
     coverPhoto: Model,
@@ -133,12 +133,12 @@ const mockedSavedItems = [
   },
   {
     id: '11',
-    name: 'Hypothetical Item 11',
+    name: 'High-End Sound System',
     seller: {
       // Include seller information as needed
     },
     price: 90,
-    description: 'Hypothetical Item 11 for serious buyers.',
+    description: 'High-end sound system for serious audiophiles.',
     qty: 2,
     date: new Date(new Date().setDate(new Date().getDate() - 7)),
     coverPhoto: Model,
@@ -146,12 +146,12 @@ const mockedSavedItems = [
   },
   {
     id: '12',
-    name: 'Hypothetical Item 12',
+    name: 'Colorful Backpacks',
     seller: {
       // Include seller information as needed
     },
     price: 35,
-    description: 'Hypothetical Item 12 with multiple color options.',
+    description: 'Stylish backpacks with multiple color options.',
     qty: 15,
     date: new Date(new Date().setDate(new Date().getDate() - 7)),
     coverPhoto: Model,
