@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface User {
   username: string;
+  email: string;
 }
 
 interface UserContextType {
@@ -20,7 +21,7 @@ export const useUser = () => {
 export const UserProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>({ username: "", email: "" });
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

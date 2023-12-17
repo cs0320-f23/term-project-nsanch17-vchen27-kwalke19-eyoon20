@@ -56,6 +56,8 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
         );
         const data = await response.json();
 
+        console.log("signup successful", data);
+
         if (!response.ok) {
           throw new Error(
             data.error_message || "An error occurred during the request."
@@ -64,7 +66,7 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
 
         console.log("Signup successful:", data);
 
-        setUser({ username: data.username });
+        setUser({ username: username, email: email });
         onLogin(true);
         navigate("/");
       } catch (error) {
@@ -101,6 +103,8 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
         );
         const data = await response.json();
 
+        console.log("login successful", data);
+
         if (!response.ok) {
           throw new Error(
             data.error_message || "An error occurred during login."
@@ -108,7 +112,7 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
         }
 
         console.log("Login successful:", data);
-        setUser({ username: data.username });
+        setUser({ username: username, email: email });
         onLogin(true);
         navigate("/");
       } catch (error) {

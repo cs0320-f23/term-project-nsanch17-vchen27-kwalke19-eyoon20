@@ -1,8 +1,10 @@
 import React from "react";
 import NavBar from "../components/NavBar/NavBar";
+import { useUser } from "../components/UserProfile/UserContext";
 import "../style/ProfilePage.css";
 
 const ProfilePage: React.FC = () => {
+  const { user } = useUser();
   return (
     <div
       className="Group1000001767"
@@ -669,6 +671,22 @@ const ProfilePage: React.FC = () => {
         Member since 2023
       </div>
       <div
+        className="UserEmail"
+        style={{
+          width: 300, // Adjust the width accordingly
+          left: 200,
+          top: 220, // Adjust the top position accordingly
+          position: "absolute",
+          color: "#000000", // Set your desired text color
+          fontSize: 13,
+          fontFamily: "Manrope",
+          fontWeight: "500",
+          wordWrap: "break-word",
+        }}
+      >
+        Email: {user?.email}
+      </div>
+      <div
         className="Line15"
         style={{
           width: 29,
@@ -1184,7 +1202,7 @@ const ProfilePage: React.FC = () => {
           wordWrap: "break-word",
         }}
       >
-        Username
+        {user?.username}
       </div>
       <div
         className="Stars"
