@@ -18,9 +18,10 @@ import mockedSavedItems from "../../mocks/mockSavedItems";
 
 interface NavBarProps {
   isLoggedIn: boolean;
+  onLogout: () => void; // Add this line
 }
 
-const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
+const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
   const navigate = useNavigate();
   const [searchKeyword, setSearchKeyword] = useState("");
   const [showNotifications, setShowNotifications] = useState(false);
@@ -136,7 +137,7 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn }) => {
         />
         {showProfilePopup &&
           (isLoggedIn ? (
-            <LoggedInProfilePopup ref={ProfileRef} />
+            <LoggedInProfilePopup onLogout={onLogout} ref={ProfileRef} />
           ) : (
             <LoggedOutProfilePopup ref={ProfileRef} />
           ))}

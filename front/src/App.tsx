@@ -11,19 +11,32 @@ import Listings from "./pages/Listings";
 import mockListings from "./mocks/mockListings";
 import Signup from "./components/SIgnUp/Signup";
 import NavBar from "./components/NavBar/NavBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    const savedLoginStatus = localStorage.getItem("isLoggedIn");
+    return savedLoginStatus === "true"; // Convert string to boolean
+  });
 
-  const handleLogin = (status: any) => {
+  // Update local storage whenever isLoggedIn changes
+  useEffect(() => {
+    localStorage.setItem("isLoggedIn", isLoggedIn.toString());
+  }, [isLoggedIn]);
+
+  const handleLogin = (status: boolean | ((prevState: boolean) => boolean)) => {
     setIsLoggedIn(status);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    localStorage.setItem("isLoggedIn", "false");
   };
 
   return (
     <Router>
       <div className="App">
-        <NavBar isLoggedIn={isLoggedIn} />
+        <NavBar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />

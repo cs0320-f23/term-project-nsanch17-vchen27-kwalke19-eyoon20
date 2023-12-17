@@ -18,32 +18,27 @@ class UserHandler:
             last_name = request.args.get("last_name")
             username = request.args.get("username")
             email = request.args.get("email")
-            number = request.args.get("number")  # Retrieve number from GET request
+            number = request.args.get("number") 
             profile = request.args.get("profile")
+        
 
         elif request.method == 'POST':
             data = request.get_json()
-            print(data)
             first_name = data.get("first_name")
-            print(first_name)
             last_name = data.get("last_name")
-            print(last_name)
             username = data.get("username")
-            print(username)
             email = data.get("email")
-            print(email)
-            number = data.get("number")  # Retrieve number from POST request
-            print(number)
+            number = data.get("number")  
             profile = data.get("profile")
-            print(profile)
+            password = data.get("password")
 
         # Check if all parameters are provided
-        if not all([first_name, last_name, username, email, number, profile]):
+        if not all([first_name, last_name, username, email, number, profile, password]):
             result_dict.update({"result": "error", "error_message": "Missing parameters"})
             return jsonify(result_dict), 400
         
         try:
-            user_manager.create_user(first_name, last_name, username, email, number, profile)
+            user_manager.create_user(first_name, last_name, username, email, number, profile, password)
         except UserExistsException:
             result_dict.update({"result": "error", "error_message": "User already exists. Try again."})
             return jsonify(result_dict), 400
@@ -57,15 +52,15 @@ class UserHandler:
         result_dict = {}
 
         data = request.get_json()
-        username = data.get("username")
+        email = data.get("email")
         password = data.get("password")
 
-        if not username or not password:
-            result_dict.update({"result": "error", "error_message": "Missing username or password"})
+        if not email or not password:
+            result_dict.update({"result": "error", "error_message": "Missing email or password"})
             return jsonify(result_dict), 400
 
         try:
-            user = user_manager.get_user(username)
+            user = user_manager.get_user_by_email(email)  # Assuming you have a method to find users by email
             if check_password_hash(user.password_hash, password):
                 result_dict.update({"result": "success", "message": "Login successful"})
                 return jsonify(result_dict), 200
@@ -75,6 +70,7 @@ class UserHandler:
         except UserDoesNotExistException:
             result_dict.update({"result": "error", "error_message": "User not found"})
             return jsonify(result_dict), 404
+
     
     @user_bp.route("/data")
     def get_users():

@@ -23,54 +23,97 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
     event.preventDefault();
     setError("");
 
-    const emailDomain = email.split("@")[1];
-    if (emailDomain !== "brown.edu") {
-      setError("You must use a brown.edu email address to sign up.");
-      return;
-    }
-
-    const userData = {
-      first_name: firstName,
-      last_name: lastName,
-      username,
-      email,
-      number,
-      profile: profileUrl,
-    };
-
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userData),
-    };
-
-    const endpoint = isSignup
-      ? "http://127.0.0.1:8000/user/new_user"
-      : "http://127.0.0.1:8000/user/login";
-
-    try {
-      const response = await fetch(endpoint, requestOptions);
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(
-          data.error_message || "An error occurred during the request."
-        );
+    if (isSignup) {
+      // Signup logic
+      const emailDomain = email.split("@")[1];
+      if (emailDomain !== "brown.edu") {
+        setError("You must use a brown.edu email address to sign up.");
+        return;
       }
 
-      console.log(`${isSignup ? "Signup" : "Login"} successful:`, data);
-      onLogin(true);
-      navigate("/");
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error(
-          `${isSignup ? "Signup" : "Login"} failed:`,
-          error.message
+      const userData = {
+        first_name: firstName,
+        last_name: lastName,
+        username,
+        email,
+        number,
+        profile: profileUrl,
+        password,
+      };
+
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+      };
+
+      try {
+        const response = await fetch(
+          "http://127.0.0.1:8000/user/new_user",
+          requestOptions
         );
-        setError(error.message);
-      } else {
-        console.error(`${isSignup ? "Signup" : "Login"} failed:`, error);
-        setError("An unexpected error occurred.");
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data.error_message || "An error occurred during the request."
+          );
+        }
+
+        console.log("Signup successful:", data);
+        onLogin(true);
+        navigate("/");
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error("Signup failed:", error.message);
+          setError(error.message);
+        } else {
+          console.error("Signup failed:", error);
+          setError("An unexpected error occurred.");
+        }
+      }
+    } else {
+      // Login logic using email
+      if (!email || !password) {
+        setError("Please enter both email and password");
+        return;
+      }
+
+      const loginData = {
+        email,
+        password,
+      };
+
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(loginData),
+      };
+
+      try {
+        const response = await fetch(
+          "http://127.0.0.1:8000/user/login",
+          requestOptions
+        );
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data.error_message || "An error occurred during login."
+          );
+        }
+
+        console.log("Login successful:", data);
+        onLogin(true);
+        navigate("/");
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error("Login failed:", error.message);
+          setError(error.message);
+        } else {
+          console.error("Login failed:", error);
+          setError("An unexpected error occurred.");
+        }
       }
     }
   };
