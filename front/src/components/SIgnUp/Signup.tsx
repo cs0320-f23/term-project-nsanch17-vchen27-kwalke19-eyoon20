@@ -20,6 +20,7 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
   const [username, setUsername] = useState("");
   const [profileUrl, setProfileUrl] = useState(defaultProfileUrl);
   const [error, setError] = useState("");
+  const [bio, setBio] = useState("");
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -39,6 +40,7 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
         username,
         email,
         number,
+        bio,
         profile: profileUrl,
         password,
       };
@@ -101,11 +103,12 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
         }
 
         setUser({
-          first_name: firstName,
-          last_name: lastName,
-          username: data.username, // Assuming the response contains the username
-          email: email,
+          first_name: data.user.first_name,
+          last_name: data.user.last_name,
+          username: data.user.username,
+          email: data.user.email,
           number: number,
+          bio: bio,
           profile: profileUrl,
           password: password,
         });
@@ -162,6 +165,12 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
               value={number}
               onChange={(e) => setNumber(e.target.value)}
               placeholder="Phone Number"
+              className="form-input"
+            />
+            <textarea
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
+              placeholder="Bio"
               className="form-input"
             />
           </>

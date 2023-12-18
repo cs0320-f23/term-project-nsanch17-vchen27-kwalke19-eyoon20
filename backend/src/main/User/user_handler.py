@@ -29,16 +29,17 @@ class UserHandler:
             username = data.get("username")
             email = data.get("email")
             number = data.get("number")  
+            bio = data.get("bio") 
             profile = data.get("profile")
             password = data.get("password")
 
         # Check if all parameters are provided
-        if not all([first_name, last_name, username, email, number, profile, password]):
+        if not all([first_name, last_name, username, email, number, bio, profile, password]):
             result_dict.update({"result": "error", "error_message": "Missing parameters"})
             return jsonify(result_dict), 400
         
         try:
-            user_manager.create_user(first_name, last_name, username, email, number, profile, password)
+            user_manager.create_user(first_name, last_name, username, email, number, bio, profile, password)
         except UserExistsException:
             result_dict.update({"result": "error", "error_message": "User already exists. Try again."})
             return jsonify(result_dict), 400
@@ -75,6 +76,7 @@ class UserHandler:
         except UserDoesNotExistException:
             result_dict.update({"result": "error", "error_message": "User not found"})
             return jsonify(result_dict), 404
+    
     
     @user_bp.route("/data")
     def get_users():

@@ -1,65 +1,50 @@
-import React, { useState } from "react";
-import ProfileStatistics from "./ProfileStatistics";
-import ProfileSettings from "./ProfileSettings";
-import UserProfile from "../../assets/default_profile.jpeg";
-import NavBar from "../NavBar/NavBar";
+import React from "react";
+import "../../style/UserProfile.css";
+import { useNavigate } from "react-router-dom";
 
 const Profile: React.FC = () => {
-  const [profilePic, setProfilePic] = useState<string>(UserProfile);
-  const [username, setUsername] = useState<string>("Username");
-  const [bio, setBio] = useState<string>(
-    "I love to shop, especially at Brown! Message me for negotiations."
-  );
-  const [email, setEmail] = useState<string>(""); // New state for email
-  const [phoneNumber, setPhoneNumber] = useState<string>(""); // New state for phone number
-  const [fullName, setFullName] = useState<string>(""); // New state for full name
+  const navigate = useNavigate();
 
-  const handleProfilePicChange = (newPic: string) => {
-    setProfilePic(newPic);
-  };
-
-  const handleUsernameChange = (newUsername: string) => {
-    setUsername(newUsername);
-  };
-
-  const handleBioChange = (newBio: string) => {
-    setBio(newBio);
-  };
-
-  const handleUpdateProfile = (profileData: {
-    email: string;
-    phoneNumber: string;
-    fullName: string;
-  }) => {
-    // Handle the email, phone number, and full name updates here
-    setEmail(profileData.email);
-    setPhoneNumber(profileData.phoneNumber);
-    setFullName(profileData.fullName);
-
-    // Send data to backend or process further as needed
-    console.log("Profile Updated with:", profileData);
-  };
+  function handlePublicProfile(): void {
+    navigate("/public");
+  }
 
   return (
-    <div>
-      <div className="box">
-        <div className="page-background" />
-
-        <div>
-          <ProfileStatistics
-            profilePic={profilePic}
-            username={username}
-            bio={bio}
-          />
-          <div className="profile-statistics">
-            <ProfileSettings
-              onProfilePicChange={handleProfilePicChange}
-              onUsernameChange={handleUsernameChange}
-              onBioChange={handleBioChange}
-              onUpdateProfile={handleUpdateProfile} // Pass the new handler
-            />
+    <div className="page-container">
+      <div className="profile-settings">
+        <h2 className="title">Profile Settings</h2>
+        <form className="form">
+          <div className="input-group">
+            <i className="fas fa-upload input-icon"></i>
+            <input type="file" className="input" />
           </div>
-        </div>
+          <div className="input-group">
+            <i className="fas fa-user input-icon"></i>
+            <input placeholder="Username" className="input" />
+          </div>
+          <div className="input-group">
+            <i className="fas fa-envelope input-icon"></i>
+            <input type="email" placeholder="Email" className="input" />
+          </div>
+          <div className="input-group">
+            <i className="fas fa-signature input-icon"></i>
+            <input placeholder="Full Name" className="input" />
+          </div>
+          <div className="input-group">
+            <i className="fas fa-phone input-icon"></i>
+            <input type="tel" placeholder="Phone Number" className="input" />
+          </div>
+          <textarea placeholder="Biography" className="textarea"></textarea>
+          <button type="submit" className="button update-button">
+            Update Profile
+          </button>
+        </form>
+        <button
+          className="button view-public-button"
+          onClick={handlePublicProfile}
+        >
+          View Public Profile
+        </button>
       </div>
     </div>
   );
