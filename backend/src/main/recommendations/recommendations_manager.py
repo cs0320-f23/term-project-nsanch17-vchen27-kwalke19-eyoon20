@@ -1,5 +1,5 @@
-from main.user.user_handler import user_manager
-from main.posting.posting_handler import post_manager
+from main.User.user_handler import user_manager
+from main.Posting.posting_handler import post_manager
 import dataclasses
 from scipy import sparse
 import nltk
@@ -14,6 +14,17 @@ class RecommendationsManager():
         pass
 
     def generate_recommendations(self,user):
+
+        try:
+            user_manager.users[user]
+        except KeyError:
+            return list(post_manager.postings.values())
+
+
+        if len(user_manager.users[user].wishlist) == 0:
+            return list(post_manager.postings.values())
+        
+
         #import stop words that should not impact recs
         stop_words = stopwords.words("english")
 
@@ -38,5 +49,5 @@ class RecommendationsManager():
         filtered_recommendations = {posting: similarity for posting, similarity in recommendations.items() if similarity > 0}
 
         recs_sorted = dict(sorted((filtered_recommendations.items()), key=lambda x: x[1], reverse=True))
+        return [post_manager.postings[posting] for posting in recs_sorted]
     
-        return recs_sorted

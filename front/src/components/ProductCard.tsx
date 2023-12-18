@@ -12,18 +12,17 @@ const ProductCard: FC<ProductCardProps> = ({ posting, onClick }) => {
     <div className="product-card" onClick={onClick}>
       <div className="product-card-container">
         <div className="product-image-wrapper">
-          <img className="product-image" alt={posting.name} src={posting.coverPhoto} />
+          <img
+            className="product-image"
+
+            src={posting.coverPhoto}
+          />
         </div>
         <div className="product-info">
-          <div className="product-title">
-            {posting.name}
-          </div>
-          <div className="product-description">
-            {posting.description}
-          </div>
-          <div className="product-price">
-            ${posting.price.toFixed(2)}
-          </div>
+          <div className="product-title">{posting.name}</div>
+          <div className="product-description">{posting.description}</div>
+          <div className="product-price">${posting.price.toFixed(2)}</div>
+          <div className="product-price" id="qty">Qty: {posting.qty.toFixed(2)}</div>
         </div>
       </div>
     </div>

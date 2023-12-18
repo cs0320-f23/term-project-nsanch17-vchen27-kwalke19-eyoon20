@@ -35,7 +35,7 @@ class UserHandler:
             password = request.form.get("password")
 
 
-               # Handle profile image upload
+            # Handle profile image upload
             profile_image = request.files.get("profile_image")
             if profile_image:
                 filename = secure_filename(profile_image.filename)

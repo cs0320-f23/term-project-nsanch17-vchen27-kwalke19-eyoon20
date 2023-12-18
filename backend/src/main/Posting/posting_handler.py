@@ -27,7 +27,7 @@ class PostingHandler:
             description = request.args.get("description")
             qty = request.args.get("qty")
             big_pic = request.args.get("big_pic")
-            pics = request.args.get("pics")
+           
 
         elif request.method == 'POST':
             data = request.get_json()
@@ -38,7 +38,7 @@ class PostingHandler:
             description = data.get("description")
             qty = data.get("qty")
             big_pic = data.get("big_pic")
-            pics = data.get("pics")
+          
 
         result_dict = {}
 
@@ -58,7 +58,7 @@ class PostingHandler:
    
 
         try:
-            posting = post_manager.create_posting(item_name, seller_name, price,description, qty, big_pic,pics)
+            posting = post_manager.create_posting(item_name, seller_name, price,description, qty, big_pic)
 
         except (PostingExistsException, UserDoesNotExistException) as e:
             result_dict.update({"result": "error"})

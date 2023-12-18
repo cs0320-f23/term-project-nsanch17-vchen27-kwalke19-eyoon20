@@ -3,54 +3,60 @@ import ProductCard from "./ProductCard";
 import "../style/Home/RecommendedProducts.css";
 import { useNavigate } from "react-router-dom";
 import mockRecommendations from "../mocks/mockRecommendations.ts";
+import { useUser } from "./UserProfile/UserContext.tsx";
 
-const RecommendedProductsContainer: React.FC<{ selectedPriceRange: string | null }> = ({ selectedPriceRange }) => {
+const RecommendedProductsContainer: React.FC<{
+  selectedPriceRange: string | null;
+}> = ({ selectedPriceRange }) => {
   const navigate = useNavigate();
+
   const [recommendations, setRecommendations] = useState([]);
+  const { user } = useUser();
 
   useEffect(() => {
-    // Filter logic based on price range
-    const filteredRecommendations = mockRecommendations.filter(posting => {
-      if (selectedPriceRange === '$0-$25') {
-        return posting.price <= 25;
-      } else if (selectedPriceRange === '$25-$50') {
-        return posting.price > 25 && posting.price <= 50;
-      } else if (selectedPriceRange === '$50+') {
-        return posting.price > 50;
-      }
-      return true; // No filter selected
-    });
-
-    setRecommendations(filteredRecommendations);
-  }, [selectedPriceRange]);
-    
-    /* Commenting out the backend call
     const fetchRecommendations = async () => {
-      setIsLoading(true);
-      setError("");
-
       try {
-        const response = await fetch('http://localhost:8000/recommendations/generate', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ user: currentUsername })
-        });
+        const response = await fetch(
+          `http://127.0.0.1:8000/recommendations/generate?user=${user?.username}`
+        );
+
+        console.log(selectedPriceRange);
+
         if (response.ok) {
           const data = await response.json();
-          setRecommendations(data.recommendations);
+
+          const filteredRecommendations = data.recommendations.filter(
+            (posting) => {
+              if (!selectedPriceRange) {
+                return true;
+              }
+
+              if (selectedPriceRange === "$0-$25") {
+                console.log(true);
+                return posting.price <= 25;
+              } else if (selectedPriceRange === "$25-$50") {
+                return posting.price > 25 && posting.price <= 50;
+              } else if (selectedPriceRange === "$50+") {
+                return posting.price > 50;
+              }
+
+              return true;
+            }
+          );
+
+          setRecommendations(filteredRecommendations);
         } else {
-          setError("Failed to load recommendations.");
+          console.log(response);
+          console.error("Failed to load recommendations.");
         }
       } catch (error) {
-        setError("Network error.");
-      } finally {
-        setIsLoading(false);
+        console.error("Network error.", error);
       }
     };
-
-    fetchRecommendations();
-    */
-
+    if (user) {
+      fetchRecommendations();
+    }
+  }, [user]);
 
   return (
     <div className="products">
@@ -58,7 +64,11 @@ const RecommendedProductsContainer: React.FC<{ selectedPriceRange: string | null
         <ProductCard
           key={index}
           posting={postingData}
-          onClick={() => navigate(`/single-item/${index}`, { state: { posting: postingData } })}
+          onClick={() =>
+            navigate(`/single-item/${index}`, {
+              state: { posting: postingData },
+            })
+          }
         />
       ))}
     </div>
