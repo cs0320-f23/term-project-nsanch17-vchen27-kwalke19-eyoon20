@@ -17,7 +17,7 @@ class User:
     number: str  
     email: str
     date: str
-    profile: str
+    profile_image: str
     bio: str
     password_hash: str  
     purchases: dict
@@ -40,12 +40,12 @@ class UserManager:
                 return user
         raise UserDoesNotExistException("User not found.")
 
-    def create_user(self, first_name: str, last_name: str, username: str, email: str, number: str, bio: str, profile: str, password: str):
+    def create_user(self, first_name: str, last_name: str, username: str, email: str, number: str, bio: str, profile_image: str, password: str):
             if username in self.users:
                 raise UserExistsException("User already exists.")
             else:
                 hashed_password = generate_password_hash(password)
-                user = User(first_name, last_name, username, number, email, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), profile, bio, hashed_password, {}, {}, {}, {})
+                user = User(first_name, last_name, username, number, email, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), profile_image, bio, hashed_password, {}, {}, {}, {})
                 self.users[username] = user
                 return user
             

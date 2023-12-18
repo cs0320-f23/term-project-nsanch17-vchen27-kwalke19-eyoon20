@@ -3,10 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "../../style/NavBar.css";
 import Logo from "../../assets/image-logo.png";
 import Heart from "../../assets/Heart_01.png";
-import Chat from "../../assets/Chat.png";
 import Bell from "../../assets/Bell_Notification.png";
 import UserIcon from "../../assets/User_Icon.png";
-import UserProfilePic from "../../assets/profile.jpeg";
 import Search from "./Search";
 import Notification from "../Notifications/Notifications";
 import LoggedInProfilePopup from "../ProfilePopups/LoggedInProfilePopup";
@@ -15,6 +13,7 @@ import SavedItem from "../SavedItems/SavedItems";
 
 import mockNotifications from "../../mocks/mockNotifications";
 import mockedSavedItems from "../../mocks/mockSavedItems";
+import { useUser } from "../UserProfile/UserContext";
 
 interface NavBarProps {
   isLoggedIn: boolean;
@@ -23,6 +22,7 @@ interface NavBarProps {
 
 const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
   const navigate = useNavigate();
+  const { user } = useUser();
   const [searchKeyword, setSearchKeyword] = useState("");
   const [showNotifications, setShowNotifications] = useState(false);
   const [showSavedItems, setShowSavedItems] = useState(false);
@@ -124,7 +124,13 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
         )}
         <img
           onClick={() => setShowProfilePopup(!showProfilePopup)}
-          src={isLoggedIn ? UserProfilePic : UserIcon}
+          src={
+            isLoggedIn
+              ? user?.profile
+                ? `http://127.0.0.1:8000/user/user_profiles/${user?.profile}`
+                : UserIcon
+              : UserIcon
+          }
           alt="User"
           className={isLoggedIn ? "user-profile-pic" : "user-icon"}
         />

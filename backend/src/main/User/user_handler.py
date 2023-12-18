@@ -1,6 +1,9 @@
 import dataclasses
+import os
+from flask import send_from_directory
 from flask import request, jsonify, Blueprint
 from werkzeug.security import check_password_hash 
+from werkzeug.utils import secure_filename
 from main.User.user_manager import UserDoesNotExistException
 from main.User.user_manager import UserManager, UserExistsException
 
@@ -19,19 +22,29 @@ class UserHandler:
             username = request.args.get("username")
             email = request.args.get("email")
             number = request.args.get("number") 
-            profile = request.args.get("profile")
+            profile_image = request.args.get("profile_image")
         
 
         elif request.method == 'POST':
-            data = request.get_json()
-            first_name = data.get("first_name")
-            last_name = data.get("last_name")
-            username = data.get("username")
-            email = data.get("email")
-            number = data.get("number")  
-            bio = data.get("bio") 
-            profile = data.get("profile")
-            password = data.get("password")
+            first_name = request.form.get("first_name")
+            last_name = request.form.get("last_name")
+            username = request.form.get("username")
+            email = request.form.get("email")
+            number = request.form.get("number")
+            bio = request.form.get("bio")
+            password = request.form.get("password")
+
+
+               # Handle profile image upload
+            profile_image = request.files.get("profile_image")
+            if profile_image:
+                filename = secure_filename(profile_image.filename)
+                upload_folder = '/Users/nicolesanchez-soto/Desktop/CS32/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/User/user_profiles'  # Configure this path correctly
+                save_path = os.path.join(upload_folder, filename)
+                profile_image.save(save_path)
+                profile = filename
+            
+
 
         # Check if all parameters are provided
         if not all([first_name, last_name, username, email, number, bio, profile, password]):
@@ -77,6 +90,13 @@ class UserHandler:
             result_dict.update({"result": "error", "error_message": "User not found"})
             return jsonify(result_dict), 404
     
+
+
+    @user_bp.route('/user_profiles/<filename>')
+    def user_profiles(filename):
+        print("Requested file:", filename)
+        return send_from_directory("/Users/nicolesanchez-soto/Desktop/CS32/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/User/user_profiles/", filename)
+
     
     @user_bp.route("/data")
     def get_users():

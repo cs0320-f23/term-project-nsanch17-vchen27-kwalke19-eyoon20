@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../../style/Signup.css";
-import defaultProfileUrl from "../../assets/default_profile.jpeg";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../UserProfile/UserContext"; // Adjust the path as needed
 
@@ -18,9 +17,15 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
   const [lastName, setLastName] = useState("");
   const [number, setNumber] = useState("");
   const [username, setUsername] = useState("");
-  const [profileUrl, setProfileUrl] = useState(defaultProfileUrl);
+  const [profileImage, setProfileImage] = useState<File | null>(null);
   const [error, setError] = useState("");
   const [bio, setBio] = useState("");
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setProfileImage(e.target.files[0]);
+    }
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -34,21 +39,29 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
         return;
       }
 
-      const userData = {
-        first_name: firstName,
-        last_name: lastName,
-        username,
-        email,
-        number,
-        bio,
-        profile: profileUrl,
-        password,
-      };
+      const formData = new FormData();
+      formData.append("first_name", firstName);
+      console.log(formData.get("first_name"));
+      formData.append("last_name", lastName);
+      console.log(formData.get("last_name"));
+      formData.append("username", username);
+      console.log(formData.get("username"));
+      formData.append("email", email);
+      console.log(formData.get("email"));
+      formData.append("number", number);
+      console.log(formData.get("number"));
+      formData.append("bio", bio);
+      console.log(formData.get("bio"));
+      console.log(profileImage);
+      if (profileImage) {
+        formData.append("profile_image", profileImage);
+      }
+      console.log(formData.get("profile_image"));
+      formData.append("password", password);
 
       const requestOptions = {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userData),
+        body: formData,
       };
 
       try {
@@ -109,7 +122,7 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
           email: data.user.email,
           number: number,
           bio: bio,
-          profile: profileUrl,
+          profile: data.user.profile_image,
           password: password,
         });
 
@@ -161,16 +174,21 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
               className="form-input"
             />
             <input
-              type="tel"
-              value={number}
-              onChange={(e) => setNumber(e.target.value)}
-              placeholder="Phone Number"
+              type="file"
+              onChange={handleImageChange}
               className="form-input"
             />
             <textarea
               value={bio}
               onChange={(e) => setBio(e.target.value)}
               placeholder="Bio"
+              className="form-input"
+            />
+            <input
+              type="tel"
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
+              placeholder="Phone Number"
               className="form-input"
             />
           </>

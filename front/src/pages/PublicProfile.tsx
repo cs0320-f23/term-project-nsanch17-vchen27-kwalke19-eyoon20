@@ -2,11 +2,14 @@ import React from "react";
 import "../style/PublicProfile.css";
 import emailIcon from "../assets/email.png";
 import { useUser } from "../components/UserProfile/UserContext";
+import defaultProfile from "../assets/default_profile.jpeg";
 
 const PublicProfile: React.FC = () => {
   const { user } = useUser();
   const email = user?.email; // User's email address
   const username = user?.username;
+  const user_image = user?.profile;
+  console.log(user_image);
 
   const handleEmailIconClick = () => {
     window.location.href = `mailto:${email}`;
@@ -24,8 +27,12 @@ const PublicProfile: React.FC = () => {
       <div className="profile-header">
         <div className="avatar-container">
           <img
-            src="/default-avatar.png"
-            alt="Profile"
+            src={
+              user?.profile
+                ? `http://127.0.0.1:8000/user/user_profiles/${user?.profile}`
+                : defaultProfile
+            }
+            alt={defaultProfile}
             className="profile-avatar"
           />
           <div className="user-info">
