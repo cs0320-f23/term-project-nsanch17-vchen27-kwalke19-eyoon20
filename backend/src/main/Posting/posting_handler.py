@@ -27,25 +27,25 @@ class PostingHandler:
             description = request.args.get("description")
             qty = request.args.get("qty")
             big_pic = request.args.get("big_pic")
-            pics = request.args.get("pics")
 
         elif request.method == 'POST':
             data = request.get_json()
-
+            
             item_name = data.get("item_name")
             seller_name = data.get("seller_name")
             price = data.get("price")
             description = data.get("description")
             qty = data.get("qty")
             big_pic = data.get("big_pic")
-            pics = data.get("pics")
 
         result_dict = {}
-
+        
         if not item_name or not seller_name or not price or not description or not qty:
             result_dict.update({"result": "error"})
             result_dict.update({"error_message": "Missing parameters. Please give a valid title, price, description, and seller username."})
             return jsonify(result_dict), 400
+        
+        print(result_dict)
 
         try:
             price = float(price)
@@ -58,7 +58,7 @@ class PostingHandler:
    
 
         try:
-            posting = post_manager.create_posting(item_name, seller_name, price,description, qty, big_pic,pics)
+            posting = post_manager.create_posting(item_name, seller_name, price,description, qty, big_pic)
 
         except (PostingExistsException, UserDoesNotExistException) as e:
             result_dict.update({"result": "error"})
@@ -171,20 +171,14 @@ class PostingHandler:
             result_dict.update({"result": "error"})
             result_dict.update({"error_message": str(e)})
             return jsonify(result_dict),400
-      
         
-           
+    # Endpoint to retrieve all posted items
+    @posting_bp.route("/all", methods=['GET'])
+    def get_all_postings():
+        result_dict = {"result": None}
 
-            
-        
+        all_postings = [dataclasses.asdict(posting) for posting in post_manager.get_all_postings()]
+
+        result_dict = {"result": "success", "listings": all_postings}
+        return jsonify(result_dict), 200
     
-
-        
-        
-            
-        
-        
-            
-
-   
-   

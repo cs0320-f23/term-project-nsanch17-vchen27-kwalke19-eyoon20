@@ -14,6 +14,7 @@ import NavBar from "./components/NavBar/NavBar";
 import { useEffect, useState } from "react";
 import { UserProvider } from "./components/UserProfile/UserContext";
 import "./style/NavBar.css";
+import EditListing from "./pages/EditListing";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -49,6 +50,7 @@ function App() {
             <Route path="/messaging" element={<Messaging />} />
             <Route path="/single-item/" element={<SingleItemDisplay />} />
             <Route path="/create-new-listing" element={<CreateNewListing />} />
+            <Route path="/edit-listing/:id" element={<EditListing />} />
             <Route
               path="/signup-login"
               element={<Signup onLogin={handleLogin} />}

@@ -29,7 +29,6 @@ class Posting:
     date: str
     status: Status 
     picture:str
-    additional_pics:list()
     trackers: list()
 
     def dict(self):
@@ -42,8 +41,8 @@ class PostingManager:
         self.postings = {}
         
 
-    def create_posting(self, item_name, seller_name, price, description, qty, big_pic, pics):
-        posting = Posting(item_name, seller_name, price, description, qty, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), Status.FOR_SALE, big_pic, [pic for pic in pics.split(",")], [])
+    def create_posting(self, item_name, seller_name, price, description, qty, big_pic):
+        posting = Posting(item_name, seller_name, price, description, qty, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), Status.FOR_SALE, big_pic, [])
         key = f"{item_name}_{seller_name}"
 
         if key in self.postings:
@@ -84,6 +83,9 @@ class PostingManager:
                 
                     return mod_posting
                 
+    def get_all_postings(self):
+        return list(self.postings.values())
+                
     def buy_posting(self,buyer_name,key):
         if key not in self.postings:
             raise ItemNotFoundException( f"Item with key {key} not found")
@@ -109,7 +111,3 @@ class PostingManager:
                 return self.postings[key]
             except KeyError:
                 UserDoesNotExistException("Cannot find user to purchase posting.")
-
-
-
-

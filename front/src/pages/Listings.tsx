@@ -1,22 +1,56 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Posting } from "../types";
 import "../style/Listings.css";
 import NavBar from "../components/NavBar/NavBar";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import EditListing from "./EditListing";
 
-interface ListingsProps {
-  listings: Posting[];
-}
+interface ListingsProps {}
 
-const Listings: React.FC<ListingsProps> = ({ listings }) => {
-  // ...other code
+const Listings: React.FC<ListingsProps> = ({}) => {
+  const [listings, setListings] = useState<Posting[]>([]);
+  const navigate = useNavigate();
 
-  const handleEditListing = (id: string) => {
-    // logic to handle editing a listing
+  useEffect(() => {
+    // Fetch listings from the server when the component mounts
+    const fetchListings = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/posting/all");
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          setListings(data.listings);
+        } else {
+          throw new Error("Failed to fetch listings");
+        }
+      } catch (error) {
+        console.error("Error fetching listings:", error);
+      }
+    };
+
+    fetchListings();
+  }, []); // The empty dependency array ensures that this effect runs only once when the component mounts
+
+  console.log(listings);
+
+  const handleEditListing = (item_name: string) => {
+    // Find the listing object based on item_name
+    const originalListing = listings.find(
+      (listing) => listing.name === item_name
+    );
+    console.log;
+
+    // Use React Router's navigate to change the route
+    if (originalListing) {
+      navigate(`/edit-listing/${originalListing.name}`);
+    } else {
+      // Handle the case where the listing is not found
+      console.error("Listing not found");
+    }
   };
 
-  const handleDeleteListing = (id: string) => {
-    // logic to handle deleting a listing
-  };
+  const handleDeleteListing = (item_name: string) => {};
 
   return (
     <div>
@@ -41,7 +75,7 @@ const Listings: React.FC<ListingsProps> = ({ listings }) => {
                 <button className="view-listing-btn">View Listing</button>
                 <button
                   className="edit-listing-btn"
-                  onClick={() => handleEditListing(listing.id)}
+                  onClick={() => handleEditListing(listing.name)}
                 >
                   Edit Listing
                 </button>
