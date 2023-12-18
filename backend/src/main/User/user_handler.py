@@ -19,7 +19,9 @@ class UserHandler:
             username = request.args.get("username")
             email = request.args.get("email")
             number = request.args.get("number") 
+            bio = request.args.get("bio") 
             profile = request.args.get("profile")
+            password = request.args.get("password")
         
 
         elif request.method == 'POST':
