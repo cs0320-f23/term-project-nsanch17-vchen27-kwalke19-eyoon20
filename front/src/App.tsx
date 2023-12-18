@@ -50,7 +50,12 @@ function App() {
             <Route path="/messaging" element={<Messaging />} />
             <Route path="/single-item/" element={<SingleItemDisplay />} />
             <Route path="/create-new-listing" element={<CreateNewListing />} />
-            <Route path="/edit-listing/:id" element={<EditListing />} />
+            <Route
+              path="/edit-listing/:item_name"
+              element={
+                <EditListing onCancel={() => {}} onPublish={(status) => {}} />
+              }
+            />
             <Route
               path="/signup-login"
               element={<Signup onLogin={handleLogin} />}

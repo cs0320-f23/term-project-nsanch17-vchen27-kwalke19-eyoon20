@@ -32,6 +32,19 @@
   height: 150px;
 }
 
+.cancel-button {
+  background-color: #ccc; /* Light gray */
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background-color: #bbb;
+}
+
 .publish-button {
   background-color: #4caf50; /* Green */
   color: white;
@@ -39,9 +52,27 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  float: right; /* Align to the bottom right */
 }
 
 .publish-button:hover {
   background-color: #45a049;
+}
+
+.error-message {
+  color: #ff0000; /* Red */
+  margin-top: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel-button {
+  background-color: #ccc;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }

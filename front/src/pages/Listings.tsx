@@ -34,18 +34,16 @@ const Listings: React.FC<ListingsProps> = ({}) => {
 
   console.log(listings);
 
-  const handleEditListing = (item_name: string) => {
-    // Find the listing object based on item_name
+  const handleEditListing = (itemName: string) => {
     const originalListing = listings.find(
-      (listing) => listing.name === item_name
+      (listing) => listing.name === itemName
     );
-    console.log;
 
-    // Use React Router's navigate to change the route
     if (originalListing) {
-      navigate(`/edit-listing/${originalListing.name}`);
+      navigate(`/edit-listing/${originalListing.name}`, {
+        state: { originalListing }, // Pass the originalListing as part of state
+      });
     } else {
-      // Handle the case where the listing is not found
       console.error("Listing not found");
     }
   };
@@ -66,7 +64,13 @@ const Listings: React.FC<ListingsProps> = ({}) => {
             <div className="listing-details">
               <h2>{listing.name}</h2>
               <p>{listing.description}</p>
-              <span>${listing.price.toFixed(2)}</span>
+              <span>
+                $
+                {typeof listing.price === "number"
+                  ? listing.price.toFixed(2)
+                  : listing.price}
+              </span>
+
               <span>Quantity: {listing.qty}</span>
               <div className="listing-date">
                 Posted on: {new Date(listing.date).toLocaleDateString()}

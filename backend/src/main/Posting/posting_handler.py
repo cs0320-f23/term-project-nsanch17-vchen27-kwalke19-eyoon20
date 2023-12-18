@@ -123,10 +123,11 @@ class PostingHandler:
             item_name= data.get("item_name")
             seller = data.get("seller_name")
             attribute = data.get("attribute")
-            new_value = data.args.get("new_value")
+            new_value = data.get("new_value")
 
 
         if not item_name or not seller:
+            print("no item_name or seller")
             result_dict.update({"result": "error"})
             result_dict.update({"error_message": "Missing item_key parameter"})
             return jsonify(result_dict), 400
@@ -139,6 +140,7 @@ class PostingHandler:
             result_dict.update({"message": "Item updated successfully", "updated_item": mod_item})
             return jsonify(result_dict),200
         except (ItemNotFoundException, PermissionError) as e:
+            print("key not found.")
             result_dict.update({"result": "error"})
             result_dict.update({"error_message": str(e)})
             return jsonify(result_dict),400

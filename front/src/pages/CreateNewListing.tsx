@@ -17,11 +17,17 @@ const CreateNewListing: React.FC<CreateNewListingProps> = ({ onPublish }) => {
   const [date, setDate] = useState("");
   const [username, setUsername] = useState("");
   const [big_pic, setPic] = useState(Model);
+  const [photo, setPhoto] = useState<File | null>(null);
   const [error, setError] = useState("");
 
   // Initialize the navigate function
   const navigate = useNavigate();
   const { user } = useUser();
+
+  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files && e.target.files[0];
+    setPhoto(selectedFile);
+  };
 
   const handlePublish = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
