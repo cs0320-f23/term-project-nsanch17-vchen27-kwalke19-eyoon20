@@ -12,6 +12,7 @@ import Signup from "./components/SIgnUp/Signup";
 import NavBar from "./components/NavBar/NavBar";
 import { useEffect, useState } from "react";
 import NewWishlistConfirmation from "./pages/NewWishlistConfirmation";
+import { UserProvider } from "./components/UserProfile/UserContext";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -34,38 +35,40 @@ function App() {
   };
 
   return (
-    <Router>
-      <div className="App">
-        <NavBar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/public" element={<ProfilePage />} />
-          <Route path="/single-item/" element={<SingleItemDisplay />} />
-          <Route path="/create-new-listing" element={<CreateNewListing />} />
-          <Route path="/single-item/:index" element={<SingleItemDisplay />} />
+    <UserProvider>
+      <Router>
+        <div className="App">
+          <NavBar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/public" element={<ProfilePage />} />
+            <Route path="/single-item/" element={<SingleItemDisplay />} />
+            <Route path="/create-new-listing" element={<CreateNewListing />} />
+            <Route path="/single-item/:index" element={<SingleItemDisplay />} />
 
-          <Route
-            path="/signup-login"
-            element={<Signup onLogin={handleLogin} />}
-          />
-          <Route
-            path="/new-listing-confirmation"
-            element={<NewListingConfirmation />}
-          />
-          <Route
-            path="/new-wishlist-confirmation"
-            element={<NewWishlistConfirmation />}
-          />
-          <Route
-            path="/listings"
-            element={<Listings listings={mockListings} />}
-          />
+            <Route
+              path="/signup-login"
+              element={<Signup onLogin={handleLogin} />}
+            />
+            <Route
+              path="/new-listing-confirmation"
+              element={<NewListingConfirmation />}
+            />
+            <Route
+              path="/new-wishlist-confirmation"
+              element={<NewWishlistConfirmation />}
+            />
+            <Route
+              path="/listings"
+              element={<Listings listings={mockListings} />}
+            />
 
-          {/* Add additional routes as needed */}
-        </Routes>
-      </div>
-    </Router>
+            {/* Add additional routes as needed */}
+          </Routes>
+        </div>
+      </Router>
+    </UserProvider>
   );
 }
 

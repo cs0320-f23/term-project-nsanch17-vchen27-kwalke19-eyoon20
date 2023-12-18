@@ -60,9 +60,14 @@ class UserHandler:
             return jsonify(result_dict), 400
 
         try:
-            user = user_manager.get_user_by_email(email)  # Assuming you have a method to find users by email
+            user = user_manager.get_user_by_email(email)
             if check_password_hash(user.password_hash, password):
-                result_dict.update({"result": "success", "message": "Login successful"})
+                # Convert the user object to a dictionary and return it
+                user_data = dataclasses.asdict(user)
+                # Remove sensitive data like password hash
+                user_data.pop('password_hash', None)
+                result_dict.update({"result": "success", "message": "Login successful", "user": user_data})
+                print(user_data)
                 return jsonify(result_dict), 200
             else:
                 result_dict.update({"result": "error", "error_message": "Invalid password"})
@@ -70,7 +75,6 @@ class UserHandler:
         except UserDoesNotExistException:
             result_dict.update({"result": "error", "error_message": "User not found"})
             return jsonify(result_dict), 404
-
     
     @user_bp.route("/data")
     def get_users():

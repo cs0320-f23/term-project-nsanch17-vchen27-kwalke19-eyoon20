@@ -7,6 +7,7 @@ import PhoneIcon from "../../assets/phone.png";
 import EmailIcon from "../../assets/email.png";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "./UserContext";
 
 interface ProfileStatisticsProps {
   profilePic: string;
@@ -16,9 +17,9 @@ interface ProfileStatisticsProps {
 
 const ProfileStatistics: React.FC<ProfileStatisticsProps> = ({
   profilePic,
-  username,
   bio,
 }) => {
+  const { user } = useUser();
   const [showBuyerReview, setShowBuyerReview] = useState(false); //
   const navigate = useNavigate();
   const handlePublicProfile = () => {
@@ -52,12 +53,11 @@ const ProfileStatistics: React.FC<ProfileStatisticsProps> = ({
             <div className="outline-for-followers" />
           </div>
         </div>
-        <img className="profile-picture" src={profilePic} />
-        <div className="username">{username}</div>
-        <div className="user-id">User ID: XXXXXXXXX</div>
+        <img className="profile-picture" src={user?.profile} />
+        <div className="username">{user?.username}</div>
         <Stars className="user-stars" rating="five" />
         <div className="num-reviews">1 Review</div>
-        <div className="member-date">Member since 2023</div>
+        <div className="member-date">Member since </div>
         <button>
           <img
             className="icon-email-outline"

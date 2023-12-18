@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../style/Signup.css";
 import defaultProfileUrl from "../../assets/default_profile.jpeg";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../UserProfile/UserContext"; // Adjust the path as needed
 
 interface SignupProps {
   onLogin: (status: boolean) => void;
@@ -9,6 +10,7 @@ interface SignupProps {
 
 const Signup: React.FC<SignupProps> = ({ onLogin }) => {
   const navigate = useNavigate();
+  const { setUser } = useUser();
   const [isSignup, setIsSignup] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,7 +19,7 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
   const [number, setNumber] = useState("");
   const [username, setUsername] = useState("");
   const [profileUrl, setProfileUrl] = useState(defaultProfileUrl);
-  const [error, setError] = useState(""); // State to store the error message
+  const [error, setError] = useState("");
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -60,9 +62,8 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
           );
         }
 
-        console.log("Signup successful:", data);
-        onLogin(true);
-        navigate("/");
+        setIsSignup(false); // Switch to login form
+        setError("Signup successful. Please login.");
       } catch (error) {
         if (error instanceof Error) {
           console.error("Signup failed:", error.message);
@@ -73,17 +74,13 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
         }
       }
     } else {
-      // Login logic using email
+      // Login logic
       if (!email || !password) {
         setError("Please enter both email and password");
         return;
       }
 
-      const loginData = {
-        email,
-        password,
-      };
-
+      const loginData = { email, password };
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -103,7 +100,16 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
           );
         }
 
-        console.log("Login successful:", data);
+        setUser({
+          first_name: firstName,
+          last_name: lastName,
+          username: data.username, // Assuming the response contains the username
+          email: email,
+          number: number,
+          profile: profileUrl,
+          password: password,
+        });
+
         onLogin(true);
         navigate("/");
       } catch (error) {
