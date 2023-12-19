@@ -36,6 +36,11 @@ function App() {
     localStorage.setItem("isLoggedIn", "false");
   };
 
+  const handlePublish = (status: boolean) => {
+    // Handle the publish status as needed
+    console.log("Publish status:", status);
+  };
+
   return (
     <UserProvider>
       <Router>
@@ -49,7 +54,10 @@ function App() {
             <Route path="/public" element={<ProfilePage />} />
             <Route path="/messaging" element={<Messaging />} />
             <Route path="/single-item/" element={<SingleItemDisplay />} />
-            <Route path="/create-new-listing" element={<CreateNewListing />} />
+            <Route
+              path="/create-new-listing"
+              element={<CreateNewListing onPublish={handlePublish} />}
+            />
             <Route
               path="/edit-listing/:item_name"
               element={

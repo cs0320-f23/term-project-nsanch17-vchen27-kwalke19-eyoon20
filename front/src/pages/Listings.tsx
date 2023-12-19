@@ -57,7 +57,7 @@ const Listings: React.FC<ListingsProps> = ({}) => {
         {listings.map((listing) => (
           <div key={listing.id} className="listing-item">
             <img
-              src={listing.coverPhoto}
+              src={`http://127.0.0.1:8000/posting/posting_pictures/${listing.picture}`} // Assuming server serves static files at this path
               alt={listing.name}
               className="listing-cover-photo"
             />

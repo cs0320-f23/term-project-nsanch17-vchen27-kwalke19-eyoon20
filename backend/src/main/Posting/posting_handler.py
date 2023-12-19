@@ -7,70 +7,62 @@ from main.User.user_manager import UserDoesNotExistException
 from main.User.user_manager import UserExistsException
 from main.Posting.post_manager import PostingExistsException
 from main.Posting.post_manager import ItemNotFoundException
-
-
-
-
+from werkzeug.datastructures import FileStorage
+from werkzeug.utils import secure_filename
+import os
+from flask import send_from_directory
 
 post_manager = PostingManager()
 posting_bp = Blueprint('posting', __name__)
 class PostingHandler:
      
     # @staticmethod
-    @posting_bp.route("/create",methods=['GET', 'POST'])
+    @posting_bp.route("/create", methods=['POST'])
     def make_posting():
-
-        if request.method == 'GET':
-            item_name = request.args.get("item_name")
-            seller_name = request.args.get("seller_name")
-            price = request.args.get("price")
-            description = request.args.get("description")
-            qty = request.args.get("qty")
-            big_pic = request.args.get("big_pic")
-
-        elif request.method == 'POST':
-            data = request.get_json()
-            
-            item_name = data.get("item_name")
-            seller_name = data.get("seller_name")
-            price = data.get("price")
-            description = data.get("description")
-            qty = data.get("qty")
-            big_pic = data.get("big_pic")
-
         result_dict = {}
+
+        item_name = request.form.get("item_name")
+        seller_name = request.form.get("seller_name")
+        price = request.form.get("price")
+        description = request.form.get("description")
+        qty = request.form.get("qty")
         
+        # Handle post image upload
+        big_pic = request.files.get("big_pic")
+
         if not item_name or not seller_name or not price or not description or not qty:
             result_dict.update({"result": "error"})
             result_dict.update({"error_message": "Missing parameters. Please give a valid title, price, description, and seller username."})
             return jsonify(result_dict), 400
-        
-        print(result_dict)
 
         try:
             price = float(price)
             qty = int(qty)
-        except (NameError, TypeError, ValueError):
+        except (ValueError, TypeError):
             result_dict.update({"result": "error"})
             result_dict.update({"error_message": "Invalid values given. Please use valid numbers for price and quantity."})
-            return jsonify(result_dict),400
-
-   
+            return jsonify(result_dict), 400
 
         try:
-            posting = post_manager.create_posting(item_name, seller_name, price,description, qty, big_pic)
+            # Configure the upload folder path
+            upload_folder = '/Users/vickychen/Desktop/cs32/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/Posting/posting_pics'
+            os.makedirs(upload_folder, exist_ok=True)  # Create the folder if it doesn't exist
 
+            if big_pic:
+                filename = secure_filename(big_pic.filename)
+                save_path = os.path.join(upload_folder, filename)
+                big_pic.save(save_path)
+                picture = filename
+
+            posting = post_manager.create_posting(item_name, seller_name, price, description, qty, picture)
         except (PostingExistsException, UserDoesNotExistException) as e:
             result_dict.update({"result": "error"})
             result_dict.update({"error_message": str(e)})
             return jsonify(result_dict), 400
-       
-       
-        
-        
+
         result_dict = {"item": dataclasses.asdict(posting)}
         result_dict.update({"result": "success"})
-        
+
         return jsonify(result_dict), 200
 
     # Endpoint for deleting an item
@@ -183,4 +175,10 @@ class PostingHandler:
 
         result_dict = {"result": "success", "listings": all_postings}
         return jsonify(result_dict), 200
+    
+    @posting_bp.route('/posting_pictures/<filename>')
+    def posting_pictures(filename):
+        print("Requested file:", filename)
+        return send_from_directory("/Users/vickychen/Desktop/cs32/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/Posting/posting_pics", filename)
+
     

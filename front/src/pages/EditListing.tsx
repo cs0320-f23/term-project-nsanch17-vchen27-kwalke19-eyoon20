@@ -29,6 +29,11 @@ const EditListing: React.FC<EditListingProps> = ({ onCancel, onPublish }) => {
 
   console.log("edit listing");
 
+  const handleCancel = () => {
+    // Navigate back to the listings page without modifications
+    navigate("/listings");
+  };
+
   const handlePublish = async (
     event:
       | React.FormEvent<HTMLFormElement>
@@ -84,30 +89,21 @@ const EditListing: React.FC<EditListingProps> = ({ onCancel, onPublish }) => {
       <div className="edit-listing-container">
         <h1>Edit Listing</h1>
         <div className="form-container">
-          {/* Input fields */}
-          <input
-            type="text"
-            placeholder="Title of Listing"
-            value={item_name}
-            onChange={(e) => setItem(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Price (i.e. 54.99, 5.00)"
-            value={price}
-            onChange={(e) => setPrice(parseFloat(e.target.value))}
-          />
-          <input
-            type="number"
-            placeholder="Quantity"
-            value={qty}
-            onChange={(e) => setQuantity(e.target.value)}
-          />
-          <textarea
-            placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
+          {/* Display fields as text */}
+          <div>
+            <strong>Item Name:</strong> {originalListing.name}
+          </div>
+          <div>
+            <strong>Price:</strong> {originalListing.price}
+          </div>
+          <div>
+            <strong>Quantity:</strong> {originalListing.qty}
+          </div>
+          <div>
+            <strong>Description:</strong> {originalListing.description}
+          </div>
+
+          {/* Input fields for modification */}
           <input
             type="text"
             placeholder="Attribute to Edit"
@@ -120,17 +116,24 @@ const EditListing: React.FC<EditListingProps> = ({ onCancel, onPublish }) => {
             value={new_value}
             onChange={(e) => setNewValue(e.target.value)}
           />
-          <button type="button" onClick={onCancel} className="cancel-button">
-            Cancel
-          </button>
-          <button
-            type="button"
-            onClick={handlePublish}
-            className="publish-button"
-          >
-            Save Changes
-          </button>
-          {/* Error message */}
+
+          {/* Buttons and Error message */}
+          <div className="button-container">
+            <button
+              type="button"
+              onClick={handleCancel}
+              className="cancel-button"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={handlePublish}
+              className="publish-button"
+            >
+              Save Changes
+            </button>
+          </div>
           {error && <p className="error-message">{error}</p>}
         </div>
       </div>

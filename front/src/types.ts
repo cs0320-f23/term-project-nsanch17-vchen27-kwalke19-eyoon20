@@ -22,7 +22,7 @@ export type Posting = {
   qty: number;
   date: Date;
   link: string;
-  coverPhoto: string;
+  picture: string;
   additionalPhotos: string[];
 };
 

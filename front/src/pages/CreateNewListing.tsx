@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../style/CreateNewListing.css";
-import NavBar from "../components/NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../components/UserProfile/UserContext";
 import Model from "../assets/model-placeholder.png";
@@ -25,6 +24,7 @@ const CreateNewListing: React.FC<CreateNewListingProps> = ({ onPublish }) => {
   const { user } = useUser();
 
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("changing photo");
     const selectedFile = e.target.files && e.target.files[0];
     setPhoto(selectedFile);
   };
@@ -35,22 +35,18 @@ const CreateNewListing: React.FC<CreateNewListingProps> = ({ onPublish }) => {
 
     const sellerName = user?.username || "Anonymous";
 
-    const newListing = {
-      item_name,
-      seller_name: sellerName,
-      price,
-      description,
-      qty,
-      big_pic,
-    };
+    const formData = new FormData();
+    formData.append("item_name", item_name);
+    formData.append("seller_name", sellerName);
+    formData.append("price", price);
+    formData.append("description", description);
+    formData.append("qty", qty);
+    formData.append("big_pic", photo || "");
 
     const requestOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newListing),
+      body: formData,
     };
-
-    console.log(requestOptions);
 
     try {
       const response = await fetch(
@@ -58,7 +54,6 @@ const CreateNewListing: React.FC<CreateNewListingProps> = ({ onPublish }) => {
         requestOptions
       );
       const data = await response.json();
-      console.log(data);
 
       if (!response.ok) {
         throw new Error(
@@ -68,6 +63,7 @@ const CreateNewListing: React.FC<CreateNewListingProps> = ({ onPublish }) => {
 
       console.log("Publish successful:", data);
       onPublish(true);
+      navigate("/new-listing-confirmation");
     } catch (error) {
       if (error instanceof Error) {
         console.error("Publish failed:", error.message);
@@ -77,10 +73,6 @@ const CreateNewListing: React.FC<CreateNewListingProps> = ({ onPublish }) => {
         setError("An unexpected error occurred.");
       }
     }
-
-    // Here you will handle the submission of the new listing
-    // Typically, this would involve setting up a POST request to your server
-    navigate("/new-listing-confirmation");
   };
 
   return (
@@ -89,7 +81,7 @@ const CreateNewListing: React.FC<CreateNewListingProps> = ({ onPublish }) => {
         <h1>Create A New Listing</h1>
         <div className="form-container">
           <div className="photo-upload">
-            <button>Add Photos</button>
+            <input type="file" accept="image/*" onChange={handlePhotoChange} />
             {/* Implement photo upload functionality here */}
           </div>
           <input
