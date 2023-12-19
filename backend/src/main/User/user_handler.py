@@ -16,6 +16,7 @@ class UserHandler:
     def create_user_profile():
         result_dict = {}
     
+        
         if request.method == 'GET':
             first_name = request.args.get("first_name")
             last_name = request.args.get("last_name")
@@ -23,6 +24,9 @@ class UserHandler:
             email = request.args.get("email")
             number = request.args.get("number") 
             profile_image = request.args.get("profile_image")
+            bio = request.args.get("bio")
+            password = request.args.get("password")
+            profile = request.args.get("profile")
         
 
         elif request.method == 'POST':

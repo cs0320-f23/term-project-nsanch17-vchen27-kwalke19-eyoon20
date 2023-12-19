@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import "../style/Home/RecommendedProducts.css";
 import { useNavigate } from "react-router-dom";
-import mockRecommendations from "../mocks/mockRecommendations.ts";
 import { useUser } from "./UserProfile/UserContext.tsx";
+import { Posting } from "../types.ts";
 
 const RecommendedProductsContainer: React.FC<{
   selectedPriceRange: string | null;
@@ -20,16 +20,18 @@ const RecommendedProductsContainer: React.FC<{
           `http://127.0.0.1:8000/recommendations/generate?user=${user?.username}`
         );
 
-        console.log(selectedPriceRange);
+  
 
         if (response.ok) {
           const data = await response.json();
 
           const filteredRecommendations = data.recommendations.filter(
-            (posting) => {
+            (posting : Posting) => {
               if (!selectedPriceRange) {
+                console.log("yea")
                 return true;
               }
+              console.log(selectedPriceRange)
 
               if (selectedPriceRange === "$0-$25") {
                 console.log(true);
@@ -56,7 +58,7 @@ const RecommendedProductsContainer: React.FC<{
     if (user) {
       fetchRecommendations();
     }
-  }, [user]);
+  }, [user,selectedPriceRange]);
 
   return (
     <div className="products">

@@ -1,0 +1,15 @@
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px; /* Adjust the space between grid items */
+  padding: 20px; /* Add padding around the grid */
+  justify-content: center;
+  align-items: center;
+}
+
+h1{
+    font-size: 30px;
+    font-weight: 300;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}

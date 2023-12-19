@@ -13,6 +13,7 @@ import NavBar from "./components/NavBar/NavBar";
 import { useEffect, useState } from "react";
 import NewWishlistConfirmation from "./pages/NewWishlistConfirmation";
 import { UserProvider } from "./components/UserProfile/UserContext";
+import SearchResults from "./pages/SearchResults";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -64,8 +65,11 @@ function App() {
               path="/listings"
               element={<Listings listings={mockListings} />}
             />
-
-            {/* Add additional routes as needed */}
+            <Route
+              path="/search-results"
+              element={<SearchResults />}
+            />
+           
           </Routes>
         </div>
       </Router>
