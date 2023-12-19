@@ -12,10 +12,10 @@ class SearchManager:
         search_results = {}
      
 
-        if type == "posting":
+        if type.lower() == "posting":
             database = post_manager.postings
             is_users = False
-        elif type == "user":
+        elif type.lower() == "user":
             database = user_manager.users
             is_users = True
         else:
@@ -25,14 +25,14 @@ class SearchManager:
         # Rank items based on relevance to the search query
         for item_key, data in database.items():
             if not is_users:
-                name = dataclasses.asdict(data)["name"]
-                description = dataclasses.asdict(data)["description"]
+                name = dataclasses.asdict(data)["name"].lower()
+                description = dataclasses.asdict(data)["description"].lower()
             else:
                 name = dataclasses.asdict(data)["username"]
             
             score = 0
             
-            for term in query.split(" "):
+            for term in query.lower().split(" "):
                 
             # Calculate a relevance score (higher score indicates higher relevance)
                 # if term.lower() in item_name.lower() or term.lower() in description.lower():
@@ -53,4 +53,8 @@ class SearchManager:
                 search_results[item_key] = {"item": data, "score": score}
 
         # Sort items based on the score in descending order
-        return dict(sorted(search_results.items(), key=lambda x: x[1]["score"], reverse=True))
+        search_sorted = dict(sorted(search_results.items(), key=lambda x: x[1]["score"], reverse=True))
+        print( [post_manager.postings[posting] for posting in search_sorted])
+        return [post_manager.postings[posting] for posting in search_sorted]
+        
+       

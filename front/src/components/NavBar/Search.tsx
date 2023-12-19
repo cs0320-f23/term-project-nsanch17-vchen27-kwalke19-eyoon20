@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import SearchHistory from './SearchHistory';
+import { useNavigate } from "react-router-dom";
+
 
 interface SearchProps {
   onSearch: (keyword: string) => void;
@@ -11,6 +13,8 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
   const [showHistory, setShowHistory] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     
@@ -38,6 +42,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
       onSearch(searchTerm);
       setSearchHistory([searchTerm, ...searchHistory.slice(0, 4)]);
       setSearchTerm('');
+      navigate(`/search-results/${searchTerm}`);
     }
   };
 

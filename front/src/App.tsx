@@ -66,7 +66,7 @@ function App() {
               element={<Listings listings={mockListings} />}
             />
             <Route
-              path="/search-results"
+              path="/search-results/:searchTerm"
               element={<SearchResults />}
             />
            

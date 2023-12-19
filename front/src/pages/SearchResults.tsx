@@ -33,11 +33,11 @@ const SearchResults: React.FC = () => {
 
           
            setSearch((prevResults) => [
-             ...prevResults,
+            //  ...prevResults,
              ...newSearchResults,
            ]);
 
-          setSearch(data.search_results);
+          
        
         } else {
           console.error("Failed to fetch search results.");
