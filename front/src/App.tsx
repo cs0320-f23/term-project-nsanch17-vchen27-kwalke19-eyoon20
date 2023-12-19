@@ -53,7 +53,10 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/public" element={<ProfilePage />} />
             <Route path="/messaging" element={<Messaging />} />
-            <Route path="/single-item/" element={<SingleItemDisplay />} />
+            <Route
+              path="/single-item/:item_name"
+              element={<SingleItemDisplay />}
+            />
             <Route
               path="/create-new-listing"
               element={<CreateNewListing onPublish={handlePublish} />}

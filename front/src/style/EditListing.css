@@ -32,47 +32,33 @@
   height: 150px;
 }
 
-.cancel-button {
-  background-color: #ccc; /* Light gray */
-  color: black;
-  padding: 10px 20px;
+.button-container {
+  display: flex;
+  gap: 10px; /* Add space between buttons */
+  justify-content: flex-end; /* Align buttons to the end of the container */
+  align-items: flex-end; /* Align buttons vertically */
+  margin-top: 20px; /* Add margin to separate buttons from the form elements */
+}
+
+.cancel-button,
+.publish-button {
+  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  flex: 1; /* Make both buttons take equal width */
+  height: 40px; /* Set the height for both buttons */
 }
 
-.cancel-button:hover {
+.cancel-button:hover,
+.publish-button:hover {
   background-color: #bbb;
+}
+
+.cancel-button {
+  background-color: #ccc; /* Light gray */
 }
 
 .publish-button {
   background-color: #4caf50; /* Green */
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.publish-button:hover {
-  background-color: #45a049;
-}
-
-.error-message {
-  color: #ff0000; /* Red */
-  margin-top: 10px;
-}
-
-.button-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.cancel-button {
-  background-color: #ccc;
-  color: black;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 }

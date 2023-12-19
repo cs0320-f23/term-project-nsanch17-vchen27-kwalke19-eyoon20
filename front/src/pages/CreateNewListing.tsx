@@ -29,11 +29,16 @@ const CreateNewListing: React.FC<CreateNewListingProps> = ({ onPublish }) => {
     setPhoto(selectedFile);
   };
 
-  const handlePublish = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handlePublish = async (
+    event:
+      | React.FormEvent<HTMLFormElement>
+      | React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
     setError("");
 
     const sellerName = user?.username || "Anonymous";
+    console.log(sellerName);
 
     const formData = new FormData();
     formData.append("item_name", item_name);
@@ -107,11 +112,13 @@ const CreateNewListing: React.FC<CreateNewListingProps> = ({ onPublish }) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
-          <form onSubmit={handlePublish} className="form-container">
-            <button type="submit" className="publish-button">
-              Publish
-            </button>
-          </form>
+          <button
+            type="button"
+            onClick={handlePublish}
+            className="publish-button"
+          >
+            Publish
+          </button>
         </div>
       </div>
     </div>

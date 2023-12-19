@@ -5,12 +5,15 @@ import NavBar from "../components/NavBar/NavBar";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import EditListing from "./EditListing";
+import DeleteConfirmationPopup from "../components/Listing/DeleteConfirmationPopup";
 
 interface ListingsProps {}
 
 const Listings: React.FC<ListingsProps> = ({}) => {
   const [listings, setListings] = useState<Posting[]>([]);
   const navigate = useNavigate();
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<Posting | null>(null);
 
   useEffect(() => {
     // Fetch listings from the server when the component mounts
@@ -34,6 +37,22 @@ const Listings: React.FC<ListingsProps> = ({}) => {
 
   console.log(listings);
 
+  const handleViewListing = (item_name: string) => {
+    console.log(item_name);
+    const selectedListing = listings.find(
+      (listing) => listing.name === item_name
+    );
+
+    if (selectedListing) {
+      // Navigate to SingleItemDisplay and pass the selectedListing information
+      navigate(`/single-item/${selectedListing.name}`, {
+        state: { selectedListing },
+      });
+    } else {
+      console.error("Listing not found");
+    }
+  };
+
   const handleEditListing = (itemName: string) => {
     const originalListing = listings.find(
       (listing) => listing.name === itemName
@@ -48,7 +67,62 @@ const Listings: React.FC<ListingsProps> = ({}) => {
     }
   };
 
-  const handleDeleteListing = (item_name: string) => {};
+  const deleteListingOnServer = async (
+    item_name: string,
+    seller_name: string
+  ) => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ item_name, seller_name }),
+    };
+
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:8000/posting/delete`,
+        requestOptions
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete listing");
+      }
+
+      const data = await response.json();
+      console.log(data);
+
+      // Return the deleted item (if needed)
+      return data.deleted_item;
+    } catch (error) {
+      console.error("Delete failed:", error);
+      throw error;
+    }
+  };
+
+  const handleDeleteListing = async (itemId: string) => {
+    const selectedListing = listings.find((listing) => listing.id === itemId);
+
+    if (selectedListing) {
+      try {
+        await deleteListingOnServer(
+          selectedListing.name,
+          selectedListing.seller.toString()
+        );
+
+        // Filter out the deleted item from the state
+        const updatedListings = listings.filter(
+          (listing) => listing.id !== selectedListing.id
+        );
+
+        // Update the state to re-render the component without the deleted item
+        setListings(updatedListings);
+      } catch (error) {
+        console.error("Delete failed:", error);
+        // Handle deletion failure if needed
+      }
+    } else {
+      console.error("Listing not found");
+    }
+  };
 
   return (
     <div>
@@ -76,7 +150,12 @@ const Listings: React.FC<ListingsProps> = ({}) => {
                 Posted on: {new Date(listing.date).toLocaleDateString()}
               </div>
               <div className="listing-buttons">
-                <button className="view-listing-btn">View Listing</button>
+                <button
+                  className="view-listing-btn"
+                  onClick={() => handleViewListing(listing.name)}
+                >
+                  View Listing
+                </button>
                 <button
                   className="edit-listing-btn"
                   onClick={() => handleEditListing(listing.name)}
