@@ -29,6 +29,9 @@ class UserManager:
     def __init__(self):
         self.users = {}
 
+    def is_username_available(self, username: str) -> bool:
+        return username not in self.users
+
     def get_user_by_username(self, username: str):
         if username in self.users:
             return self.users[username]

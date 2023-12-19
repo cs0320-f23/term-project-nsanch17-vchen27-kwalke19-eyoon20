@@ -14,7 +14,7 @@ export interface User {
   number: string;
   profile: string;
   bio: string;
-  password: string;
+  password?: string;
 }
 
 interface UserContextType {

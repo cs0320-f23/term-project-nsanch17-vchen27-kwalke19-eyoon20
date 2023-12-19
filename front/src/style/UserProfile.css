@@ -4,7 +4,7 @@
   align-items: center;
   min-height: 100vh;
   padding: 50px;
-  background: #f7fafc;
+  background: #eef2f7; /* Lighter background for a modern feel */
 }
 
 .profile-settings {
@@ -13,15 +13,18 @@
   background: #fff;
   padding: 40px;
   border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soften the box shadow */
+  border: 1px solid #e2e8f0; /* Adding a subtle border */
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .title {
-  color: #2d3748;
+  color: #0c4f35;
   margin-bottom: 30px;
+  font-size: 24px; /* Larger font size for title */
+  text-shadow: 1px 1px 2px #cbd5e0; /* Subtle text shadow for depth */
 }
 
 .form {
@@ -37,6 +40,8 @@
   background: #edf2f7;
   border-radius: 5px;
   padding: 10px;
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05); /* Inner shadow for depth */
+  border: 1px solid #cbd5e0; /* Subtle border */
 }
 
 .input {
@@ -45,22 +50,29 @@
   border: none;
   background: transparent;
   outline: none;
+  transition: all 0.3s ease; /* Smooth transition for interactions */
+}
+
+.input:focus {
+  box-shadow: 0 0 0 2px #63b3ed; /* Focus effect */
 }
 
 .input-icon {
   margin-right: 10px;
-  color: #a0aec0;
+  color: #63b3ed;
+  font-size: 1.2em; /* Slightly larger icons */
 }
 
 .textarea {
   width: 100%;
   padding: 10px;
   border-radius: 5px;
-  border: none;
+  border: 1px solid #cbd5e0;
   outline: none;
   height: 120px;
   resize: none;
   background: #edf2f7;
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
 }
 
 .button {
@@ -70,7 +82,7 @@
   color: #fff;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -83,8 +95,10 @@
   box-shadow: 0 4px 14px rgba(76, 81, 191, 0.3);
 }
 
-.update-button:hover {
+.update-button:hover,
+.update-button:focus {
   background-color: #434190;
+  transform: translateY(-2px); /* Slight lift effect */
 }
 
 .view-public-button {
@@ -92,6 +106,13 @@
   box-shadow: 0 4px 14px rgba(104, 211, 145, 0.3);
 }
 
-.view-public-button:hover {
+.view-public-button:hover,
+.view-public-button:focus {
   background-color: #4ca67a;
+  transform: translateY(-2px);
+}
+
+.input-icon {
+  color: #afe1bc;
+  margin-right: 10px;
 }

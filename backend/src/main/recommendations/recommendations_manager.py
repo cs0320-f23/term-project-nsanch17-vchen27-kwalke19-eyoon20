@@ -1,12 +1,10 @@
 from main.User.user_handler import user_manager
 from main.Posting.posting_handler import post_manager
 import dataclasses
-from scipy import sparse
 import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
 
 
 class RecommendationsManager():

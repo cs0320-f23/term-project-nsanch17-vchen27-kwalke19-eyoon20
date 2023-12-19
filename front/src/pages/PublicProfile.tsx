@@ -6,13 +6,21 @@ import defaultProfile from "../assets/default_profile.jpeg";
 
 const PublicProfile: React.FC = () => {
   const { user } = useUser();
-  const email = user?.email; // User's email address
+  const email = user?.email; //
   const username = user?.username;
-  const user_image = user?.profile;
-  console.log(user_image);
 
   const handleEmailIconClick = () => {
     window.location.href = `mailto:${email}`;
+  };
+
+  const handleShareClick = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      alert("URL copied to clipboard!");
+    } catch (error) {
+      console.error("Failed to copy:", error);
+      alert("Failed to copy URL to clipboard.");
+    }
   };
 
   // Mock data for the items
@@ -55,11 +63,12 @@ const PublicProfile: React.FC = () => {
             <div className="email-container" onClick={handleEmailIconClick}>
               <img src={emailIcon} alt="Email" className="email-icon" />
             </div>
-            <button className="share-button">Share</button>
+            <button className="share-button" onClick={handleShareClick}>
+              Share
+            </button>
           </div>
         </div>
       </div>
-
       <div className="items-container">
         <input
           type="search"

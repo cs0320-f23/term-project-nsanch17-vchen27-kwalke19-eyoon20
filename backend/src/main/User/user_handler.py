@@ -91,6 +91,64 @@ class UserHandler:
             return jsonify(result_dict), 404
     
 
+    @user_bp.route("/update_user/<username>", methods=['PATCH'])
+    def update_user_profile(username):
+        result_dict = {}
+
+        # Check if user exists
+        try:
+            user = user_manager.get_user_by_username(username)
+        except UserDoesNotExistException:
+            result_dict.update({"result": "error", "error_message": "User not found"})
+            return jsonify(result_dict), 404
+
+        updated = False
+
+        # Update text-based fields from form data
+        if 'username' in request.form:
+            new_username = request.form.get('username')
+            if new_username != username:
+                if user_manager.is_username_available(new_username):  
+                    user.username = new_username
+                    updated = True
+
+                    user_manager.users[new_username] = user_manager.users.pop(username)
+                else:
+                    result_dict.update({"result": "error", "error_message": "Username already taken"})
+                    return jsonify(result_dict), 400
+        if 'first_name' in request.form:
+            user.first_name = request.form['first_name']
+            updated = True
+        if 'last_name' in request.form:
+            user.last_name = request.form['last_name']
+            updated = True
+        if 'number' in request.form:
+            user.number = request.form['number']
+            updated = True
+        if 'email' in request.form:
+            user.email = request.form['email']
+            updated = True
+        if 'bio' in request.form:
+            user.bio = request.form['bio']
+            updated = True
+       
+
+        # Handle profile image upload
+        profile_image = request.files.get("profile_image")
+        if profile_image:
+            filename = secure_filename(profile_image.filename)
+            upload_folder = '/Users/nicolesanchez-soto/Desktop/CS32/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/User/user_profiles'  # Set your upload folder path
+            save_path = os.path.join(upload_folder, filename)
+            profile_image.save(save_path)
+            user.profile_image = filename
+            updated = True
+
+        if not updated:
+            result_dict.update({"result": "error", "error_message": "No valid fields to update"})
+            return jsonify(result_dict), 400
+
+        result_dict.update({"result": "success", "message": "User profile updated successfully"})
+        return jsonify(result_dict), 200
 
     @user_bp.route('/user_profiles/<filename>')
     def user_profiles(filename):

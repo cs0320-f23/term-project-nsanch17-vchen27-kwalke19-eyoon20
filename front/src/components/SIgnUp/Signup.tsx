@@ -33,6 +33,20 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
 
     if (isSignup) {
       // Signup logic
+      // Validate required fields
+      if (
+        !firstName ||
+        !lastName ||
+        !username ||
+        !email ||
+        !number ||
+        !password ||
+        !bio
+      ) {
+        setError("Please fill in all fields.");
+        return;
+      }
+
       const emailDomain = email.split("@")[1];
       if (emailDomain !== "brown.edu") {
         setError("You must use a brown.edu email address to sign up.");
@@ -120,8 +134,8 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
           last_name: data.user.last_name,
           username: data.user.username,
           email: data.user.email,
-          number: number,
-          bio: bio,
+          number: data.user.number,
+          bio: data.user.bio,
           profile: data.user.profile_image,
           password: password,
         });
