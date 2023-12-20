@@ -45,6 +45,7 @@ class PostingHandler:
         if not item_name or not seller_name or not price or not description or not qty:
             result_dict.update({"result": "error"})
             result_dict.update({"error_message": "Missing parameters. Please give a valid title, price, description, and seller username."})
+            print(result_dict)
             return jsonify(result_dict), 400
 
         try:

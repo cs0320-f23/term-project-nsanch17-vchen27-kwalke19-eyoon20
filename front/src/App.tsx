@@ -13,6 +13,7 @@ import NavBar from "./components/NavBar/NavBar";
 import { useEffect, useState } from "react";
 import NewWishlistConfirmation from "./pages/NewWishlistConfirmation";
 import { UserProvider } from "./components/UserProfile/UserContext";
+import WishList from "./components/Wishlist";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -47,6 +48,7 @@ function App() {
             <Route path="/single-item/" element={<SingleItemDisplay />} />
             <Route path="/create-new-listing" element={<CreateNewListing />} />
             <Route path="/single-item/:index" element={<SingleItemDisplay />} />
+            <Route path="/wishlist" element={<WishList />} />
 
             <Route
               path="/signup-login"

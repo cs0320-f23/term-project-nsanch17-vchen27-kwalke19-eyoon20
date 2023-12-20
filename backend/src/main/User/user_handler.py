@@ -107,3 +107,19 @@ class UserHandler:
         This endpoint was created for testing. It accesses the entire dictionary of users.
         '''
         return jsonify(user_manager.users)
+    
+    @user_bp.route("/wishlist/<username>", methods=['GET'])
+    def get_user_wishlist(username):
+        result_dict = {}
+
+        try:
+            user = user_manager.get_user_by_username(username)
+            wishlist = user.wishlist
+            result_dict.update({"result": "success", "wishlist": wishlist})
+            print(wishlist)
+            return jsonify(result_dict), 200
+        except UserDoesNotExistException:
+            result_dict.update({"result": "error", "error_message": "User not found"})
+            return jsonify(result_dict), 404
+        
+        
