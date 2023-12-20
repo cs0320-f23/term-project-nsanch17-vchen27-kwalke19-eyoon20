@@ -3,7 +3,7 @@ from main.recommendations.recommendations_manager import RecommendationsManager
 import dataclasses
 
 recs_manager = RecommendationsManager()
-recs_bp = Blueprint('reccomendations', __name__)
+recs_bp = Blueprint('recommendations', __name__)
 class RecommendationsHandler:
 
     @recs_bp.route("/generate",methods=['GET', 'POST'])

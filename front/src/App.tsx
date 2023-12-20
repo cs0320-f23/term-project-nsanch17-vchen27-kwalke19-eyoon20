@@ -14,6 +14,8 @@ import { useEffect, useState } from "react";
 import NewWishlistConfirmation from "./pages/NewWishlistConfirmation";
 import { UserProvider } from "./components/UserProfile/UserContext";
 import WishList from "./components/Wishlist";
+import "./style/NavBar.css";
+import EditListing from "./pages/EditListing";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -36,6 +38,11 @@ function App() {
     localStorage.removeItem("userData");
   };
 
+  const handlePublish = (status: boolean) => {
+    // Handle the publish status as needed
+    console.log("Publish status:", status);
+  };
+
   return (
     <UserProvider>
       <Router>
@@ -46,7 +53,16 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/public" element={<PublicProfile />} />
             <Route path="/single-item/" element={<SingleItemDisplay />} />
-            <Route path="/create-new-listing" element={<CreateNewListing />} />
+            <Route
+              path="/create-new-listing"
+              element={<CreateNewListing onPublish={handlePublish} />}
+            />
+            <Route
+              path="/edit-listing/:item_name"
+              element={
+                <EditListing onCancel={() => {}} onPublish={(status) => {}} />
+              }
+            />
             <Route path="/single-item/:index" element={<SingleItemDisplay />} />
             <Route path="/wishlist" element={<WishList />} />
 

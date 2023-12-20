@@ -154,18 +154,26 @@ class UserHandler:
         result_dict.update({"result": "success", "message": "User profile updated successfully"})
         return jsonify(result_dict), 200
 
-    @user_bp.route('/user_profiles/<filename>')
-    def user_profiles(filename):
-        print("Requested file:", filename)
-        return send_from_directory("/Users/nicolesanchez-soto/Desktop/CS32/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/User/user_profiles/", filename)
 
-    
+    @user_bp.route("/profile/<username>", methods=['GET'])
+    def get_user_profile(username):
+        try:
+            user = user_manager.get_user_by_username(username)
+            return jsonify(dataclasses.asdict(user)), 200
+        except UserDoesNotExistException:
+            return jsonify({"error": "User not found"}), 404
+        
     @user_bp.route("/data")
     def get_users():
         '''
         This endpoint was created for testing. It accesses the entire dictionary of users.
         '''
         return jsonify(user_manager.users)
+    
+    @user_bp.route('/user_profiles/<filename>')
+    def user_profiles(filename):
+        print("Requested file:", filename)
+        return send_from_directory("/Users/nicolesanchez-soto/Desktop/CS32/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/User/user_profiles/", filename)
     
     @user_bp.route("/wishlist/<username>", methods=['GET'])
     def get_user_wishlist(username):

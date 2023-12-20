@@ -83,6 +83,9 @@ class PostingManager:
                 
                     return mod_posting
                 
+    def get_all_postings(self):
+        return list(self.postings.values())
+                
     def buy_posting(self,buyer_name,key):
         if key not in self.postings:
             raise ItemNotFoundException( f"Item with key {key} not found")
@@ -108,7 +111,3 @@ class PostingManager:
                 return self.postings[key]
             except KeyError:
                 UserDoesNotExistException("Cannot find user to purchase posting.")
-
-
-
-
