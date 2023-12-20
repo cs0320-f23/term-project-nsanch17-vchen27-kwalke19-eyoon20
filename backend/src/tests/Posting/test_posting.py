@@ -18,7 +18,11 @@ def test_create_posting_success(client):
             "last_name": "Smith",
             "username": "sarbar",
             "email": "smith@gmail.com",
-            "profile":"/link"
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
         })
 
         response = client.get('/posting/create', query_string={
@@ -126,7 +130,11 @@ def test_create_posting_existing(client):
             "last_name": "Reed",
             "username": "hreed",
             "email": "smith@gmail.com",
-            "profile":"/link"
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
 
         })
 
@@ -183,7 +191,11 @@ def test_delete_success(client):
             "last_name": "W",
             "username": "kittens",
             "email": "lwww@gmail.com",
-            "profile":"/link"
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
 
         })
 
@@ -255,7 +267,11 @@ def test_modify_success(client):
             "last_name": "Johnson",
             "username": "ajjj",
             "email": "smith@gmail.com",
-            "profile":"/link"
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
 
         })
 
@@ -323,7 +339,11 @@ def test_modify_fail(client):
                 "last_name": "Reed",
                 "username": "help",
                 "email": "pleasetakethisdoll@gmail.com",
-                "profile":"/link"
+                "profile":"/link",
+                "password":"words",
+                "number":"1234567891",
+                "bio":"me!",
+                "profile_image":"/link"
 
             })
             
@@ -367,7 +387,11 @@ def test_purchase(client):
             "last_name": "James",
             "username": "kjojames",
             "email": "jelson@gmail.com",
-            "profile":"/link"
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
 
         })
         
@@ -386,7 +410,11 @@ def test_purchase(client):
             "last_name": "Robber",
             "username": "doubr",
             "email": "rob@gmail.com",
-            "profile":"/link"
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
 
         })
 
@@ -415,6 +443,79 @@ def test_purchase(client):
 
     #removing the status from the orginal fetched item and updated purchased version should lead to item being the same 
     assert user_data["doubr"]["purchases"]["Beyonce tickets_kjojames"] == posting["item"]
+
+def test_purchase_fail(client):
+    with app.app_context():
+        client.get('/user/new_user', query_string={
+            "first_name": "Kelson",
+            "last_name": "James",
+            "username": "kjojames",
+            "email": "jelson@gmail.com",
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
+
+        })
+        
+        client.get('/posting/create', query_string={
+            "item_name": "Beyonce tickets",
+            "seller_name": "kjojames",
+            "price": "500",
+            "description": "Trust me..you want this.",
+            "qty":"1",
+            "big_pic":"/link",
+            "pics":"/link"  
+        })
+
+        client.get('/user/new_user', query_string={
+            "first_name": "Robbie",
+            "last_name": "Robber",
+            "username": "doubr",
+            "email": "rob@gmail.com",
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
+
+        })
+
+        client.get('/posting/buy', query_string={
+            "item_name": "Beyonce tickets",
+            "seller_name": "kjojames",
+            "buyer_name": "doubr"
+        })
+
+        client.get('/user/new_user', query_string={
+            "first_name": "Chase",
+            "last_name": "Robber",
+            "username": "pluto",
+            "email": "chasr@gmail.com",
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
+
+        })
+
+        client.get('/user/data', query_string={
+            
+            })
+        purchase_response = client.get('/posting/buy', query_string={
+            "item_name": "Beyonce tickets",
+            "seller_name": "kjojames",
+            "buyer_name": "pluto"
+        })
+
+    purchase = purchase_response.get_json()
+
+    #cannot purchase listing already purchased
+    assert purchase["error_message"] == "Cannot purchase item already purchased."
+    
+
 
 
 

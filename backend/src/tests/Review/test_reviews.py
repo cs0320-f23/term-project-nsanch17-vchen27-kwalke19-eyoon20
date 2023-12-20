@@ -14,7 +14,11 @@ def test_create_review_success(client):
             "last_name": "Smith",
             "username": "bridgette",
             "email": "smith@gmail.com",
-            "profile":"/link"
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
         })
 
         client.get('/posting/create', query_string={
@@ -32,7 +36,11 @@ def test_create_review_success(client):
             "last_name": "Jenes",
             "username": "rjenes",
             "email": "smith@gmail.com",
-            "profile":"/link"
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
         })
 
         client.get('/posting/buy', query_string={
@@ -67,7 +75,11 @@ def test_create_review_fail(client):
             "last_name": "Rueth",
             "username": "sreuth",
             "email": "srueth@gmail.com",
-            "profile":"/link"
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
         })
 
         client.get('/user/new_user', query_string={
@@ -75,7 +87,11 @@ def test_create_review_fail(client):
             "last_name": "Hines",
             "username": "shines",
             "email": "shines@gmail.com",
-            "profile":"/link"
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
         })
 
         review_response =client.get('/review/create', query_string={
@@ -98,7 +114,11 @@ def test_create_review_fail(client):
             "last_name": "Smith",
             "username": "bridgette",
             "email": "smith@gmail.com",
-            "profile":"/link"
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
         })
 
         client.get('/posting/create', query_string={
@@ -116,7 +136,11 @@ def test_create_review_fail(client):
             "last_name": "Jenes",
             "username": "rjenes",
             "email": "smith@gmail.com",
-            "profile":"/link"
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
         })
 
         client.get('/posting/buy', query_string={
@@ -144,7 +168,11 @@ def test_delete_review_success(client):
             "last_name": "Smith",
             "username": "bridgette",
             "email": "smith@gmail.com",
-            "profile":"/link"
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
         })
 
         client.get('/posting/create', query_string={
@@ -162,7 +190,11 @@ def test_delete_review_success(client):
             "last_name": "Jenes",
             "username": "rjenes",
             "email": "smith@gmail.com",
-            "profile":"/link"
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
         })
 
         client.get('/posting/buy', query_string={

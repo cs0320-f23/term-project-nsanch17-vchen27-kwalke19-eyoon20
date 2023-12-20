@@ -87,7 +87,7 @@ class PostingManager:
         if key not in self.postings:
             raise ItemNotFoundException( f"Item with key {key} not found")
         if self.postings[key].status == Status.PURCHASED:
-            raise PermissionError( f"Cannot purchase item already purchased.")
+            raise PermissionError("Cannot purchase item already purchased.")
 
         else:
             try:

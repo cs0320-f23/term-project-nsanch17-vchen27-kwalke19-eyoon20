@@ -24,6 +24,7 @@ class User:
     sellings: dict
     wishlist: dict
     reviews: dict
+    notifications:dict()
 
 class UserManager:
     def __init__(self):
@@ -48,7 +49,7 @@ class UserManager:
                 raise UserExistsException("User already exists.")
             else:
                 hashed_password = generate_password_hash(password)
-                user = User(first_name, last_name, username, number, email, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), profile_image, bio, hashed_password, {}, {}, {}, {})
+                user = User(first_name, last_name, username, number, email, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), profile_image, bio, hashed_password, {}, {}, {}, {},{})
                 self.users[username] = user
                 return user
             

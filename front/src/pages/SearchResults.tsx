@@ -33,7 +33,7 @@ const SearchResults: React.FC = () => {
 
           
            setSearch((prevResults) => [
-            //  ...prevResults,
+           
              ...newSearchResults,
            ]);
 

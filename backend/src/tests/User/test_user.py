@@ -19,7 +19,13 @@ def test_create_user_profile_success(client):
         "last_name": "Doe",
         "username": "jdo",
         "email": "jdoe@gmail.com",
-        "profile":"/link"
+        "profile":"/link",
+        "password":"words",
+        "number":"1234567891",
+        "bio":"me!",
+        "profile_image":"/link"
+        
+
 
     })
     data = response.get_json()
@@ -73,7 +79,12 @@ def test_create_user_profile_existing(client):
             "last_name": "Doe",
             "username": "jdo",
             "email": "jdoe@gmail.com",
-            "profile":"/link"
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
+            
 
         })
 
@@ -82,7 +93,11 @@ def test_create_user_profile_existing(client):
             "last_name": "Smith",
             "username": "jdo",
             "email": "smith@gmail.com",
-            "profile":"/link"
+            "profile":"/link",
+            "password":"words",
+            "number":"1234567891",
+            "bio":"me!",
+            "profile_image":"/link"
 
         })
 

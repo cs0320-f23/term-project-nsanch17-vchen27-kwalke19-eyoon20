@@ -12,7 +12,11 @@ def test_add_wishlist_success(client):
                 "last_name": "dwindle",
                 "username": "rdwin",
                 "email": "rdwin@aol.com",
-                "profile":"/link"
+                "profile":"/link",
+                "password":"words",
+                "number":"1234567891",
+                "bio":"me!",
+                "profile_image":"/link"
 
         })
 
@@ -31,7 +35,11 @@ def test_add_wishlist_success(client):
                 "last_name": "mae",
                 "username": "smae",
                 "email": "beaniebabylovr@aol.com",
-                "profile":"/link"
+                "profile":"/link",
+                "password":"words",
+                "number":"1234567891",
+                "bio":"me!",
+                "profile_image":"/link"
 
         })
         response = client.get('/wishlist/add_wish', query_string={
@@ -75,7 +83,11 @@ def test_add_wishlist_failure(client):
                 "last_name": "mae",
                 "username": "baeme",
                 "email": "beaniebabylovr@aol.com",
-                "profile":"/link"
+                "profile":"/link",
+                "password":"words",
+                "number":"1234567891",
+                "bio":"me!",
+                "profile_image":"/link"
 
         })
         response = client.get('/wishlist/add_wish', query_string={
@@ -94,7 +106,11 @@ def test_add_wishlist_failure(client):
                 "last_name": "dwindle",
                 "username": "swindler",
                 "email": "rdwin@aol.com",
-                "profile":"/link"
+                "profile":"/link",
+                "password":"words",
+                "number":"1234567891",
+                "bio":"me!",
+                "profile_image":"/link"
 
 
         })
@@ -125,7 +141,11 @@ def test_add_wishlist_failure(client):
                 "last_name": "dwindle",
                 "username": "coppaz",
                 "email": "rdwin@aol.com",
-                "profile":"/link"
+                "profile":"/link",
+                "password":"words",
+                "number":"1234567891",
+                "bio":"me!",
+                "profile_image":"/link"
 
         })
         
@@ -153,7 +173,11 @@ def test_add_wishlist_failure(client):
                 "last_name": "dwindle",
                 "username": "rdwin",
                 "email": "rdwin@aol.com",
-                "profile":"/link"
+                "profile":"/link",
+                "password":"words",
+                "number":"1234567891",
+                "bio":"me!",
+                "profile_image":"/link"
 
         })
 
@@ -172,7 +196,11 @@ def test_add_wishlist_failure(client):
                 "last_name": "mae",
                 "username": "smae",
                 "email": "beaniebabylovr@aol.com",
-                "profile":"/link"
+                "profile":"/link",
+                "password":"words",
+                "number":"1234567891",
+                "bio":"me!",
+                "profile_image":"/link"
 
         })
         response = client.get('/wishlist/add_wish', query_string={
@@ -191,7 +219,11 @@ def test_delete_wishlist(client):
                 "last_name": "winter",
                 "username": "gwinter",
                 "email": "rdwin@aol.com",
-                "profile":"/link"
+                "profile":"/link",
+                "password":"words",
+                "number":"1234567891",
+                "bio":"me!",
+                "profile_image":"/link"
 
         })
 
@@ -210,7 +242,11 @@ def test_delete_wishlist(client):
                 "last_name": "mae",
                 "username": "kmae",
                 "email": "beaniebabylovr@aol.com",
-                "profile":"/link"
+                "profile":"/link",
+                "password":"words",
+                "number":"1234567891",
+                "bio":"me!",
+                "profile_image":"/link"
 
         })
         client.get('/wishlist/add_wish', query_string={

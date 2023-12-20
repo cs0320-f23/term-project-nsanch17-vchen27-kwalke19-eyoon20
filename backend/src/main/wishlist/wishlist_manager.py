@@ -4,6 +4,7 @@ from main.Posting.post_manager import ItemNotFoundException
 import dataclasses
 from datetime import datetime
 from copy import copy, deepcopy
+from main.notifications.notifications_manager import Notification
 
 from main.User.user_handler import user_manager
 
