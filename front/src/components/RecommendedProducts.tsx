@@ -26,7 +26,7 @@ const RecommendedProductsContainer: React.FC<{
           const data = await response.json();
 
           const filteredRecommendations = data.recommendations.filter(
-            (posting) => {
+            (posting: { price: number }) => {
               if (!selectedPriceRange) {
                 return true;
               }

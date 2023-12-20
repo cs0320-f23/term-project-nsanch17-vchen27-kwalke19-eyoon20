@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import ProfileStatistics from "./ProfileStatistics";
+import UserProfile from "../../assets/default_profile.jpeg";
 import "../../style/UserProfile.css";
 import { useNavigate } from "react-router-dom";
 

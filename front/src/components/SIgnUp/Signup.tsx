@@ -71,6 +71,8 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
         );
         const data = await response.json();
 
+        console.log("signup successful", data);
+
         if (!response.ok) {
           throw new Error(
             data.error_message || "An error occurred during the request."
@@ -108,6 +110,8 @@ const Signup: React.FC<SignupProps> = ({ onLogin }) => {
           requestOptions
         );
         const data = await response.json();
+
+        console.log("login successful", data);
 
         if (!response.ok) {
           throw new Error(
