@@ -30,9 +30,9 @@ class WishlistManager:
 
 
             #notify seller
-            id = len( user_manager.users[username_buyer].notifications) + 1
+            # id = len( user_manager.users[username_buyer].notifications) + 1
             watchers = len(post_manager.postings[key].trackers) + 1
-            user_manager.users[username_seller].notifications.update({key: Notification(f"A user has wished for your item. Currently, {watchers} people are wishing for your item.",datetime.now().strftime("%Y-%m-%d %H:%M:%S"),id,False)})
+            # user_manager.users[username_seller].notifications.update({key: Notification(f"A user has wished for your item. Currently, {watchers} people are wishing for your item.",datetime.now().strftime("%Y-%m-%d %H:%M:%S"),id,False)})
 
             #store all users tracking post via wishlist for future notification purposes
             post_manager.postings[key].trackers.append(username_buyer)

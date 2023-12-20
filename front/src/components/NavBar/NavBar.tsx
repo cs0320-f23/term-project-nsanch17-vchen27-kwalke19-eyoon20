@@ -82,6 +82,7 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
   // Handlers
   const handleHomeClick = () => navigate("/");
   const handleCreateNewListingClick = () => navigate("/create-new-listing");
+  const handleWishlistClick = () => navigate("/wishlist");
 
   return (
     <nav className="navbar">
@@ -102,7 +103,7 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
           </button>
         )}
         <img
-          onClick={() => setShowSavedItems(!showSavedItems)}
+          onClick={handleWishlistClick}
           src={Heart}
           alt="Saved Items"
           className="navbar-icon"

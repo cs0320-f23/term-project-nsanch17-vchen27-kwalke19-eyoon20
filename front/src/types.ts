@@ -17,26 +17,22 @@ export interface NotificationsProps {
 }
 
 export type Posting = {
-  // id: string;
-    //Need to get rid of id
-    //replace all instances
-    // id = f:{item_name}_{item_seller}
-    //"link" should do a navigate to the page
+  id: string;
   name: string;
   seller: User;
   price: number;
   description: string;
   qty: number;
   date: Date;
-  coverPhoto: string;
+  link: string;
+  picture: string;
   additionalPhotos: string[];
-
 };
 
 export interface SavedItemsProps {
   saveditems: Posting[];
   //Record<string,any>
-  // Need to change this into a dictionary; 
+  // Need to change this into a dictionary;
   // each item being ID (posting.name_posting.seller, Posting)
 }
 
@@ -47,8 +43,8 @@ export type User = {
   profilePicture: string;
   dateJoined: Date;
   email: string;
-  //purchases: Record<string, any>; //key: (item_name)_(item_user) 
-  //sellings: Record<string, any>; //key: (item_name)_(item_user) 
+  //purchases: Record<string, any>; //key: (item_name)_(item_user)
+  //sellings: Record<string, any>; //key: (item_name)_(item_user)
   //wishlist: Record<string, any>; //key: (item_name)_(item_user)
   //reviews: Record<string, any>; //key is author of review
   //notifications: Notification[]; //need to call User.notifications for the frontend
@@ -59,6 +55,6 @@ export type Review = {
   content: string;
   date: Date;
   author: User;
-}
+};
 
 //for search: take in dictionary of items (related to, say, the keyword red) and then show it on screen

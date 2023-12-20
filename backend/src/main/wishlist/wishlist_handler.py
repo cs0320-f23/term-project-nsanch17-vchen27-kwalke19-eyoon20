@@ -25,6 +25,7 @@ class WishlistHandler:
             seller = data.get("seller_name")
 
         if not post or not buyer or not seller:
+            print("missing info")
             result_dict.update({"result":"error"})
             result_dict.update({"error_message": "Please include all information: buyer, seller, and item."})
             return jsonify(result_dict),400
@@ -35,6 +36,7 @@ class WishlistHandler:
             result_dict.update({"added_item":added})
             return jsonify(result_dict),200
         except UserDoesNotExistException as e:
+            print("user does not exist")
             result_dict.update({"result":"error"})
             if str(e)== "Cannot locate user to find wishlist.":
                 result_dict.update({"error_message": "Unable to find buyer."})
@@ -43,6 +45,7 @@ class WishlistHandler:
                 result_dict.update({"error_message": "Unable to find seller."})
             return jsonify(result_dict),400
         except ItemNotFoundException:
+            print("item not found")
             result_dict.update({"result":"error"})
             result_dict.update({"error_message": "Unable to find posting."})
             return jsonify(result_dict),400
