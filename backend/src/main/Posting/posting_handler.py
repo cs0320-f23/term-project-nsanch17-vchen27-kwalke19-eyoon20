@@ -54,7 +54,7 @@ class PostingHandler:
 
         try:
             # Configure the upload folder path
-            upload_folder = '/Users/nicolesanchez-soto/Desktop/CS32/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/Posting/posting_pics'
+            upload_folder = '/Users/vickychen/Desktop/cs32/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/Posting/posting_pics'
             os.makedirs(upload_folder, exist_ok=True)  # Create the folder if it doesn't exist
 
             if big_pic:
@@ -188,6 +188,6 @@ class PostingHandler:
     @posting_bp.route('/posting_pictures/<filename>')
     def posting_pictures(filename):
         print("Requested file:", filename)
-        return send_from_directory("/Users/nicolesanchez-soto/Desktop/CS32/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/Posting/posting_pics", filename)
+        return send_from_directory("/Users/vickychen/Desktop/cs32/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/Posting/posting_pics", filename)
 
     

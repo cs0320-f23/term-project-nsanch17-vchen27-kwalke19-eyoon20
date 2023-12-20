@@ -42,6 +42,15 @@ const SingleItemDisplay = () => {
     }
   };
 
+  const handleViewSellerProfile = () => {
+    if (posting?.seller) {
+      // Navigate to the public profile of the seller
+      navigate(`/seller-public-profile/${posting.seller}`);
+    } else {
+      console.error("Seller information not available");
+    }
+  };
+
   if (!posting) {
     // handle the case where the data is not available
     return <div>No product data available</div>;
@@ -58,12 +67,22 @@ const SingleItemDisplay = () => {
               // ... You can add as many as you need
             ]}
           />
-          <ProductImage />
+          <img
+            src={`http://127.0.0.1:8000/posting/posting_pictures/${posting.picture}`} // Assuming server serves static files at this path
+            alt={posting.name}
+            className="product-image"
+          />
         </section>
         <section className="right-side">
           <ProductDetails posting={posting} />
           <button onClick={handleWishlistClick} className="button white-button">
             Add to Wishlist
+          </button>
+          <button
+            onClick={handleViewSellerProfile}
+            className="button green-button"
+          >
+            View Seller's Profile
           </button>
         </section>
       </div>

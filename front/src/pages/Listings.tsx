@@ -129,7 +129,7 @@ const Listings: React.FC<ListingsProps> = ({}) => {
       <h2 className="my-listings-header">My Listings</h2>
       <div className="listings-container">
         {listings.map((listing) => (
-          <div key={`${listing.name}_${listing.seller.username}`} className="listing-item">
+          <div key={listing.id} className="listing-item">
             <img
               src={`http://127.0.0.1:8000/posting/posting_pictures/${listing.picture}`} // Assuming server serves static files at this path
               alt={listing.name}
@@ -164,7 +164,7 @@ const Listings: React.FC<ListingsProps> = ({}) => {
                 </button>
                 <button
                   className="delete-listing-btn"
-                  onClick={() => handleDeleteListing(listing)}
+                  onClick={() => handleDeleteListing(listing.id)}
                 >
                   Delete Listing
                 </button>

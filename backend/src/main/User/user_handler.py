@@ -189,4 +189,20 @@ class UserHandler:
             result_dict.update({"result": "error", "error_message": "User not found"})
             return jsonify(result_dict), 404
         
-        
+    @user_bp.route("/listings/<username>", methods=['GET'])
+    def get_user_listings(username):
+        result_dict = {}
+
+        try:
+            user = user_manager.get_user_by_username(username)
+            listings = user.sellings
+
+            # Ensure listings is always returned as a list
+            listings = list(listings)
+
+            result_dict.update({"result": "success", "listings": listings})
+            print(listings)
+            return jsonify(result_dict), 200
+        except UserDoesNotExistException:
+            result_dict.update({"result": "error", "error_message": "User not found"})
+            return jsonify(result_dict), 404

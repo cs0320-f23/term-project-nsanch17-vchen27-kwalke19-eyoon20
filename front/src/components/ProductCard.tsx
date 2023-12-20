@@ -12,7 +12,11 @@ const ProductCard: FC<ProductCardProps> = ({ posting, onClick }) => {
     <div className="product-card" onClick={onClick}>
       <div className="product-card-container">
         <div className="product-image-wrapper">
-          <img className="product-image" src={posting.picture} />
+          <img
+            src={`http://127.0.0.1:8000/posting/posting_pictures/${posting.picture}`} // Assuming server serves static files at this path
+            alt={posting.name}
+            className="product-image"
+          />
         </div>
         <div className="product-info">
           <div className="product-title">{posting.name}</div>
@@ -24,7 +28,7 @@ const ProductCard: FC<ProductCardProps> = ({ posting, onClick }) => {
               : posting.price}
           </div>
           <div className="product-price" id="qty">
-            Qty: {posting.qty.toFixed(2)}
+            Qty: {posting.qty}
           </div>
         </div>
       </div>

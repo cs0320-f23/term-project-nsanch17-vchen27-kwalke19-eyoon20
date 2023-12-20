@@ -16,6 +16,7 @@ import { UserProvider } from "./components/UserProfile/UserContext";
 import WishList from "./components/Wishlist";
 import "./style/NavBar.css";
 import EditListing from "./pages/EditListing";
+import SellerPublicProfile from "./pages/SellerPublicProfile";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -52,7 +53,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/public" element={<PublicProfile />} />
-            <Route path="/single-item/" element={<SingleItemDisplay />} />
+            <Route
+              path="/single-item/:item_name"
+              element={<SingleItemDisplay />}
+            />
             <Route
               path="/create-new-listing"
               element={<CreateNewListing onPublish={handlePublish} />}
@@ -64,6 +68,10 @@ function App() {
               }
             />
             <Route path="/single-item/:index" element={<SingleItemDisplay />} />
+            <Route
+              path="/seller-public-profile/:sellerUsername"
+              element={<SellerPublicProfile />}
+            />
             <Route path="/wishlist" element={<WishList />} />
 
             <Route

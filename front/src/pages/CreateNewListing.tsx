@@ -13,9 +13,6 @@ const CreateNewListing: React.FC<CreateNewListingProps> = ({ onPublish }) => {
   const [price, setPrice] = useState("");
   const [qty, setQuantity] = useState("");
   const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
-  const [username, setUsername] = useState("");
-  const [big_pic, setPic] = useState(Model);
   const [photo, setPhoto] = useState<File | null>(null);
   const [error, setError] = useState("");
 
@@ -87,7 +84,6 @@ const CreateNewListing: React.FC<CreateNewListingProps> = ({ onPublish }) => {
         <div className="form-container">
           <div className="photo-upload">
             <input type="file" accept="image/*" onChange={handlePhotoChange} />
-            {/* Implement photo upload functionality here */}
           </div>
           <input
             type="text"
