@@ -83,33 +83,38 @@ const CreateNewListing: React.FC<CreateNewListingProps> = ({ onPublish }) => {
         <h1>Create A New Listing</h1>
         <div className="form-container">
           <div className="photo-upload">
-            <input type="file" accept="image/*" onChange={handlePhotoChange} />
+            <input type="file" aria-label="Choose File Button" accept="image/*" onChange={handlePhotoChange} />
           </div>
           <input
             type="text"
             placeholder="Title of Listing"
+            aria-label="Title of Listing Input"
             value={item_name}
             onChange={(e) => setItem(e.target.value)}
           />
           <input
             type="text"
             placeholder="Price (i.e. 54.99, 5.00)"
+            aria-label="Price Input"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
           <input
             type="number"
             placeholder="Quantity"
+            aria-label="Quantity Input"
             value={qty}
             onChange={(e) => setQuantity(e.target.value)}
           />
           <textarea
             placeholder="Description"
+            aria-label="Description Input"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           <button
             type="button"
+            aria-label="Publish"
             onClick={handlePublish}
             className="publish-button"
           >

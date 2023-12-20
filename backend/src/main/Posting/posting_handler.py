@@ -11,6 +11,8 @@ from werkzeug.datastructures import FileStorage
 from werkzeug.utils import secure_filename
 import os
 from flask import send_from_directory
+from pathlib import Path
+
 
 post_manager = PostingManager()
 posting_bp = Blueprint('posting', __name__)
@@ -53,17 +55,20 @@ class PostingHandler:
             return jsonify(result_dict), 400
 
         try:
-            # Configure the upload folder path
-            upload_folder = '/Users/vickychen/Desktop/cs32/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/Posting/posting_pics'
+            # Get the directory of the current script
+            current_dir = Path(__file__).parent
+
+            # Configure the upload folder path relative to the current script
+            upload_folder = current_dir / 'posting_pics'
             os.makedirs(upload_folder, exist_ok=True)  # Create the folder if it doesn't exist
 
             if big_pic:
                 filename = secure_filename(big_pic.filename)
-                save_path = os.path.join(upload_folder, filename)
-                big_pic.save(save_path)
+                save_path = upload_folder / filename
+                big_pic.save(str(save_path))  # Convert Path object to string
                 picture = filename
 
-            posting = post_manager.create_posting(item_name, seller_name, price, description, qty, picture)
+                posting = post_manager.create_posting(item_name, seller_name, price, description, qty, picture)
         except (PostingExistsException, UserDoesNotExistException) as e:
             result_dict.update({"result": "error"})
             result_dict.update({"error_message": str(e)})
@@ -188,6 +193,6 @@ class PostingHandler:
     @posting_bp.route('/posting_pictures/<filename>')
     def posting_pictures(filename):
         print("Requested file:", filename)
-        return send_from_directory("/Users/vickychen/Desktop/cs32/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/Posting/posting_pics", filename)
+        return send_from_directory("/Users/ericyoon/Desktop/CS320/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/Posting/posting_pics", filename)
 
     

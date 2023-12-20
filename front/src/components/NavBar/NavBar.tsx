@@ -97,6 +97,7 @@ const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, onLogout }) => {
         {isLoggedIn && (
           <button
             onClick={handleCreateNewListingClick}
+            aria-label="Create New Listing Button"
             className="create-listing-btn"
           >
             Create New Listing

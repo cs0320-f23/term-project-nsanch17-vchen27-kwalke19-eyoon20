@@ -43,7 +43,7 @@ class UserHandler:
             profile_image = request.files.get("profile_image")
             if profile_image:
                 filename = secure_filename(profile_image.filename)
-                upload_folder = '/Users/nicolesanchez-soto/Desktop/CS32/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/User/user_profiles'  # Configure this path correctly
+                upload_folder = '/Users/ericyoon/Desktop/CS320/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/User/user_profiles'  # Configure this path correctly
                 save_path = os.path.join(upload_folder, filename)
                 profile_image.save(save_path)
                 profile = filename
@@ -141,7 +141,7 @@ class UserHandler:
         profile_image = request.files.get("profile_image")
         if profile_image:
             filename = secure_filename(profile_image.filename)
-            upload_folder = '/Users/nicolesanchez-soto/Desktop/CS32/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/User/user_profiles'  # Set your upload folder path
+            upload_folder = '/Users/ericyoon/Desktop/CS320/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/User/user_profiles'  # Set your upload folder path
             save_path = os.path.join(upload_folder, filename)
             profile_image.save(save_path)
             user.profile_image = filename
@@ -173,7 +173,7 @@ class UserHandler:
     @user_bp.route('/user_profiles/<filename>')
     def user_profiles(filename):
         print("Requested file:", filename)
-        return send_from_directory("/Users/nicolesanchez-soto/Desktop/CS32/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/User/user_profiles/", filename)
+        return send_from_directory('/Users/ericyoon/Desktop/CS320/term-project-nsanch17-vchen27-kwalke19-eyoon20/backend/src/main/User/user_profiles', filename)
     
     @user_bp.route("/wishlist/<username>", methods=['GET'])
     def get_user_wishlist(username):
